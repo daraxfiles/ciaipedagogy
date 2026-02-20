@@ -1,0 +1,159 @@
+You are Replit Agent. Build a responsive webapp that implements the “Critical Innovation & AI Pedagogy” homepage wireframe below. Produce a working Next.js (App Router) + TypeScript + TailwindCSS site with clean components, editable content via a config file, and strong accessibility.
+
+NON-NEGOTIABLES
+- Next.js (App Router) + TypeScript
+- TailwindCSS
+- shadcn/ui components (Button, Card, Badge, Separator, Sheet for mobile nav)
+- lucide-react icons
+- Semantic HTML, accessible focus states, keyboard navigation
+- One working homepage route: / with section anchor navigation
+- Content must be editable from a single file: src/content/site.ts
+- Provide a clean component structure under src/components/
+- Smooth scrolling to sections; include skip-to-content link
+- Academic aesthetic: serious, minimal, not “futuristic AI”
+
+DELIVERABLE
+- A running app in Replit with all files created.
+- After implementing, print (in chat) a brief “What I built” and “How to edit content” guide.
+
+STEP-BY-STEP PLAN (DO THIS IN ORDER)
+1) Initialize a Next.js app (App Router) with TypeScript.
+2) Install and configure TailwindCSS.
+3) Install shadcn/ui and set it up.
+4) Install lucide-react and framer-motion (animations should be subtle; if time is tight, animations are optional).
+5) Create the content config file at src/content/site.ts.
+6) Create components:
+   - Navbar (sticky, desktop nav + mobile Sheet menu, primary CTA “Join the Network”, dark mode toggle optional)
+   - Hero (two-column; left text + buttons, right “three interlinked circles” diagram made with SVG or HTML/CSS)
+   - Pillars (3 cards)
+   - ResearchInAction (project grid with status badges)
+   - PublicationsPreview (list)
+   - ResourcesSnapshot (2-column; bullets + CTA)
+   - InsightsAndEvents (insights cards + small upcoming events block)
+   - CTASection (centered, darker background)
+   - Footer (3 columns + bottom line)
+7) Assemble the homepage in src/app/page.tsx using these sections with anchor IDs:
+   #home, #about, #research, #action, #publications, #insights, #collaborate, #contact
+8) Ensure mobile layout is excellent (stacked sections, large touch targets).
+9) Ensure color contrast and typography are readable.
+
+SITE NAVIGATION (TOP NAV)
+Nav items (anchor links):
+- Home (#home)
+- About (#about)
+- Research (#research)
+- Research in Action (#action)
+- Publications (#publications)
+- Insights & Events (#insights)
+- Collaborate (#collaborate)
+- Contact (#contact)
+Primary CTA button: “Join the Network” (scrolls to #collaborate)
+
+HOMEPAGE WIREFRAME CONTENT (IMPLEMENT EXACTLY)
+1) NAVBAR (sticky)
+Left: “Critical Innovation & AI Pedagogy” + simple text logo mark
+Right: nav + CTA button
+
+2) HERO (above the fold, 2-col desktop, stacked mobile)
+H1: Reimagining AI in Education Through Agency, Ethics, and Equity
+Subheadline: Critical Innovation & AI Pedagogy is a research and practice working group examining how artificial intelligence reshapes teaching, learning, and knowledge production in sociotechnical educational systems.
+Supporting line: We study agency, epistemic trust, hidden AI practices, and equitable innovation in automated learning environments.
+Buttons:
+- Primary: Explore Our Research (scroll to #research)
+- Secondary: Collaborate With Us (scroll to #collaborate)
+Right side visual:
+- A “three interlinked circles” diagram labeled:
+  1) Agency & Judgment
+  2) Critical AI Literacy
+  3) Equitable Innovation
+Optional subtle background node lines (very light), but keep minimal.
+
+3) OUR RESEARCH PILLARS (3 cards)
+Title: Our Research Pillars
+Card 1:
+- Title: Agency, Judgment & Psychology of AI Use
+- Text: We examine how learners and educators interpret, negotiate, and respond to AI systems in learning environments.
+- Link: Learn More (for now, scroll to #research)
+Card 2:
+- Title: Critical AI & Media Literacy
+- Text: We investigate how learners critically analyze and respond to AI-generated media, including synthetic video, audio, and images.
+- Link: Learn More
+Card 3:
+- Title: Equitable & Transparent Innovation
+- Text: We design low-resource, open-source, and ethically transparent models so AI innovation does not widen inequities.
+- Link: Learn More
+
+4) RESEARCH IN ACTION (Project grid)
+Title: Research in Action
+Project cards (each has title, 1-sentence description, status badge, link “View Project”):
+- AI Smuggling Study — Badge: Ongoing
+- Vibe Coding Studio — Badge: Pilot
+- Deepfake Literacy Initiative — Badge: Ongoing
+- Low-Resource AI Initiative — Badge: Building
+
+5) RECENT PUBLICATIONS & OUTPUTS
+Title: Recent Publications & Outputs
+List 4 items (placeholder ok; make editable in site.ts):
+- Title, venue, 1-line description
+Button: View All Publications (for now, scroll to #publications)
+
+6) RESOURCES FOR EDUCATORS (2 columns)
+Title: Resources for Educators
+Left text: We translate research into practical, ethical AI integration frameworks for educators across contexts.
+Right bullets (links; placeholder anchors ok):
+- AI Syllabus Statements
+- Deepfake Analysis Modules
+- AI Disclosure Framework
+- Open-Source Toolkits
+Button: Explore Toolkit
+
+7) INSIGHTS & EVENTS
+Title: Insights & Commentary
+Show 3 insight cards:
+- The Psychology of AI Smuggling
+- Epistemic Trust in Automated Classrooms
+- Designing Ethical AI Assignments
+Button: Read Insights
+Add a small “Upcoming Events” block with 2 items:
+- Virtual Working Group Meetup (TBD)
+- Research Showcase (TBD)
+
+8) CTA SECTION (darker background)
+Headline: Join the Critical Innovation Network
+Subtext: We collaborate with researchers, educators, graduate students, and institutions committed to human-centered AI in education.
+Buttons:
+- Join as Researcher
+- Partner With Us
+- Student Fellows
+
+9) FOOTER (3 columns)
+Column 1: About, Research, Projects, Publications
+Column 2: Collaborate, Events, Blog, Contact
+Column 3: Ethics & Transparency, Privacy Policy, AI Usage Disclosure
+Bottom line:
+© 2026 Critical Innovation & AI Pedagogy — Human-centered. Critically informed. Ethically transparent.
+
+STYLING GUIDELINES
+- Use a scholarly palette: deep navy/forest base + muted gold/burnt orange accents + soft grays.
+- Avoid neon, heavy gradients, futuristic imagery.
+- Typography: serif-like headline stack (e.g., Georgia/Cambria) and sans body stack (system UI).
+- Cards: rounded corners, soft shadow, generous whitespace.
+- Add subtle hover states and focus outlines.
+
+ACCESSIBILITY CHECKLIST
+- Skip-to-content link at top
+- Proper heading hierarchy (one H1)
+- Buttons with clear labels
+- Mobile nav accessible (Sheet + focus trap)
+- Contrast meets WCAG AA
+
+IMPORTANT IMPLEMENTATION NOTES
+- Put all text content in src/content/site.ts and import it into components.
+- Use a single-page layout with section IDs and smooth scrolling.
+- If dark mode is implemented, use next-themes or a simple Tailwind class strategy and persist preference.
+
+BEGIN NOW. Create the project, implement the components, and wire everything into src/app/page.tsx.
+When done, output:
+1) File tree
+2) How to run
+3) Where to edit content
