@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users } from "lucide-react";
@@ -25,21 +26,9 @@ function VennDiagram() {
         <circle cx="50" cy="200" r="2" className="fill-muted-foreground/10" />
         <circle cx="350" cy="250" r="3" className="fill-muted-foreground/10" />
 
-        <circle
-          cx="200" cy="145" r="100"
-          className="fill-primary/8 stroke-primary/40"
-          strokeWidth="1.5"
-        />
-        <circle
-          cx="145" cy="240" r="100"
-          className="fill-accent/10 stroke-accent/40"
-          strokeWidth="1.5"
-        />
-        <circle
-          cx="255" cy="240" r="100"
-          className="fill-chart-3/8 stroke-chart-3/40"
-          strokeWidth="1.5"
-        />
+        <circle cx="200" cy="145" r="100" className="fill-primary/8 stroke-primary/40" strokeWidth="1.5" />
+        <circle cx="145" cy="240" r="100" className="fill-accent/10 stroke-accent/40" strokeWidth="1.5" />
+        <circle cx="255" cy="240" r="100" className="fill-chart-3/8 stroke-chart-3/40" strokeWidth="1.5" />
 
         <text x="200" y="115" textAnchor="middle" className="fill-foreground text-xs font-medium" fontSize="12">
           {circles[0]}
@@ -57,20 +46,11 @@ function VennDiagram() {
   );
 }
 
-function handleNav(href: string) {
-  const el = document.querySelector(href);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-}
-
 export function Hero() {
   const { hero } = siteConfig;
 
   return (
-    <section
-      id="home"
-      className="relative py-16 sm:py-24 lg:py-32"
-      data-testid="section-hero"
-    >
+    <section className="relative py-16 sm:py-24 lg:py-32" data-testid="section-hero">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-xl">
@@ -87,23 +67,18 @@ export function Hero() {
               {hero.supporting}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button
-                size="lg"
-                onClick={() => handleNav(hero.primaryCta.href)}
-                data-testid="button-explore-research"
-              >
-                {hero.primaryCta.label}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => handleNav(hero.secondaryCta.href)}
-                data-testid="button-collaborate"
-              >
-                <Users className="mr-2 h-4 w-4" />
-                {hero.secondaryCta.label}
-              </Button>
+              <Link href={hero.primaryCta.href}>
+                <Button size="lg" data-testid="button-explore-research">
+                  {hero.primaryCta.label}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href={hero.secondaryCta.href}>
+                <Button size="lg" variant="outline" data-testid="button-collaborate">
+                  <Users className="mr-2 h-4 w-4" />
+                  {hero.secondaryCta.label}
+                </Button>
+              </Link>
             </div>
           </div>
 

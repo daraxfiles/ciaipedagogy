@@ -1,6 +1,6 @@
 # Overview
 
-This is a **Critical Innovation & AI Pedagogy** academic homepage — a single-page responsive web application for a research working group examining how artificial intelligence reshapes teaching, learning, and knowledge production. The site features section-based anchor navigation, dark/light theme support, and an academic aesthetic. All site content is editable from a single configuration file (`client/src/content/site.ts`).
+This is a **Critical Innovation & AI Pedagogy** academic website — a multi-page responsive web application for a research working group examining how artificial intelligence reshapes teaching, learning, and knowledge production. The site features multi-page routing with 7 standalone tabs, dark/light theme support, and an academic aesthetic. All site content is editable from a single configuration file (`client/src/content/site.ts`).
 
 # User Preferences
 
@@ -11,13 +11,13 @@ Preferred communication style: Simple, everyday language.
 ## Frontend (React SPA)
 
 - **Framework**: React with TypeScript, bundled by Vite
-- **Routing**: `wouter` for client-side routing (currently just `/` and a 404 page)
+- **Routing**: `wouter` for client-side routing with 8 routes: `/` (home), `/about`, `/research`, `/projects`, `/publications`, `/insights`, `/collaborate`, `/contact`
 - **UI Components**: shadcn/ui (new-york style) built on Radix UI primitives with Tailwind CSS
 - **Icons**: lucide-react
 - **State Management**: `@tanstack/react-query` for server state; React Context for theme
 - **Styling**: Tailwind CSS with CSS custom properties for theming (light/dark mode via class strategy)
 - **Content**: All page content lives in `client/src/content/site.ts` — a single editable config object driving all sections
-- **Component Structure**: Section components live in `client/src/components/sections/` (Navbar, Hero, Pillars, ResearchInAction, Publications, Resources, InsightsEvents, CTASection, Footer). Reusable UI primitives are in `client/src/components/ui/`
+- **Component Structure**: Shared section components live in `client/src/components/sections/` (Navbar, Hero, Footer). Page components live in `client/src/pages/` (home, about, research, projects, publications, insights, collaborate, contact). Reusable UI primitives are in `client/src/components/ui/`. App.tsx provides a shared PageLayout wrapper for inner pages and a ScrollToTop component
 - **Fonts**: DM Sans (sans), Libre Baskerville (serif), JetBrains Mono (mono) loaded via Google Fonts
 - **Path Aliases**: `@/` maps to `client/src/`, `@shared/` maps to `shared/`
 
