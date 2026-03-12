@@ -18,29 +18,29 @@ function VennDiagram() {
           </filter>
         </defs>
 
-        <line x1="80" y1="350" x2="320" y2="50" className="stroke-muted-foreground/10" strokeWidth="0.5" />
-        <line x1="50" y1="100" x2="350" y2="300" className="stroke-muted-foreground/10" strokeWidth="0.5" />
-        <line x1="200" y1="30" x2="200" y2="370" className="stroke-muted-foreground/10" strokeWidth="0.5" />
-        <circle cx="100" cy="300" r="3" className="fill-muted-foreground/10" />
-        <circle cx="300" cy="100" r="2" className="fill-muted-foreground/10" />
-        <circle cx="50" cy="200" r="2" className="fill-muted-foreground/10" />
-        <circle cx="350" cy="250" r="3" className="fill-muted-foreground/10" />
+        <line x1="80" y1="350" x2="320" y2="50" stroke="hsl(var(--muted-foreground) / 0.15)" strokeWidth="0.5" />
+        <line x1="50" y1="100" x2="350" y2="300" stroke="hsl(var(--muted-foreground) / 0.15)" strokeWidth="0.5" />
+        <line x1="200" y1="30" x2="200" y2="370" stroke="hsl(var(--muted-foreground) / 0.15)" strokeWidth="0.5" />
+        <circle cx="100" cy="300" r="3" fill="hsl(var(--muted-foreground) / 0.15)" />
+        <circle cx="300" cy="100" r="2" fill="hsl(var(--muted-foreground) / 0.15)" />
+        <circle cx="50" cy="200" r="2" fill="hsl(var(--muted-foreground) / 0.15)" />
+        <circle cx="350" cy="250" r="3" fill="hsl(var(--muted-foreground) / 0.15)" />
 
-        <circle cx="200" cy="145" r="100" className="fill-primary/8 stroke-primary/40" strokeWidth="1.5" />
-        <circle cx="145" cy="240" r="100" className="fill-accent/10 stroke-accent/40" strokeWidth="1.5" />
-        <circle cx="255" cy="240" r="100" className="fill-chart-3/8 stroke-chart-3/40" strokeWidth="1.5" />
+        <circle cx="200" cy="145" r="100" fill="hsl(var(--primary) / 0.10)" stroke="hsl(var(--primary) / 0.45)" strokeWidth="1.5" />
+        <circle cx="145" cy="240" r="100" fill="hsl(var(--accent) / 0.12)" stroke="hsl(var(--accent) / 0.50)" strokeWidth="1.5" />
+        <circle cx="255" cy="240" r="100" fill="hsl(var(--chart-3) / 0.10)" stroke="hsl(var(--chart-3) / 0.45)" strokeWidth="1.5" />
 
-        <text x="200" y="115" textAnchor="middle" className="fill-foreground text-xs font-medium" fontSize="12">
+        <text x="200" y="108" textAnchor="middle" fontSize="12" fontFamily="var(--font-serif)" fontWeight="600" fill="hsl(var(--foreground))">
           {circles[0]}
         </text>
-        <text x="115" y="285" textAnchor="middle" className="fill-foreground text-xs font-medium" fontSize="12">
+        <text x="112" y="282" textAnchor="middle" fontSize="12" fontFamily="var(--font-serif)" fontWeight="600" fill="hsl(var(--foreground))">
           {circles[1]}
         </text>
-        <text x="285" y="285" textAnchor="middle" className="fill-foreground text-xs font-medium" fontSize="12">
+        <text x="288" y="282" textAnchor="middle" fontSize="12" fontFamily="var(--font-serif)" fontWeight="600" fill="hsl(var(--foreground))">
           {circles[2]}
         </text>
 
-        <circle cx="200" cy="210" r="4" className="fill-accent" filter="url(#glow)" />
+        <circle cx="200" cy="210" r="4" fill="hsl(var(--accent))" filter="url(#glow)" />
       </svg>
     </div>
   );

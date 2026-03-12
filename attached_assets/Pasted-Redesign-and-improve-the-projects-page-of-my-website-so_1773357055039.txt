@@ -1,0 +1,131 @@
+Redesign and improve the /projects page of my website so it looks like a credible research lab / innovation network page rather than a placeholder page.
+
+Website context:
+- Site name: Critical Innovation & AI Pedagogy
+- Domain: ciaipedagogy.org
+- This is a research and teaching innovation network focused on AI pedagogy, AI literacy, critical media literacy, vibe coding, participatory design, and equitable AI use in education.
+- The visual style should feel modern, academic, clean, credible, and slightly bold.
+- Keep the existing site branding and overall design language consistent with the rest of the website.
+- Make the page responsive, accessible, and easy to scan.
+
+Main goal:
+Turn the Projects page into a polished “Projects & Research Initiatives” page that clearly communicates active work, research themes, student involvement, and outputs.
+
+What to change:
+
+1. Add a strong top hero/introduction section
+- Add a page title: “Projects & Research Initiatives”
+- Add a short overview paragraph explaining that the network develops research studies, teaching experiments, and open tools that explore how AI reshapes learning, knowledge production, and educational design.
+- Add 3 small category tags or badges near the top:
+  - Research Studies
+  - Teaching Experiments
+  - Open Tools & Prototypes
+
+2. Organize the page by research pillars/themes
+Create clear sections for project groupings. Use visually distinct section headers and brief intros.
+Suggested structure:
+- Pillar I — Agency, Judgment & Psychology of AI Use
+- Pillar II — Critical AI & Media Literacy
+- Pillar III — AI Design & Learning Innovation
+- Pillar IV — Equitable AI Tools
+
+3. Convert projects into structured cards
+Each project should appear in a clean card layout, not just plain text.
+Each card should include:
+- Project title
+- 2–3 sentence description
+- Focus area
+- Project type
+- Status
+- Outputs
+- Lead
+- CTA button such as “Learn More”
+If data is not yet available, create polished placeholder sample content that matches the site’s research direction.
+
+4. Add sample projects that fit my research agenda
+Include strong example project cards such as:
+- AI Smuggling & Legitimacy Study
+- Trust and Epistemic Judgment in AI Use
+- Youth Interpreting Generative AI
+- Deepfake Literacy Pedagogy
+- Vibe Coding for Education
+- AI-Powered Micro-Content Design
+- AI Literacy for Low-Access Communities
+- Open-Source AI Tools for Schools
+
+5. Add visual hierarchy and polish
+- Improve spacing, typography, card layout, and alignment
+- Use subtle borders, shadows, hover states, and consistent padding
+- Make the page feel like a real research lab / center website
+- Keep it elegant and not overly flashy
+
+6. Add a “Student Research & Innovation” section
+Create a dedicated section highlighting student involvement, especially undergraduate/graduate collaboration and Creative Inquiry-style work.
+Include:
+- Short intro paragraph
+- 2–3 student/project showcase cards or placeholders
+- Optional button such as “View Student Work”
+
+7. Add an “Outputs & Open Resources” section
+Include a section that can hold links or placeholder buttons for:
+- Publications
+- Presentations
+- Workshops
+- Teaching Resources
+- GitHub / Prototypes
+Even if content is not ready yet, design the section so it looks complete and ready for future updates.
+
+8. Add a “Collaborate With Us” call-to-action section at the bottom
+Include short text inviting collaboration from:
+- Researchers
+- Educators
+- Graduate students
+- Schools
+- Technology partners
+Add CTA buttons such as:
+- Collaborate on a Project
+- Join the Network
+- Contact Us
+
+9. Improve accessibility and responsiveness
+Make sure the page:
+- looks good on desktop, tablet, and mobile
+- uses semantic HTML
+- has accessible heading hierarchy
+- has strong contrast
+- uses accessible button/link states
+- avoids overcrowded text blocks
+
+10. Improve credibility
+Make the page feel like an active scholarly network.
+Include space for credibility signals like:
+- Clemson affiliation
+- Creative Inquiry
+- Research, teaching, and design integration
+Do this tastefully without clutter.
+
+Technical expectations:
+- Edit the existing projects page directly
+- Reuse existing components/styles where possible
+- If needed, create reusable card/section components
+- Keep code clean and maintainable
+- Do not break the rest of the site
+- Preserve existing navigation/footer consistency
+- Make the page production-ready
+
+Design tone:
+- Academic + innovative
+- Modern but not corporate
+- Clean, intentional, visually organized
+- Similar to a university research lab, digital humanities center, or AI education innovation hub
+
+Important:
+- Do not leave the page as generic placeholder text
+- Do not make it look like a blog archive
+- Do not overcomplicate with animations
+- Prioritize clarity, structure, credibility, and future scalability
+
+After making the changes:
+- Summarize exactly what was improved
+- Point out any placeholder content I should later replace
+- Show me which files were edited
