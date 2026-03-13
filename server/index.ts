@@ -25,6 +25,10 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
+// Trust the first proxy (required on Render and other reverse-proxy hosts
+// so that secure cookies work correctly over HTTPS)
+app.set("trust proxy", 1);
+
 // ── Session middleware ───────────────────────────────────────────────────────
 const PgSession = connectPgSimple(session);
 const sessionPool = new Pool({ connectionString: process.env.DATABASE_URL });
