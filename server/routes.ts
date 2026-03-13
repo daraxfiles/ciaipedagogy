@@ -9,13 +9,10 @@ import {
   events,
   eventRsvps,
   publications,
-  comments,
   cmsOverrides,
   insertSubmissionSchema,
   insertEventSchema,
   insertPublicationSchema,
-  insertCommentSchema,
-  registerSchema,
   loginSchema,
 } from "@shared/schema";
 import { eq, and, desc } from "drizzle-orm";
@@ -27,34 +24,9 @@ export async function registerRoutes(
 
   // ── Auth ───────────────────────────────────────────────────────────────────
 
-  app.post("/api/auth/register", async (req, res) => {
-    const parsed = registerSchema.safeParse(req.body);
-    if (!parsed.success) {
-      return res.status(400).json({ message: parsed.error.errors[0].message });
-    }
-    const { email, username, password, displayName } = parsed.data;
-
-    const existing = await storage.getUserByEmail(email);
-    if (existing) return res.status(409).json({ message: "Email already registered" });
-
-    const existingName = await storage.getUserByUsername(username);
-    if (existingName) return res.status(409).json({ message: "Username already taken" });
-
-    const passwordHash = await bcrypt.hash(password, 12);
-    const user = await storage.createUser({ email, username, passwordHash, displayName });
-
-    req.session.userId = user.id;
-    req.session.role = user.role;
-    req.session.displayName = user.displayName;
-    req.session.email = user.email;
-
-    return res.status(201).json({
-      id: user.id,
-      email: user.email,
-      username: user.username,
-      displayName: user.displayName,
-      role: user.role,
-    });
+  // Public registration is disabled — accounts are created manually by admins.
+  app.post("/api/auth/register", (_req, res) => {
+    return res.status(410).json({ message: "Self-registration is not available on this site." });
   });
 
   app.post("/api/auth/login", async (req, res) => {
@@ -264,56 +236,15 @@ export async function registerRoutes(
     return res.json({ message: "Deleted" });
   });
 
-  // ── Comments ──────────────────────────────────────────────────────────────
-
-  app.get("/api/comments/:contentType/:contentId", async (req, res) => {
-    const { contentType, contentId } = req.params;
-    const rows = await db
-      .select({
-        id: comments.id,
-        text: comments.text,
-        createdAt: comments.createdAt,
-        userId: comments.userId,
-        contentType: comments.contentType,
-        contentId: comments.contentId,
-      })
-      .from(comments)
-      .where(
-        and(
-          eq(comments.contentType, contentType),
-          eq(comments.contentId, parseInt(contentId)),
-        )
-      )
-      .orderBy(desc(comments.createdAt));
-    return res.json(rows);
+  // ── Comments — disabled for launch ───────────────────────────────────────
+  app.get("/api/comments/:contentType/:contentId", (_req, res) => {
+    return res.status(410).json({ message: "Comments are not enabled." });
   });
-
-  app.post("/api/comments", requireAuth, async (req, res) => {
-    const parsed = insertCommentSchema.safeParse(req.body);
-    if (!parsed.success) {
-      return res.status(400).json({ message: parsed.error.errors[0].message });
-    }
-    const [comment] = await db
-      .insert(comments)
-      .values({ ...parsed.data, userId: req.session.userId! })
-      .returning();
-    return res.status(201).json(comment);
+  app.post("/api/comments", (_req, res) => {
+    return res.status(410).json({ message: "Comments are not enabled." });
   });
-
-  app.delete("/api/comments/:id", requireAuth, async (req, res) => {
-    const id = parseInt(String(req.params.id));
-    const userId = req.session.userId!;
-    const role = req.session.role;
-
-    const [comment] = await db.select().from(comments).where(eq(comments.id, id));
-    if (!comment) return res.status(404).json({ message: "Not found" });
-
-    if (comment.userId !== userId && role !== "admin") {
-      return res.status(403).json({ message: "Not allowed" });
-    }
-
-    await db.delete(comments).where(eq(comments.id, id));
-    return res.json({ message: "Deleted" });
+  app.delete("/api/comments/:id", (_req, res) => {
+    return res.status(410).json({ message: "Comments are not enabled." });
   });
 
   // ── CMS Overrides ─────────────────────────────────────────────────────────

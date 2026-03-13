@@ -27,21 +27,6 @@ export function useAuth() {
     },
   });
 
-  const registerMutation = useMutation({
-    mutationFn: async (data: {
-      email: string;
-      username: string;
-      password: string;
-      displayName: string;
-    }) => {
-      const res = await apiRequest("POST", "/api/auth/register", data);
-      return res.json() as Promise<AuthUser>;
-    },
-    onSuccess: (u) => {
-      queryClient.setQueryData(["/api/auth/me"], u);
-    },
-  });
-
   const logoutMutation = useMutation({
     mutationFn: async () => {
       await apiRequest("POST", "/api/auth/logout");
@@ -57,12 +42,9 @@ export function useAuth() {
     isAuthenticated: !!user,
     isAdmin: user?.role === "admin",
     login: loginMutation.mutateAsync,
-    register: registerMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,
     loginPending: loginMutation.isPending,
-    registerPending: registerMutation.isPending,
     logoutPending: logoutMutation.isPending,
     loginError: loginMutation.error,
-    registerError: registerMutation.error,
   };
 }

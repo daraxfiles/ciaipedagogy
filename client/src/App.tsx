@@ -19,7 +19,6 @@ import CollaboratePage from "@/pages/collaborate";
 import ContactPage from "@/pages/contact";
 import PolicyBuilderPage from "@/pages/policy-builder";
 import LoginPage from "@/pages/login";
-import RegisterPage from "@/pages/register";
 import PortalPage from "@/pages/portal";
 import AdminPage from "@/pages/admin";
 import NotFound from "@/pages/not-found";
@@ -81,9 +80,6 @@ function Router() {
       </Route>
       <Route path="/login">
         <PageLayout><LoginPage /></PageLayout>
-      </Route>
-      <Route path="/register">
-        <PageLayout><RegisterPage /></PageLayout>
       </Route>
       <Route path="/portal">
         <PageLayout><PortalPage /></PageLayout>

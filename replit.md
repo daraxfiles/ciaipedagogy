@@ -11,9 +11,9 @@ Preferred communication style: Simple, everyday language.
 ## Frontend (React SPA)
 
 - **Framework**: React with TypeScript, bundled by Vite
-- **Routing**: `wouter` for client-side routing with 15 routes: `/` (home), `/about`, `/research`, `/projects`, `/toolkit`, `/people`, `/events`, `/publications`, `/collaborate`, `/contact`, `/policy-builder`, `/login`, `/register`, `/portal`, `/admin`. Also `/insights` redirects to `/events` for backward compatibility.
-- **Auth Hook**: `client/src/hooks/use-auth.ts` — `useAuth()` wraps login/register/logout mutations and the `/api/auth/me` query
-- **Auth Pages**: `login.tsx`, `register.tsx`, `portal.tsx` (member dashboard), `admin.tsx` (admin dashboard)
+- **Routing**: `wouter` for client-side routing with 14 active routes: `/` (home), `/about`, `/research`, `/projects`, `/toolkit`, `/people`, `/events`, `/publications`, `/collaborate`, `/contact`, `/policy-builder`, `/login`, `/portal`, `/admin`. `/register` redirects to `/login`; `/insights` redirects to `/events`.
+- **Auth Hook**: `client/src/hooks/use-auth.ts` — `useAuth()` wraps login/logout mutations and the `/api/auth/me` query. Register mutation removed; registration is admin-only via SQL.
+- **Auth Pages**: `login.tsx` (sign-in only; registration is disabled), `portal.tsx` (member dashboard), `admin.tsx` (admin dashboard). `register.tsx` exists but redirects to `/login` — accounts are created manually via SQL.
 - **UI Components**: shadcn/ui (new-york style) built on Radix UI primitives with Tailwind CSS
 - **Icons**: lucide-react
 - **State Management**: `@tanstack/react-query` for server state; React Context for theme

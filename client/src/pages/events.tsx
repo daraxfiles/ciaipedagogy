@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { siteConfig } from "@/content/site";
 import { useAuth } from "@/hooks/use-auth";
@@ -6,11 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
-import type { Event, Rsvp, Comment } from "@shared/schema";
+import type { Event, Rsvp } from "@shared/schema";
 
 const tagColors: Record<string, string> = {
   Essay: "bg-primary/10 text-primary border-primary/20",
@@ -24,100 +22,6 @@ const typeColors: Record<string, string> = {
   conference: "bg-chart-4/10 text-chart-4 border-chart-4/20",
   webinar: "bg-accent/15 text-accent-foreground border-accent/20",
 };
-
-// ── Comments on an event ──────────────────────────────────────────────────────
-function EventComments({ eventId }: { eventId: number }) {
-  const { user } = useAuth();
-  const queryClient = useQueryClient();
-  const { toast } = useToast();
-  const [text, setText] = useState("");
-
-  const { data: comments = [] } = useQuery<Comment[]>({
-    queryKey: ["/api/comments", "event", eventId],
-    queryFn: async () => {
-      const res = await fetch(`/api/comments/event/${eventId}`);
-      return res.json();
-    },
-  });
-
-  const addComment = useMutation({
-    mutationFn: async () => {
-      await apiRequest("POST", "/api/comments", {
-        contentType: "event",
-        contentId: eventId,
-        text,
-      });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/comments", "event", eventId] });
-      setText("");
-    },
-    onError: () => toast({ variant: "destructive", title: "Failed to post comment" }),
-  });
-
-  const deleteComment = useMutation({
-    mutationFn: async (id: number) => {
-      await apiRequest("DELETE", `/api/comments/${id}`);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/comments", "event", eventId] });
-    },
-  });
-
-  return (
-    <div className="mt-4">
-      <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-3">
-        Discussion ({comments.length})
-      </p>
-      <div className="space-y-2 mb-4">
-        {comments.map((c) => (
-          <div key={c.id} className="text-xs rounded-md border border-card-border bg-muted/30 p-3" data-testid={`comment-${c.id}`}>
-            <p className="text-foreground leading-relaxed">{c.text}</p>
-            <div className="flex items-center justify-between mt-2">
-              <span className="text-muted-foreground">{new Date(c.createdAt).toLocaleDateString()}</span>
-              {user && (user.id === c.userId || user.role === "admin") && (
-                <button
-                  onClick={() => deleteComment.mutate(c.id)}
-                  className="text-muted-foreground hover:text-destructive transition-colors"
-                  data-testid={`button-delete-comment-${c.id}`}
-                >
-                  Delete
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-        {comments.length === 0 && (
-          <p className="text-xs text-muted-foreground">No comments yet. Be the first to share a thought.</p>
-        )}
-      </div>
-      {user ? (
-        <div className="space-y-2">
-          <Textarea
-            rows={2}
-            placeholder="Add a comment..."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            className="text-xs"
-            data-testid={`input-comment-${eventId}`}
-          />
-          <Button
-            size="sm"
-            disabled={addComment.isPending || !text.trim()}
-            onClick={() => addComment.mutate()}
-            data-testid={`button-comment-submit-${eventId}`}
-          >
-            {addComment.isPending ? "Posting..." : "Post Comment"}
-          </Button>
-        </div>
-      ) : (
-        <p className="text-xs text-muted-foreground">
-          <Link href="/login" className="text-primary hover:underline">Sign in</Link> to join the discussion.
-        </p>
-      )}
-    </div>
-  );
-}
 
 // ── RSVP button for a single event ───────────────────────────────────────────
 function EventRsvpButton({ event }: { event: Event }) {
@@ -144,7 +48,8 @@ function EventRsvpButton({ event }: { event: Event }) {
       queryClient.invalidateQueries({ queryKey: ["/api/rsvps/mine"] });
       toast({ title: hasRsvp ? "RSVP cancelled" : "RSVP confirmed" });
     },
-    onError: (err: any) => toast({ variant: "destructive", title: "Error", description: err.message.replace(/^\d+:\s*/, "") }),
+    onError: (err: any) =>
+      toast({ variant: "destructive", title: "Error", description: err.message.replace(/^\d+:\s*/, "") }),
   });
 
   if (!event.rsvpEnabled || event.status === "past") return null;
@@ -176,7 +81,6 @@ function EventRsvpButton({ event }: { event: Event }) {
 // ── Main page ─────────────────────────────────────────────────────────────────
 export default function EventsPage() {
   const { events: staticEvents } = siteConfig;
-  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
 
   const { data: dbEvents = [] } = useQuery<Event[]>({
     queryKey: ["/api/events"],
@@ -221,45 +125,38 @@ export default function EventsPage() {
           </div>
         ) : (
           <div className="space-y-4">
-            {upcoming.map((evt) => {
-              const isExpanded = expandedEvent === evt.id;
-              return (
-                <div key={evt.id} className="rounded-xl border border-card-border bg-card overflow-hidden" data-testid={`card-event-${evt.id}`}>
-                  <div className="p-5">
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs font-semibold text-accent-foreground">{evt.date}</span>
-                        {evt.time && <span className="text-xs text-muted-foreground">{evt.time}</span>}
-                        <Badge variant="outline" className={`text-[10px] no-default-active-elevate border capitalize ${typeColors[evt.type] || ""}`}>
-                          {evt.type}
-                        </Badge>
-                        {evt.rsvpEnabled && (
-                          <Badge variant="outline" className="text-[10px] no-default-active-elevate border-emerald-500/30 text-emerald-700 dark:text-emerald-400">
-                            RSVP open
-                          </Badge>
-                        )}
-                      </div>
-                      <EventRsvpButton event={evt} />
-                    </div>
-                    <h3 className="font-serif text-lg font-bold text-foreground mb-1">{evt.title}</h3>
-                    {evt.location && <p className="text-xs text-muted-foreground mb-2">{evt.location}</p>}
-                    <p className="text-sm text-muted-foreground leading-relaxed">{evt.description}</p>
-                    <button
-                      className="mt-3 text-xs font-medium text-primary hover:underline focus-visible:outline-none"
-                      onClick={() => setExpandedEvent(isExpanded ? null : evt.id)}
-                      data-testid={`button-toggle-discussion-${evt.id}`}
+            {upcoming.map((evt) => (
+              <div
+                key={evt.id}
+                className="rounded-xl border border-card-border bg-card p-5"
+                data-testid={`card-event-${evt.id}`}
+              >
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs font-semibold text-accent-foreground">{evt.date}</span>
+                    {evt.time && <span className="text-xs text-muted-foreground">{evt.time}</span>}
+                    <Badge
+                      variant="outline"
+                      className={`text-[10px] no-default-active-elevate border capitalize ${typeColors[evt.type] || ""}`}
                     >
-                      {isExpanded ? "Hide discussion" : "View discussion"}
-                    </button>
+                      {evt.type}
+                    </Badge>
+                    {evt.rsvpEnabled && (
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] no-default-active-elevate border-emerald-500/30 text-emerald-700 dark:text-emerald-400"
+                      >
+                        RSVP open
+                      </Badge>
+                    )}
                   </div>
-                  {isExpanded && (
-                    <div className="border-t border-card-border bg-muted/20 px-5 py-4">
-                      <EventComments eventId={evt.id} />
-                    </div>
-                  )}
+                  <EventRsvpButton event={evt} />
                 </div>
-              );
-            })}
+                <h3 className="font-serif text-lg font-bold text-foreground mb-1">{evt.title}</h3>
+                {evt.location && <p className="text-xs text-muted-foreground mb-2">{evt.location}</p>}
+                <p className="text-sm text-muted-foreground leading-relaxed">{evt.description}</p>
+              </div>
+            ))}
           </div>
         )}
       </section>

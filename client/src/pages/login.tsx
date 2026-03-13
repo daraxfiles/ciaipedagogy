@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -106,10 +106,7 @@ export default function LoginPage() {
         </Form>
 
         <p className="mt-6 text-sm text-center text-muted-foreground">
-          Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-primary hover:underline font-medium">
-            Request access
-          </Link>
+          Access is by invitation only. Contact the network administrators to request an account.
         </p>
       </div>
     </div>
