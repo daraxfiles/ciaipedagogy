@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import bcrypt from "bcryptjs";
+import { z } from "zod";
 import { db } from "./db";
 import { storage } from "./storage";
 import { requireAuth, requireAdmin } from "./auth-middleware";
@@ -24,9 +25,39 @@ export async function registerRoutes(
 
   // ── Auth ───────────────────────────────────────────────────────────────────
 
-  // Public registration is disabled — accounts are created manually by admins.
-  app.post("/api/auth/register", (_req, res) => {
-    return res.status(410).json({ message: "Self-registration is not available on this site." });
+  app.post("/api/auth/register", async (req, res) => {
+    const schema = z.object({
+      username: z.string().min(3, "Username must be at least 3 characters").max(50),
+      password: z.string().min(8, "Password must be at least 8 characters"),
+    });
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ message: parsed.error.errors[0].message });
+    }
+    const { username, password } = parsed.data;
+
+    const existingName = await storage.getUserByUsername(username);
+    if (existingName) return res.status(409).json({ message: "Username already taken" });
+
+    const email = `${username}@network.local`;
+    const existingEmail = await storage.getUserByEmail(email);
+    if (existingEmail) return res.status(409).json({ message: "Username already taken" });
+
+    const passwordHash = await bcrypt.hash(password, 12);
+    const user = await storage.createUser({ email, username, passwordHash, displayName: username });
+
+    req.session.userId = user.id;
+    req.session.role = user.role;
+    req.session.displayName = user.displayName;
+    req.session.email = user.email;
+
+    return res.status(201).json({
+      id: user.id,
+      email: user.email,
+      username: user.username,
+      displayName: user.displayName,
+      role: user.role,
+    });
   });
 
   app.post("/api/auth/login", async (req, res) => {

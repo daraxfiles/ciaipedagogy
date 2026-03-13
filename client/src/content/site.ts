@@ -12,7 +12,7 @@ export const siteConfig = {
       { label: "Events", href: "/events" },
       { label: "Collaborate", href: "/collaborate" },
     ],
-    cta: { label: "Join the Network", href: "/collaborate" },
+    cta: { label: "Join the Network", href: "/register" },
   },
 
   hero: {

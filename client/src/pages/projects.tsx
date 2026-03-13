@@ -452,7 +452,7 @@ export default function ProjectsPage() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/collaborate">
+              <Link href="/register">
                 <Button size="lg" variant="outline" data-testid="button-join-network">
                   Join the Network
                 </Button>
