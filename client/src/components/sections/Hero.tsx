@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link } from "wouter";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
@@ -5,9 +6,24 @@ import { ArrowRight, Users } from "lucide-react";
 
 function VennDiagram() {
   const { circles } = siteConfig.hero;
+
+  const labelStyle: CSSProperties = {
+    position: 'absolute',
+    textAlign: 'center',
+    transform: 'translate(-50%, -50%)',
+    fontWeight: 600,
+    fontSize: '0.7rem',
+    lineHeight: 1.4,
+    color: 'hsl(var(--foreground))',
+    pointerEvents: 'none',
+    whiteSpace: 'nowrap',
+    letterSpacing: '0.01em',
+  };
+
   return (
     <div className="relative w-full max-w-md mx-auto aspect-square" aria-hidden="true">
-      <svg viewBox="0 0 400 400" className="w-full h-full" role="img">
+      {/* SVG layer: decorative lines + the three circle shapes */}
+      <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full" role="img">
         <defs>
           <filter id="glow">
             <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -26,24 +42,32 @@ function VennDiagram() {
         <circle cx="50" cy="200" r="2" fill="hsl(var(--muted-foreground) / 0.15)" />
         <circle cx="350" cy="250" r="3" fill="hsl(var(--muted-foreground) / 0.15)" />
 
+        {/* Three overlapping circles */}
         <circle cx="200" cy="145" r="100" fill="hsl(var(--primary) / 0.10)" stroke="hsl(var(--primary) / 0.45)" strokeWidth="1.5" />
         <circle cx="145" cy="240" r="100" fill="hsl(var(--accent) / 0.12)" stroke="hsl(var(--accent) / 0.50)" strokeWidth="1.5" />
         <circle cx="255" cy="240" r="100" fill="hsl(var(--chart-3) / 0.10)" stroke="hsl(var(--chart-3) / 0.45)" strokeWidth="1.5" />
 
-        <text x="200" y="90" textAnchor="middle" fontSize="12" fontWeight="600" fill="hsl(var(--foreground))">
-          {circles[0]}
-        </text>
-        <text x="80" y="298" textAnchor="middle" fontSize="11" fontWeight="600" fill="hsl(var(--foreground))">
-          <tspan x="80" dy="0">Critical AI</tspan>
-          <tspan x="80" dy="15">Literacy</tspan>
-        </text>
-        <text x="320" y="298" textAnchor="middle" fontSize="11" fontWeight="600" fill="hsl(var(--foreground))">
-          <tspan x="320" dy="0">Equitable</tspan>
-          <tspan x="320" dy="15">Innovation</tspan>
-        </text>
-
+        {/* Center glow dot */}
         <circle cx="200" cy="210" r="4" fill="hsl(var(--accent))" filter="url(#glow)" />
       </svg>
+
+      {/*
+        HTML label overlays — positions match SVG coords converted to %:
+          Top circle    cx=200,cy=145 unique region → label at (200,78) = 50%, 19.5%
+          Left circle   cx=145,cy=240 unique region → label at (85,295) = 21.25%, 73.75%
+          Right circle  cx=255,cy=240 unique region → label at (315,295) = 78.75%, 73.75%
+      */}
+      <span style={{ ...labelStyle, left: '50%', top: '19.5%' }}>
+        {circles[0]}
+      </span>
+
+      <span style={{ ...labelStyle, left: '21.25%', top: '73.75%' }}>
+        Critical AI<br />Literacy
+      </span>
+
+      <span style={{ ...labelStyle, left: '78.75%', top: '73.75%' }}>
+        Equitable<br />Innovation
+      </span>
     </div>
   );
 }
