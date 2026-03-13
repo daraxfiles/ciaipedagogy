@@ -1,0 +1,120 @@
+Replace the current Venn diagram on the website with a more sophisticated research framework graphic inspired by the style of modern academic research labs such as Stanford HAI and MIT Media Lab.
+
+Important:
+- Do NOT copy any exact Stanford or MIT branding, colors, or layouts
+- DO make the diagram feel like a polished research framework used on a high-end academic website
+- The design should feel intentional, minimal, conceptual, and professional
+
+Goal:
+Transform the current three-circle Venn diagram into a modern “research convergence framework” graphic that communicates relationships more elegantly.
+
+Framework content:
+The three core areas are:
+1. Agency & Judgment
+   Subtitle: Human decision-making with AI
+
+2. Critical AI Literacy
+   Subtitle: Detecting & evaluating AI systems
+
+3. Equitable Innovation
+   Subtitle: Designing for equity & access
+
+Center concept:
+Critical Innovation in AI & Education
+
+Preferred design direction:
+Use a modern research framework instead of a literal Venn diagram.
+
+Option to implement:
+Create a clean triangular convergence diagram with three anchor nodes or zones connected into a central concept.
+
+Suggested structure:
+- Place the three areas at three balanced points in a triangular arrangement
+- Connect them visually with thin lines, soft shapes, or flowing geometry
+- Put “Critical Innovation in AI & Education” in the center as the convergence point
+- The center should feel integrated, not pasted on
+
+Visual style requirements:
+1. Make it look like a research institute framework graphic
+- minimal and elegant
+- strong typography
+- lots of whitespace
+- subtle geometry
+- no cartoon or infographic feel
+
+2. Avoid the current problems
+- no overlapping heavy circles
+- no white circle pasted in the middle
+- no background crosshair/grid lines
+- no awkward label placement outside shapes
+- no PowerPoint-style Venn look
+
+3. Use design elements like:
+- thin connecting lines
+- soft translucent shapes or halos
+- rounded nodes or zones
+- clean SVG rendering
+- subtle depth or layering
+- balanced composition
+
+4. Typography
+- strong title for each area
+- smaller muted subtitle under each
+- center concept should be the visual focal point
+- use elegant hierarchy and spacing
+
+5. Color palette
+Use restrained academic colors, such as:
+- muted navy/slate for Agency & Judgment
+- warm amber/clay for Critical AI Literacy
+- muted teal/green for Equitable Innovation
+Keep colors soft, refined, and not too saturated
+
+6. Responsiveness
+- diagram must scale well on desktop and mobile
+- preserve readability on small screens
+- allow labels to reposition cleanly if needed
+- use SVG or responsive layout, not a static image
+
+7. Interaction (optional but subtle)
+- slight highlight on hover for each node/zone
+- gentle emphasis on connected relationships
+- no flashy animation
+
+8. Content presentation
+For each area, include:
+- title
+- subtitle
+- optional small marker or node
+
+Example:
+Agency & Judgment
+Human decision-making with AI
+
+Critical AI Literacy
+Detecting & evaluating AI systems
+
+Equitable Innovation
+Designing for equity & access
+
+Center:
+Critical Innovation in AI & Education
+
+Technical requirements:
+- replace the existing Venn diagram component/section
+- implement as clean SVG or structured HTML/CSS, not a screenshot
+- keep code maintainable and reusable
+- ensure spacing aligns with the rest of the site
+- preserve accessibility and semantic structure
+
+Design tone:
+- modern academic
+- research-lab quality
+- conceptually sophisticated
+- visually clean
+- more like a strategic framework diagram than a classroom graphic
+
+After implementing:
+- summarize what changed
+- explain the design logic
+- list which files were edited
