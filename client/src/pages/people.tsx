@@ -10,7 +10,6 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Globe, Linkedin, BookOpen } from "lucide-react";
 import type { User } from "@shared/schema";

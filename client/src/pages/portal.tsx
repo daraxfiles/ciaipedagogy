@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -267,7 +267,9 @@ export default function PortalPage() {
           <Badge variant="secondary" className="no-default-active-elevate capitalize">
             {user.role}
           </Badge>
-          <span className="text-sm text-muted-foreground">{user.email}</span>
+          <span className="text-sm text-muted-foreground">
+            @{user.email.replace(/@network\.local$/, "")}
+          </span>
         </div>
       </div>
 
