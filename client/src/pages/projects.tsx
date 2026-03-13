@@ -7,22 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-  ArrowRight,
-  Brain,
-  BookOpen,
-  Cpu,
-  Globe,
-  GraduationCap,
-  Lightbulb,
-  Users,
-  FlaskConical,
-  FileText,
-  Presentation,
-  Wrench,
-  Github,
-  ExternalLink,
-} from "lucide-react";
+import { ArrowRight, GraduationCap, ExternalLink } from "lucide-react";
 
 /* ─── Pillar accent definitions ─────────────────────────────────────────── */
 const pillars = [
@@ -30,7 +15,6 @@ const pillars = [
     id: "pillar-1",
     label: "Pillar I",
     title: "Agency, Judgment & Psychology of AI Use",
-    icon: Brain,
     dotColor: "bg-primary",
     labelColor: "text-primary",
     badgeBg: "bg-primary/10",
@@ -41,7 +25,6 @@ const pillars = [
     id: "pillar-2",
     label: "Pillar II",
     title: "Critical AI & Media Literacy",
-    icon: Lightbulb,
     dotColor: "bg-accent",
     labelColor: "text-accent-foreground",
     badgeBg: "bg-accent/15",
@@ -52,7 +35,6 @@ const pillars = [
     id: "pillar-3",
     label: "Pillar III",
     title: "AI Design & Learning Innovation",
-    icon: Cpu,
     dotColor: "bg-chart-3",
     labelColor: "text-chart-3",
     badgeBg: "bg-chart-3/15",
@@ -63,7 +45,6 @@ const pillars = [
     id: "pillar-4",
     label: "Pillar IV",
     title: "Equitable AI Tools",
-    icon: Globe,
     dotColor: "bg-chart-4",
     labelColor: "text-chart-4",
     badgeBg: "bg-chart-4/15",
@@ -301,12 +282,12 @@ const studentProjects = [
 ];
 
 const outputs = [
-  { icon: FileText, label: "Publications", desc: "Peer-reviewed articles, working papers, policy briefs", href: "/publications" },
-  { icon: Presentation, label: "Presentations", desc: "Conference talks, keynotes, panels", href: "/publications" },
-  { icon: BookOpen, label: "Teaching Resources", desc: "Syllabi, lesson plans, ethical frameworks", href: "/projects" },
-  { icon: Wrench, label: "Workshops", desc: "Educator institutes, faculty development sessions", href: "/events" },
-  { icon: Github, label: "GitHub & Prototypes", desc: "Open-source tools and experimental prototypes", href: "#" },
-  { icon: Globe, label: "Media & Public Writing", desc: "Public scholarship, op-eds, community resources", href: "/publications" },
+  { label: "Publications", desc: "Peer-reviewed articles, working papers, policy briefs", href: "/publications" },
+  { label: "Presentations", desc: "Conference talks, keynotes, panels", href: "/publications" },
+  { label: "Teaching Resources", desc: "Syllabi, lesson plans, ethical frameworks", href: "/projects" },
+  { label: "Workshops", desc: "Educator institutes, faculty development sessions", href: "/events" },
+  { label: "GitHub & Prototypes", desc: "Open-source tools and experimental prototypes", href: "#" },
+  { label: "Media & Public Writing", desc: "Public scholarship, op-eds, community resources", href: "/publications" },
 ];
 
 export default function ProjectsPage() {
@@ -368,16 +349,11 @@ export default function ProjectsPage() {
 
       {/* Student Research & Innovation */}
       <section data-testid="section-student-research">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-md bg-accent/15">
-            <GraduationCap className="h-5 w-5 text-accent-foreground" />
-          </div>
-          <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-0.5">Student Involvement</p>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground">
-              Student Research & Innovation
-            </h2>
-          </div>
+        <div className="mb-4">
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Student Involvement</p>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground">
+            Student Research & Innovation
+          </h2>
         </div>
         <p className="text-base leading-relaxed text-muted-foreground max-w-3xl mb-8">
           Undergraduate and graduate students are active partners in every phase of our research, from design and data collection to analysis, presentation, and publication. We are
@@ -421,16 +397,11 @@ export default function ProjectsPage() {
 
       {/* Outputs & Open Resources */}
       <section data-testid="section-outputs">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10">
-            <FlaskConical className="h-5 w-5 text-primary" />
-          </div>
-          <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-0.5">Open Scholarship</p>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground">
-              Outputs & Open Resources
-            </h2>
-          </div>
+        <div className="mb-4">
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Open Scholarship</p>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground">
+            Outputs & Open Resources
+          </h2>
         </div>
         <p className="text-base leading-relaxed text-muted-foreground max-w-3xl mb-8">
           Our network is committed to open scholarship. All tools are free. Publications are
@@ -438,30 +409,24 @@ export default function ProjectsPage() {
           educators everywhere.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {outputs.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <Link key={i} href={item.href}>
-                <div
-                  className="flex items-start gap-4 p-5 rounded-lg border border-card-border bg-card hover:bg-card/80 hover:border-primary/30 transition-colors cursor-pointer group"
-                  data-testid={`card-output-${i}`}
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/10">
-                    <Icon className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
-                      {item.label}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                  <ExternalLink className="ml-auto h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 shrink-0 mt-0.5 transition-colors" />
+          {outputs.map((item, i) => (
+            <Link key={i} href={item.href}>
+              <div
+                className="flex items-start justify-between gap-4 p-5 rounded-lg border border-card-border bg-card hover:bg-card/80 hover:border-primary/30 transition-colors cursor-pointer group"
+                data-testid={`card-output-${i}`}
+              >
+                <div>
+                  <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
+                    {item.label}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-              </Link>
-            );
-          })}
+                <ExternalLink className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 shrink-0 mt-0.5 transition-colors" />
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -471,9 +436,6 @@ export default function ProjectsPage() {
       <section data-testid="section-projects-cta">
         <div className="rounded-xl border border-primary/20 bg-primary/5 px-6 py-10 sm:px-10 sm:py-12">
           <div className="max-w-2xl">
-            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 mb-5">
-              <Users className="h-5 w-5 text-primary" />
-            </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground mb-3">
               Collaborate With Us
             </h2>

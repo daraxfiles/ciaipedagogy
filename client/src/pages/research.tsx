@@ -4,7 +4,7 @@ import { siteConfig } from "@/content/site";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { Brain, Eye, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function ResearchPage() {
   const { research } = siteConfig;
@@ -52,11 +52,6 @@ export default function ResearchPage() {
       <section className="py-14 sm:py-16" data-testid="section-pillar-1">
         <div className="grid lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                <Brain className="h-5 w-5 text-primary" />
-              </div>
-            </div>
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-2">Pillar I</p>
             <h2 className="font-serif text-xl sm:text-2xl font-bold text-foreground mb-4">
               {research.pillar1.title.replace("Pillar I: ", "")}
@@ -86,11 +81,6 @@ export default function ResearchPage() {
       <section className="py-14 sm:py-16" data-testid="section-pillar-2">
         <div className="grid lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15">
-                <Eye className="h-5 w-5 text-accent-foreground" />
-              </div>
-            </div>
             <p className="text-xs font-semibold tracking-widest uppercase text-accent-foreground mb-2">Pillar II</p>
             <h2 className="font-serif text-xl sm:text-2xl font-bold text-foreground mb-4">
               {research.pillar2.title.replace("Pillar II: ", "")}

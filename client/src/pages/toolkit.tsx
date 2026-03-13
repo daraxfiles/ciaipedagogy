@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, FlaskConical, BookOpen, Layers, Beaker, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 
 export default function ToolkitPage() {
   const { toolkit } = siteConfig;
@@ -28,15 +28,8 @@ export default function ToolkitPage() {
       {/* Open-Source Tools */}
       <section className="py-14 sm:py-16" data-testid="section-open-tools">
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-              <FlaskConical className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">Free to Use</p>
-              <h2 className="font-serif text-2xl font-bold text-foreground">Open-Source Tools</h2>
-            </div>
-          </div>
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Free to Use</p>
+          <h2 className="font-serif text-2xl font-bold text-foreground">Open-Source Tools</h2>
         </div>
         <div className="grid sm:grid-cols-3 gap-5">
           {toolkit.openTools.map((tool, i) => (
@@ -78,15 +71,8 @@ export default function ToolkitPage() {
       {/* Teaching Resources */}
       <section className="py-14 sm:py-16" data-testid="section-resources">
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15">
-              <BookOpen className="h-5 w-5 text-accent-foreground" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">Classroom Ready</p>
-              <h2 className="font-serif text-2xl font-bold text-foreground">Teaching Resources</h2>
-            </div>
-          </div>
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Classroom Ready</p>
+          <h2 className="font-serif text-2xl font-bold text-foreground">Teaching Resources</h2>
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {toolkit.resources.map((resource, i) => (
@@ -108,15 +94,8 @@ export default function ToolkitPage() {
       {/* Curriculum */}
       <section className="py-14 sm:py-16" data-testid="section-curriculum">
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-chart-3/10">
-              <Layers className="h-5 w-5 text-chart-3" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">Full Programs</p>
-              <h2 className="font-serif text-2xl font-bold text-foreground">Curriculum Case Studies</h2>
-            </div>
-          </div>
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Full Programs</p>
+          <h2 className="font-serif text-2xl font-bold text-foreground">Curriculum Case Studies</h2>
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {toolkit.curriculum.map((item, i) => (
@@ -142,15 +121,8 @@ export default function ToolkitPage() {
       {/* Classroom Experiments */}
       <section className="py-14 sm:py-16" data-testid="section-experiments">
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-chart-4/10">
-              <Beaker className="h-5 w-5 text-chart-4" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">Active Experiments</p>
-              <h2 className="font-serif text-2xl font-bold text-foreground">AI Classroom Experiments</h2>
-            </div>
-          </div>
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Active Experiments</p>
+          <h2 className="font-serif text-2xl font-bold text-foreground">AI Classroom Experiments</h2>
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {toolkit.experiments.map((exp, i) => (

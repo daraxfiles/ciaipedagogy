@@ -4,7 +4,7 @@ import { siteConfig } from "@/content/site";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ArrowRight, Brain, Eye, FlaskConical, Wrench, Calendar, Users, CheckCircle } from "lucide-react";
+import { ArrowRight, Wrench } from "lucide-react";
 
 const statusColors: Record<string, string> = {
   Ongoing: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20",
@@ -34,10 +34,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6">
             {/* Pillar I */}
             <div className="rounded-xl border border-card-border bg-card p-6 sm:p-8 hover-elevate" data-testid="card-home-pillar1">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                  <Brain className="h-5 w-5 text-primary" />
-                </div>
+              <div className="mb-4">
                 <span className="text-xs font-semibold tracking-wider uppercase text-primary">Pillar I</span>
               </div>
               <h3 className="font-serif text-xl font-bold text-foreground mb-3">{research.pillar1.title.replace("Pillar I: ", "")}</h3>
@@ -54,10 +51,7 @@ export default function Home() {
 
             {/* Pillar II */}
             <div className="rounded-xl border border-card-border bg-card p-6 sm:p-8 hover-elevate" data-testid="card-home-pillar2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15">
-                  <Eye className="h-5 w-5 text-accent-foreground" />
-                </div>
+              <div className="mb-4">
                 <span className="text-xs font-semibold tracking-wider uppercase text-accent-foreground">Pillar II</span>
               </div>
               <h3 className="font-serif text-xl font-bold text-foreground mb-3">{research.pillar2.title.replace("Pillar II: ", "")}</h3>
@@ -154,7 +148,7 @@ export default function Home() {
                   "Open-source tools for low-bandwidth settings",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                    <CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                    <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -170,9 +164,6 @@ export default function Home() {
             <div className="grid grid-cols-1 gap-4">
               {toolkit.openTools.map((tool, i) => (
                 <div key={i} className="flex items-start gap-4 p-5 rounded-lg border border-card-border bg-card" data-testid={`card-home-tool-${i}`}>
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/10">
-                    <FlaskConical className="h-4 w-4 text-primary" />
-                  </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                       <p className="font-semibold text-sm text-foreground">{tool.title}</p>
@@ -205,10 +196,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Upcoming Events */}
             <div>
-              <div className="flex items-center gap-2 mb-5">
-                <Calendar className="h-4 w-4 text-accent-foreground" />
-                <h3 className="font-serif text-lg font-semibold text-foreground">Upcoming Events</h3>
-              </div>
+              <h3 className="font-serif text-lg font-semibold text-foreground mb-5">Upcoming Events</h3>
               <div className="space-y-4">
                 {events.upcoming.slice(0, 2).map((event, i) => (
                   <div key={i} className="p-4 rounded-lg border border-card-border bg-background" data-testid={`card-home-event-${i}`}>
@@ -224,12 +212,7 @@ export default function Home() {
 
             {/* Recent Insights */}
             <div>
-              <div className="flex items-center gap-2 mb-5">
-                <span className="h-4 w-4 flex items-center justify-center">
-                  <span className="block h-3.5 w-0.5 bg-muted-foreground rounded-full" />
-                </span>
-                <h3 className="font-serif text-lg font-semibold text-foreground">Recent Insights</h3>
-              </div>
+              <h3 className="font-serif text-lg font-semibold text-foreground mb-5">Recent Insights</h3>
               <div className="space-y-4">
                 {events.insights.slice(0, 3).map((item, i) => (
                   <div key={i} className="flex items-start gap-3" data-testid={`card-home-insight-${i}`}>
@@ -251,9 +234,6 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-xl bg-primary px-8 py-12 sm:px-12 sm:py-16 text-primary-foreground">
             <div className="max-w-2xl">
-              <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary-foreground/10 mb-5">
-                <Users className="h-5 w-5 text-primary-foreground" />
-              </div>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold mb-3">
                 Join the Critical Innovation Network
               </h2>

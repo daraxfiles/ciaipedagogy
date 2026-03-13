@@ -2,7 +2,6 @@ import { siteConfig } from "@/content/site";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Archive } from "lucide-react";
 
 const tagColors: Record<string, string> = {
   Essay: "bg-primary/10 text-primary border-primary/20",
@@ -29,21 +28,15 @@ export default function EventsPage() {
 
       {/* Upcoming Events */}
       <section data-testid="section-upcoming">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15">
-            <Calendar className="h-5 w-5 text-accent-foreground" />
-          </div>
-          <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-0.5">On the Calendar</p>
-            <h2 className="font-serif text-2xl font-bold text-foreground">Upcoming Events</h2>
-          </div>
+        <div className="mb-8">
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">On the Calendar</p>
+          <h2 className="font-serif text-2xl font-bold text-foreground">Upcoming Events</h2>
         </div>
         <div className="grid sm:grid-cols-3 gap-5">
           {events.upcoming.map((event, i) => (
             <Card key={i} className="hover-elevate border-card-border" data-testid={`card-upcoming-${i}`}>
               <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="h-3.5 w-3.5 text-accent-foreground" />
+                <div className="mb-2">
                   <span className="text-xs font-semibold text-accent-foreground">{event.date}</span>
                 </div>
                 <CardTitle className="font-serif text-base">{event.title}</CardTitle>
@@ -87,14 +80,9 @@ export default function EventsPage() {
 
       {/* Archive */}
       <section data-testid="section-archive">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-muted">
-            <Archive className="h-5 w-5 text-muted-foreground" />
-          </div>
-          <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-0.5">Past Events</p>
-            <h2 className="font-serif text-2xl font-bold text-foreground">Event Archive</h2>
-          </div>
+        <div className="mb-8">
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Past Events</p>
+          <h2 className="font-serif text-2xl font-bold text-foreground">Event Archive</h2>
         </div>
         <div className="max-w-3xl divide-y divide-border">
           {events.archive.map((event, i) => (
