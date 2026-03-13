@@ -1,0 +1,150 @@
+Important design direction:
+- Do NOT copy MIT Media Lab branding, logo, colors, or exact layout
+- DO take inspiration from that style of site architecture:
+  - strong visual identity
+  - modular cards
+  - bold typography hierarchy
+  - grid-based structure
+  - project-first presentation
+  - interdisciplinary research energy
+- The final result should feel original to Critical Innovation & AI Pedagogy
+
+Main goals:
+1. Make the site feel like an active research network rather than a placeholder academic website
+2. Make projects, research themes, tools, and collaborators more visible
+3. Reduce long text-heavy sections and replace them with structured visual modules
+4. Improve overall polish, consistency, responsiveness, and credibility
+
+Site-wide improvements to implement:
+
+1. Global design system
+- Create or refine a consistent design system for:
+  - typography scale
+  - spacing system
+  - section rhythm
+  - buttons
+  - cards
+  - tags/badges
+  - hover states
+  - container widths
+- Use a bold but elegant academic style
+- Favor clean whitespace and strong section separation
+- Add subtle visual personality through line work, dividers, soft geometric accents, or modular grids
+
+2. Navigation
+- Make the main nav cleaner and more research-lab-like
+- Suggested top-level nav:
+  - About
+  - Research
+  - Projects
+  - Toolkit
+  - People
+  - Events
+  - Collaborate
+- Ensure nav and footer are visually consistent across all pages
+
+3. Homepage redesign
+- Create a stronger landing page with:
+  - a compelling hero statement
+  - brief intro to the network
+  - featured projects section
+  - two research pillars
+  - educator toolkit highlight
+  - collaborators / community block
+  - latest updates or events preview
+- Make the homepage visually engaging with cards and modular sections instead of long paragraphs
+
+4. Research section
+- Ensure the research section only reflects TWO pillars consistently
+- Present each pillar with:
+  - title
+  - short framing paragraph
+  - subtopics / focus areas
+  - linked projects or initiatives
+- Remove confusing or inconsistent pillar counts
+
+5. Projects page
+- Redesign the Projects page to feel like a modern research portfolio
+- Use a card-based layout with filtering or tagged organization if possible
+- Each card should include:
+  - title
+  - short abstract
+  - status
+  - focus area
+  - collaborators or lead
+  - placeholder outputs if needed
+  - “Learn More” CTA
+- Add polished placeholder content where content is still in progress
+- Use visual thumbnails, abstract graphics, or placeholders for projects if no images exist yet
+
+6. Toolkit page
+- Create a dedicated Educator Toolkit page
+- Include sections for:
+  - open-source AI tools
+  - teaching resources
+  - curriculum case studies
+  - classroom experiments
+- Make this page visually structured and future-ready
+- Ensure all related “Learn More” links go to the correct page
+
+7. People / team page
+- Remove rigid role labels such as “faculty lead” or “research director”
+- Replace with broader community categories such as:
+  - educators
+  - researchers
+  - graduate students
+  - community partners
+  - collaborators
+- Design the page like a network of contributors rather than a hierarchy chart
+
+8. Publications / outputs / events
+- Where there are no real outputs yet, use elegant placeholders like:
+  - Coming Soon
+  - In Development
+  - Publication Forthcoming
+- Create sections that are already designed for future growth
+- Build a simple but polished Events page framework, even if content is minimal for now
+
+9. About page updates
+- Strengthen the mission and vision presentation
+- Improve the “Why Critical Innovation?” section
+- Reduce overly dense text blocks
+- Use structured layout blocks with highlighted ideas:
+  - equity
+  - agency
+  - trust
+  - critical engagement
+  - innovation in education
+
+10. Visual implementation details
+- Use responsive CSS grid and flex layouts
+- Add subtle hover transitions to cards and buttons
+- Use accessible color contrast
+- Use semantic headings and clean HTML structure
+- Keep the site fast and not overloaded
+- Avoid heavy animations or gimmicks
+
+11. Accessibility and responsiveness
+- Ensure all pages are responsive across desktop, tablet, and mobile
+- Use semantic HTML and accessible heading hierarchy
+- Ensure buttons and links have clear focus and hover states
+- Make spacing and font sizes readable on all screens
+
+12. Content handling
+- Preserve current useful content where possible
+- Rewrite awkward placeholder-looking sections into polished temporary copy
+- Add concise professional placeholder content when needed
+- Do not leave empty sections or broken links
+
+Technical expectations:
+- Edit the existing codebase directly
+- Reuse existing components where appropriate, but improve them significantly
+- Create reusable section/card components if the codebase supports it
+- Keep code clean, maintainable, and production-ready
+- Do not break the rest of the site
+
+Deliverables:
+- Implement the redesigned site structure and styling
+- Summarize all changes made
+- Identify placeholder content I still need to replace later
+- List all files edited

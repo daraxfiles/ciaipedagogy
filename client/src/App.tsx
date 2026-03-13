@@ -11,19 +11,18 @@ import Home from "@/pages/home";
 import AboutPage from "@/pages/about";
 import ResearchPage from "@/pages/research";
 import ProjectsPage from "@/pages/projects";
+import ToolkitPage from "@/pages/toolkit";
+import PeoplePage from "@/pages/people";
+import EventsPage from "@/pages/events";
 import PublicationsPage from "@/pages/publications";
-import InsightsPage from "@/pages/insights";
 import CollaboratePage from "@/pages/collaborate";
 import ContactPage from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 
-function PageLayout({ title, children }: { title: string; children: React.ReactNode }) {
+export function PageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="py-12 sm:py-16 lg:py-20">
+    <div className="py-14 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-10 sm:mb-14">
-          {title}
-        </h1>
         {children}
       </div>
     </div>
@@ -43,39 +42,34 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about">
-        <PageLayout title="About">
-          <AboutPage />
-        </PageLayout>
+        <PageLayout><AboutPage /></PageLayout>
       </Route>
       <Route path="/research">
-        <PageLayout title="Research">
-          <ResearchPage />
-        </PageLayout>
+        <PageLayout><ResearchPage /></PageLayout>
       </Route>
       <Route path="/projects">
-        <PageLayout title="Projects, Labs & Resources">
-          <ProjectsPage />
-        </PageLayout>
+        <PageLayout><ProjectsPage /></PageLayout>
       </Route>
-      <Route path="/publications">
-        <PageLayout title="Publications & Outputs">
-          <PublicationsPage />
-        </PageLayout>
+      <Route path="/toolkit">
+        <PageLayout><ToolkitPage /></PageLayout>
+      </Route>
+      <Route path="/people">
+        <PageLayout><PeoplePage /></PageLayout>
+      </Route>
+      <Route path="/events">
+        <PageLayout><EventsPage /></PageLayout>
       </Route>
       <Route path="/insights">
-        <PageLayout title="Insights & Events">
-          <InsightsPage />
-        </PageLayout>
+        <PageLayout><EventsPage /></PageLayout>
+      </Route>
+      <Route path="/publications">
+        <PageLayout><PublicationsPage /></PageLayout>
       </Route>
       <Route path="/collaborate">
-        <PageLayout title="Collaborate">
-          <CollaboratePage />
-        </PageLayout>
+        <PageLayout><CollaboratePage /></PageLayout>
       </Route>
       <Route path="/contact">
-        <PageLayout title="Contact">
-          <ContactPage />
-        </PageLayout>
+        <PageLayout><ContactPage /></PageLayout>
       </Route>
       <Route component={NotFound} />
     </Switch>

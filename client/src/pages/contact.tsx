@@ -9,12 +9,15 @@ export default function ContactPage() {
   const { contact } = siteConfig;
 
   return (
-    <div className="space-y-12">
-      <div className="max-w-3xl">
-        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground mb-4">
+    <div className="space-y-0">
+
+      {/* Page header */}
+      <div className="mb-14">
+        <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-3">Reach Out</p>
+        <h1 className="font-serif text-4xl sm:text-5xl font-bold text-foreground leading-tight mb-5 max-w-3xl">
           {contact.title}
-        </h2>
-        <p className="text-base leading-relaxed text-muted-foreground">
+        </h1>
+        <p className="text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl">
           {contact.description}
         </p>
       </div>
@@ -23,21 +26,19 @@ export default function ContactPage() {
         {contact.categories.map((cat, i) => {
           const Icon = categoryIcons[i] || Mail;
           return (
-            <Card key={i} className="hover-elevate flex flex-col" data-testid={`card-contact-${i}`}>
+            <Card key={i} className="hover-elevate flex flex-col border-card-border" data-testid={`card-contact-${i}`}>
               <CardHeader>
                 <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 mb-2">
                   <Icon className="h-5 w-5 text-primary" />
                 </div>
                 <CardTitle className="font-serif text-lg">{cat.title}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed mt-2">
-                  {cat.text}
-                </CardDescription>
+                <CardDescription className="text-sm leading-relaxed mt-2">{cat.text}</CardDescription>
               </CardHeader>
               {cat.email && (
                 <CardContent className="mt-auto pt-0">
                   <a
                     href={`mailto:${cat.email}`}
-                    className="inline-flex items-center text-sm font-medium text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                    className="inline-flex items-center text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                     data-testid={`link-email-${i}`}
                   >
                     <Mail className="mr-1.5 h-3.5 w-3.5" />
@@ -49,7 +50,7 @@ export default function ContactPage() {
                 <CardContent className="mt-auto pt-0">
                   <Button size="sm" data-testid="button-subscribe">
                     <Send className="mr-2 h-3.5 w-3.5" />
-                    Subscribe
+                    Subscribe to Newsletter
                   </Button>
                 </CardContent>
               )}

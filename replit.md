@@ -11,13 +11,13 @@ Preferred communication style: Simple, everyday language.
 ## Frontend (React SPA)
 
 - **Framework**: React with TypeScript, bundled by Vite
-- **Routing**: `wouter` for client-side routing with 8 routes: `/` (home), `/about`, `/research`, `/projects`, `/publications`, `/insights`, `/collaborate`, `/contact`
+- **Routing**: `wouter` for client-side routing with 10 routes: `/` (home), `/about`, `/research`, `/projects`, `/toolkit`, `/people`, `/events`, `/publications`, `/collaborate`, `/contact`. Also `/insights` redirects to `/events` for backward compatibility.
 - **UI Components**: shadcn/ui (new-york style) built on Radix UI primitives with Tailwind CSS
 - **Icons**: lucide-react
 - **State Management**: `@tanstack/react-query` for server state; React Context for theme
 - **Styling**: Tailwind CSS with CSS custom properties for theming (light/dark mode via class strategy)
 - **Content**: All page content lives in `client/src/content/site.ts` — a single editable config object driving all sections
-- **Component Structure**: Shared section components live in `client/src/components/sections/` (Navbar, Hero, Footer). Page components live in `client/src/pages/` (home, about, research, projects, publications, insights, collaborate, contact). Reusable UI primitives are in `client/src/components/ui/`. App.tsx provides a shared PageLayout wrapper for inner pages and a ScrollToTop component
+- **Component Structure**: Shared section components live in `client/src/components/sections/` (Navbar, Hero, Footer). Page components live in `client/src/pages/` (home, about, research, projects, toolkit, people, events, publications, collaborate, contact). Reusable UI primitives are in `client/src/components/ui/`. App.tsx provides a shared `PageLayout` wrapper (container + padding only, no title) for inner pages and a `ScrollToTop` component
 - **Fonts**: DM Sans (sans), Libre Baskerville (serif), JetBrains Mono (mono) loaded via Google Fonts
 - **Path Aliases**: `@/` maps to `client/src/`, `@shared/` maps to `shared/`
 
@@ -52,6 +52,33 @@ Preferred communication style: Simple, everyday language.
 - **Type check**: `npm run check` → tsc with noEmit
 - **DB push**: `npm run db:push` → drizzle-kit push
 
+# Navigation Structure (7 Nav Items)
+
+| Label | Route | Description |
+|---|---|---|
+| About | /about | Mission, Why Critical, Approach, People teaser |
+| Research | /research | Overview stats, Pillar I & II focus areas |
+| Projects | /projects | 4-pillar project cards, Student Research, Outputs, CTA |
+| Toolkit | /toolkit | Open tools, Teaching resources, Curriculum, Experiments |
+| People | /people | 4 community categories with member cards |
+| Events | /events | Upcoming events, Research insights, Archive |
+| Collaborate | /collaborate | 4 collaboration pathway cards |
+
+# Site Content Keys (site.ts)
+
+- `nav` — Navigation items and CTA button
+- `hero` — Homepage hero (headline, subheadline, Venn circles)
+- `about` — Mission, Why Critical (4 value cards), Approach
+- `research` — Overview stats, Pillar I areas, Pillar II areas
+- `projects` — Featured projects array (6 items), intro text
+- `toolkit` — Open tools, teaching resources, curriculum, experiments
+- `people` — 4 network categories with member arrays
+- `events` — Insights array, upcoming events, archive
+- `publications` — 5 publication categories with items
+- `collaborate` — Headline, 4 collaboration categories
+- `contact` — 3 contact categories
+- `footer` — 3 footer columns with labels, bottom line text
+
 # External Dependencies
 
 - **PostgreSQL**: Required database, connected via `DATABASE_URL` environment variable. Used with Drizzle ORM for schema management and queries
@@ -59,3 +86,12 @@ Preferred communication style: Simple, everyday language.
 - **Replit Plugins**: `@replit/vite-plugin-runtime-error-modal`, `@replit/vite-plugin-cartographer`, `@replit/vite-plugin-dev-banner` — development-only Replit integrations
 - **shadcn/ui**: Component library configured via `components.json` with new-york style, Tailwind CSS variables, and path aliases
 - **Session Store**: `connect-pg-simple` is available for PostgreSQL-backed session storage (not yet wired up)
+
+# Design System Notes
+
+- **Page headers**: Each page manages its own `h1` with a pattern: small uppercase label → large serif h1 → subtitle paragraph. PageLayout provides only the container padding.
+- **Card pattern**: `hover-elevate` on cards, `no-default-active-elevate` on badges
+- **Section rhythm**: Sections use `py-14 sm:py-16` with `<Separator />` between them
+- **Layout pattern**: Many sections use `grid lg:grid-cols-4` with 1 col for label/intro and 3 cols for content
+- **Color system**: primary = deep navy, accent = warm amber, chart-3 = green, chart-4 = purple
+- **SVG colors**: Use inline `fill="hsl(var(--token) / opacity)"` not Tailwind className for SVG fill/stroke
