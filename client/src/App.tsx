@@ -17,6 +17,7 @@ import EventsPage from "@/pages/events";
 import PublicationsPage from "@/pages/publications";
 import CollaboratePage from "@/pages/collaborate";
 import ContactPage from "@/pages/contact";
+import PolicyBuilderPage from "@/pages/policy-builder";
 import NotFound from "@/pages/not-found";
 
 export function PageLayout({ children }: { children: React.ReactNode }) {
@@ -70,6 +71,9 @@ function Router() {
       </Route>
       <Route path="/contact">
         <PageLayout><ContactPage /></PageLayout>
+      </Route>
+      <Route path="/policy-builder">
+        <PageLayout><PolicyBuilderPage /></PageLayout>
       </Route>
       <Route component={NotFound} />
     </Switch>

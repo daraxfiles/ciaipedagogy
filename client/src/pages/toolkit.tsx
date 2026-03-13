@@ -54,11 +54,19 @@ export default function ToolkitPage() {
                 <CardDescription className="text-sm leading-relaxed mt-2">{tool.description}</CardDescription>
               </CardHeader>
               <CardContent className="mt-auto pt-0">
-                <a href={tool.link} target={tool.link.startsWith("http") ? "_blank" : undefined} rel={tool.link.startsWith("http") ? "noopener noreferrer" : undefined}>
-                  <Button variant="outline" size="sm" className="w-full" data-testid={`button-tool-${i}`}>
-                    Access Tool <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
-                  </Button>
-                </a>
+                {tool.link.startsWith("http") ? (
+                  <a href={tool.link} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="sm" className="w-full" data-testid={`button-tool-${i}`}>
+                      Access Tool <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
+                    </Button>
+                  </a>
+                ) : (
+                  <Link href={tool.link}>
+                    <Button variant="outline" size="sm" className="w-full" data-testid={`button-tool-${i}`}>
+                      Access Tool <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                    </Button>
+                  </Link>
+                )}
               </CardContent>
             </Card>
           ))}

@@ -11,7 +11,7 @@ Preferred communication style: Simple, everyday language.
 ## Frontend (React SPA)
 
 - **Framework**: React with TypeScript, bundled by Vite
-- **Routing**: `wouter` for client-side routing with 10 routes: `/` (home), `/about`, `/research`, `/projects`, `/toolkit`, `/people`, `/events`, `/publications`, `/collaborate`, `/contact`. Also `/insights` redirects to `/events` for backward compatibility.
+- **Routing**: `wouter` for client-side routing with 11 routes: `/` (home), `/about`, `/research`, `/projects`, `/toolkit`, `/people`, `/events`, `/publications`, `/collaborate`, `/contact`, `/policy-builder`. Also `/insights` redirects to `/events` for backward compatibility.
 - **UI Components**: shadcn/ui (new-york style) built on Radix UI primitives with Tailwind CSS
 - **Icons**: lucide-react
 - **State Management**: `@tanstack/react-query` for server state; React Context for theme

@@ -181,7 +181,7 @@ export const siteConfig = {
         title: "AI Policy Generator",
         description: "Generate customizable AI use policies for your course or institution. Covers expectations, academic integrity, and disclosure requirements across disciplines and contexts.",
         status: "Available",
-        link: "https://github.com/daraxfiles/policybuilder",
+        link: "/policy-builder",
       },
       {
         title: "Low-Bandwidth AI Toolkit",
