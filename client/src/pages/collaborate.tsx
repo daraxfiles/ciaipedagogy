@@ -25,6 +25,7 @@ const collaborateFormSchema = z.object({
   organization: z.string().min(1, "Organization required"),
   subject: z.string().min(1, "Please select a collaboration type"),
   message: z.string().min(20, "Please describe your interest in at least 20 characters"),
+  website: z.string().optional(), // honeypot — must stay empty
 });
 
 const COLLAB_TYPES = [
@@ -44,7 +45,7 @@ export default function CollaboratePage() {
 
   const form = useForm<z.infer<typeof collaborateFormSchema>>({
     resolver: zodResolver(collaborateFormSchema),
-    defaultValues: { name: "", email: "", organization: "", subject: "", message: "" },
+    defaultValues: { name: "", email: "", organization: "", subject: "", message: "", website: "" },
   });
 
   const submitMutation = useMutation({
@@ -211,6 +212,12 @@ export default function CollaboratePage() {
                     </FormItem>
                   )}
                 />
+                {/* Honeypot — visually hidden, filled by bots only */}
+                <div style={{ position: "absolute", left: "-9999px", opacity: 0 }} aria-hidden="true">
+                  <label htmlFor="hp-website-collab">Website</label>
+                  <input id="hp-website-collab" {...form.register("website")} type="text" tabIndex={-1} autoComplete="off" />
+                </div>
+
                 <Button
                   type="submit"
                   disabled={submitMutation.isPending}

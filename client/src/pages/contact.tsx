@@ -21,6 +21,7 @@ const contactFormSchema = z.object({
   email: z.string().email("Valid email required"),
   subject: z.string().min(1, "Subject required"),
   message: z.string().min(10, "Please write at least 10 characters"),
+  website: z.string().optional(), // honeypot — must stay empty
 });
 
 export default function ContactPage() {
@@ -30,7 +31,7 @@ export default function ContactPage() {
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { name: "", email: "", subject: "", message: "" },
+    defaultValues: { name: "", email: "", subject: "", message: "", website: "" },
   });
 
   const submitMutation = useMutation({
@@ -149,6 +150,12 @@ export default function ContactPage() {
                       </FormItem>
                     )}
                   />
+                  {/* Honeypot — visually hidden, filled by bots only */}
+                  <div style={{ position: "absolute", left: "-9999px", opacity: 0 }} aria-hidden="true">
+                    <label htmlFor="hp-website-contact">Website</label>
+                    <input id="hp-website-contact" {...form.register("website")} type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
+
                   <Button
                     type="submit"
                     disabled={submitMutation.isPending}

@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
+import rateLimit from "express-rate-limit";
 import { db } from "./db";
 import { storage } from "./storage";
 import { requireAuth, requireAdmin } from "./auth-middleware";
@@ -23,9 +24,27 @@ export async function registerRoutes(
   app: Express,
 ): Promise<Server> {
 
+  // ── Rate limiters ──────────────────────────────────────────────────────────
+
+  const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { message: "Too many attempts. Please try again in 15 minutes." },
+  });
+
+  const formLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 5,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { message: "Too many submissions. Please try again later." },
+  });
+
   // ── Auth ───────────────────────────────────────────────────────────────────
 
-  app.post("/api/auth/register", async (req, res) => {
+  app.post("/api/auth/register", authLimiter, async (req, res) => {
     const schema = z.object({
       username: z.string().min(3, "Username must be at least 3 characters").max(50),
       password: z.string().min(8, "Password must be at least 8 characters"),
@@ -60,18 +79,26 @@ export async function registerRoutes(
     });
   });
 
-  app.post("/api/auth/login", async (req, res) => {
-    const parsed = loginSchema.safeParse(req.body);
+  app.post("/api/auth/login", authLimiter, async (req, res) => {
+    const schema = z.object({
+      email: z.string().min(1, "Required"),
+      password: z.string().min(1),
+    });
+    const parsed = schema.safeParse(req.body);
     if (!parsed.success) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-    const { email, password } = parsed.data;
+    const { email: identifier, password } = parsed.data;
 
-    const user = await storage.getUserByEmail(email);
-    if (!user) return res.status(401).json({ message: "Invalid email or password" });
+    // Accept either an email address or a plain username
+    let user = await storage.getUserByEmail(identifier);
+    if (!user && !identifier.includes("@")) {
+      user = await storage.getUserByUsername(identifier);
+    }
+    if (!user) return res.status(401).json({ message: "Invalid username or password" });
 
     const valid = await bcrypt.compare(password, user.passwordHash);
-    if (!valid) return res.status(401).json({ message: "Invalid email or password" });
+    if (!valid) return res.status(401).json({ message: "Invalid username or password" });
 
     req.session.userId = user.id;
     req.session.role = user.role;
@@ -105,7 +132,11 @@ export async function registerRoutes(
 
   // ── Form Submissions ───────────────────────────────────────────────────────
 
-  app.post("/api/submissions", async (req, res) => {
+  app.post("/api/submissions", formLimiter, async (req, res) => {
+    // Honeypot: bots fill the hidden "website" field; humans leave it blank
+    if (req.body.website) {
+      return res.status(201).json({ ok: true }); // silently ignore
+    }
     const parsed = insertSubmissionSchema.safeParse(req.body);
     if (!parsed.success) {
       return res.status(400).json({ message: parsed.error.errors[0].message });

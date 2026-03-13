@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 
 const loginFormSchema = z.object({
-  email: z.string().email("Valid email required"),
+  email: z.string().min(1, "Username or email required"),
   password: z.string().min(1, "Password required"),
 });
 
@@ -63,11 +63,12 @@ export default function LoginPage() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Email or Username</FormLabel>
                   <FormControl>
                     <Input
-                      type="email"
-                      placeholder="you@institution.edu"
+                      type="text"
+                      placeholder="yourhandle or you@institution.edu"
+                      autoComplete="username"
                       data-testid="input-login-email"
                       {...field}
                     />
