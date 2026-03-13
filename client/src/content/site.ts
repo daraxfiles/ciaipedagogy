@@ -254,25 +254,25 @@ export const siteConfig = {
         label: "Educators",
         description: "Faculty and teaching professionals who bring critical AI pedagogy into classrooms and curricula across disciplines.",
         members: [
-          { name: "Faculty Lead", focus: "AI in Education, Critical Pedagogy", affiliation: "Clemson University" },
-          { name: "Teaching Fellow", focus: "Instructional Design, Generative AI", affiliation: "Clemson University" },
+          { name: "Faculty Lead", focus: "AI in Education, Critical Pedagogy", affiliation: "" },
+          { name: "Teaching Fellow", focus: "Instructional Design, Generative AI", affiliation: "" },
         ],
       },
       {
         label: "Researchers",
         description: "Scholars advancing empirical and theoretical work on AI, media literacy, and learning sciences.",
         members: [
-          { name: "Research Director", focus: "Media Literacy, Synthetic Media", affiliation: "Clemson University" },
-          { name: "Postdoctoral Fellow", focus: "Epistemic Trust, Learning Sciences", affiliation: "Clemson University" },
+          { name: "Research Director", focus: "Media Literacy, Synthetic Media", affiliation: "" },
+          { name: "Postdoctoral Fellow", focus: "Epistemic Trust, Learning Sciences", affiliation: "" },
         ],
       },
       {
         label: "Graduate Students",
         description: "Doctoral and master's students conducting original research as part of the network. Fellows lead studies, present at conferences, and co-author publications.",
         members: [
-          { name: "Graduate Fellow", focus: "AI Smuggling, Student Agency", affiliation: "Clemson University" },
-          { name: "Graduate Fellow", focus: "Deepfake Literacy, Youth Media", affiliation: "Clemson University" },
-          { name: "Lab Coordinator", focus: "Open-Source AI, Low-Resource Contexts", affiliation: "Clemson University" },
+          { name: "Graduate Fellow", focus: "AI Smuggling, Student Agency", affiliation: "" },
+          { name: "Graduate Fellow", focus: "Deepfake Literacy, Youth Media", affiliation: "" },
+          { name: "Lab Coordinator", focus: "Open-Source AI, Low-Resource Contexts", affiliation: "" },
         ],
       },
       {

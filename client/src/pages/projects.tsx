@@ -165,7 +165,7 @@ const studentProjects = [
     name: "Creative Inquiry Research Team",
     term: "2025–2026",
     description:
-      "A Clemson University Creative Inquiry cohort co-designing AI literacy curriculum with community educators. Students develop, test, and refine lesson modules for K-12 settings.",
+      "A Creative Inquiry cohort co-designing AI literacy curriculum with community educators. Students develop, test, and refine lesson modules for K-12 settings.",
     tags: ["Curriculum Design", "Community Engagement", "AI Literacy"],
   },
   {
@@ -213,7 +213,7 @@ export default function ProjectsPage() {
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Clemson University
+            Research Network
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <div className="h-1.5 w-1.5 rounded-full bg-accent" />

@@ -59,7 +59,7 @@ export function Footer() {
             {footer.bottomLine}
           </p>
           <p className="text-xs text-muted-foreground/50">
-            Clemson University · Creative Inquiry
+            Critical Innovation & AI Pedagogy Network
           </p>
         </div>
       </div>

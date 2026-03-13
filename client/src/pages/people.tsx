@@ -68,7 +68,9 @@ export default function PeoplePage() {
                       <div className="min-w-0">
                         <p className="font-semibold text-sm text-foreground leading-snug">{member.name}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{member.focus}</p>
-                        <p className="text-xs text-muted-foreground/70 mt-1">{member.affiliation}</p>
+                        {member.affiliation && (
+                          <p className="text-xs text-muted-foreground/70 mt-1">{member.affiliation}</p>
+                        )}
                       </div>
                     </div>
                   ))}
