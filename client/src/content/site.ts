@@ -184,12 +184,6 @@ export const siteConfig = {
         link: "#",
       },
       {
-        title: "Instructor AI Policy Builder",
-        description: "A step-by-step tool for instructors to build clear, equitable AI use policies. Guides decisions on disclosure, attribution, and appropriate use for any course context.",
-        status: "Available",
-        link: "#",
-      },
-      {
         title: "Low-Bandwidth AI Toolkit",
         description: "Open-source tools and resources designed for educational settings with limited computational resources or internet connectivity. Offline-compatible where possible.",
         status: "In Development",
