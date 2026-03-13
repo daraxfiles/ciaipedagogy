@@ -1,0 +1,116 @@
+Redesign this page to follow the layout style of the reference I shared: a clean, editorial, research-lab homepage/news grid with large visual tiles and text-based content blocks.
+
+Important:
+- Do NOT copy MIT Media Lab branding, logos, colors, or exact content
+- DO recreate the structural feel:
+  - modular grid layout
+  - bold editorial typography
+  - large image tiles
+  - mixed image and text cards
+  - lots of whitespace
+  - strong visual hierarchy
+  - clean academic/research aesthetic
+
+Goal:
+Make the page feel like a modern research and innovation site with a magazine-like grid of projects, updates, and featured work.
+
+Design instructions:
+
+1. Use a modular asymmetric grid
+- Build the page using a multi-column CSS grid
+- Mix:
+  - large image cards
+  - text-only cards
+  - image + text stacked cards
+- The layout should feel dynamic and editorial, not like identical blog cards
+- Vary card widths/heights to create visual rhythm
+
+2. Create large feature tiles
+- Some cards should be mostly image-driven
+- Some should be mostly text-driven
+- Use oversized visual blocks to highlight featured projects, initiatives, or updates
+- Images should fill the tile area cleanly with strong cropping
+
+3. Typography style
+- Use bold, large headlines
+- Use smaller muted summary text underneath
+- Add compact metadata below summaries where appropriate:
+  - date
+  - category
+  - tags
+  - project type
+- Typography should feel modern, clean, academic, and editorial
+
+4. Card content structure
+Design cards like this:
+- image or color block on top (optional)
+- strong headline
+- short supporting description
+- small metadata line
+Examples of content types:
+- Featured project
+- Research initiative
+- Toolkit/resource
+- Student work
+- News/update
+- Event highlight
+
+5. White/light background with strong contrast
+- Use a very clean background
+- Keep the design minimal and spacious
+- Use contrast through typography, scale, spacing, and imagery rather than decorative icons
+- Remove decorative icons and symbol blocks before headings
+
+6. Grid spacing and alignment
+- Use generous gaps between cards
+- Align the cards carefully so the page feels intentional and premium
+- Avoid clutter
+- Keep margins and padding consistent
+
+7. Visual style
+- Modern research lab / editorial publication / innovation network
+- Clean and high-end
+- Minimal but visually strong
+- Slightly experimental in layout, but still readable
+- Typography-led rather than icon-led
+
+8. Content modules to include
+Use the page’s real content, but redesign it into modules such as:
+- Featured research/project tile
+- Text-only project summary card
+- Toolkit/resource tile
+- Collaboration/community highlight
+- Student research tile
+- Event or update card
+
+9. Responsive behavior
+- On desktop: use the full editorial grid layout
+- On tablet: simplify into 2 columns
+- On mobile: stack cleanly into 1 column
+- Preserve hierarchy and readability at all sizes
+
+10. Technical implementation
+- Edit the existing page directly
+- Use CSS Grid for the main layout
+- Create reusable card styles if needed
+- Keep the code clean and maintainable
+- Reuse site branding, but modernize the layout
+- Do not break navigation or footer
+
+11. Remove current design elements that fight this layout
+- remove boxed icons
+- remove overly centered section designs if they reduce scanability
+- reduce heavy paragraph blocks
+- replace repetitive same-size cards with varied editorial tiles
+
+12. Add subtle interactions
+- slight hover lift or scale on cards
+- subtle image zoom on hover
+- smooth transitions
+- no flashy animations
+
+The final result should feel like:
+- a research publication homepage
+- an interdisciplinary innovation lab
+- an editorial academic site
+- visually similar in structure to the example image I shared
