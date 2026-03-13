@@ -1,113 +1,130 @@
-import type { CSSProperties } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users } from "lucide-react";
 
+const RADIUS = 115;
+
+const CIRCLE_DATA = [
+  {
+    cx: 250, cy: 162,
+    colorVar: "--primary",
+    label: "Agency & Judgment",
+    subtitle: "Human decision-making with AI",
+    lx: 250, ly: 64,
+    anchor: "middle" as const,
+  },
+  {
+    cx: 190, cy: 275,
+    colorVar: "--accent",
+    label: "Critical AI Literacy",
+    subtitle: "Detecting & evaluating AI systems",
+    lx: 88, ly: 358,
+    anchor: "middle" as const,
+  },
+  {
+    cx: 310, cy: 275,
+    colorVar: "--chart-3",
+    label: "Equitable Innovation",
+    subtitle: "Designing for equity & access",
+    lx: 412, ly: 358,
+    anchor: "middle" as const,
+  },
+];
+
+const CORE_X = (250 + 190 + 310) / 3;
+const CORE_Y = (162 + 275 + 275) / 3;
+
 function VennDiagram() {
-  const { circles } = siteConfig.hero;
-
-  const circleBase: CSSProperties = {
-    position: 'absolute',
-    width: '52%',
-    height: '52%',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-
-  const labelStyle: CSSProperties = {
-    fontWeight: 600,
-    fontSize: '0.68rem',
-    lineHeight: 1.45,
-    textAlign: 'center',
-    color: 'hsl(var(--foreground))',
-    padding: '0 12%',
-    pointerEvents: 'none',
-  };
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <div
-      className="relative w-full max-w-md mx-auto"
-      style={{ aspectRatio: '1' }}
-      aria-hidden="true"
+      className="relative w-full max-w-lg mx-auto select-none"
+      aria-label="Research framework diagram showing three intersecting concepts"
     >
-      {/* Decorative SVG lines behind the circles */}
-      <svg
-        viewBox="0 0 400 400"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
-      >
-        <line x1="80" y1="350" x2="320" y2="50" stroke="hsl(var(--muted-foreground) / 0.15)" strokeWidth="0.5" />
-        <line x1="50" y1="100" x2="350" y2="300" stroke="hsl(var(--muted-foreground) / 0.15)" strokeWidth="0.5" />
-        <line x1="200" y1="30" x2="200" y2="370" stroke="hsl(var(--muted-foreground) / 0.15)" strokeWidth="0.5" />
-        <circle cx="100" cy="300" r="3" fill="hsl(var(--muted-foreground) / 0.15)" />
-        <circle cx="300" cy="100" r="2" fill="hsl(var(--muted-foreground) / 0.15)" />
-        <circle cx="50" cy="200" r="2" fill="hsl(var(--muted-foreground) / 0.15)" />
-        <circle cx="350" cy="250" r="3" fill="hsl(var(--muted-foreground) / 0.15)" />
+      <svg viewBox="0 0 500 430" className="w-full h-auto overflow-visible">
+
+        {/* ── Three circles ─────────────────────────────────────── */}
+        {CIRCLE_DATA.map((c, i) => (
+          <circle
+            key={i}
+            cx={c.cx}
+            cy={c.cy}
+            r={RADIUS}
+            strokeWidth="1.5"
+            style={{
+              fill: `hsl(var(${c.colorVar}) / ${hovered === i ? 0.42 : 0.26})`,
+              stroke: `hsl(var(${c.colorVar}) / ${hovered === i ? 0.80 : 0.52})`,
+              transition: "fill 0.35s ease, stroke 0.35s ease",
+              cursor: "default",
+            }}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+          />
+        ))}
+
+        {/* ── Center backdrop ───────────────────────────────────── */}
+        <circle
+          cx={CORE_X}
+          cy={CORE_Y}
+          r={50}
+          style={{
+            fill: "hsl(var(--background) / 0.80)",
+            stroke: "hsl(var(--border) / 0.20)",
+          }}
+          strokeWidth="1"
+        />
+
+        {/* ── Center label ──────────────────────────────────────── */}
+        <text
+          x={CORE_X}
+          y={CORE_Y - 10}
+          textAnchor="middle"
+          fontFamily="'Libre Baskerville', 'Georgia', serif"
+          fontWeight="700"
+          fontSize="10.5"
+          style={{ fill: "hsl(var(--foreground))" }}
+        >
+          Critical Innovation
+          <tspan x={CORE_X} dy="16">
+            in AI &amp; Education
+          </tspan>
+        </text>
+
+        {/* ── Circle labels ─────────────────────────────────────── */}
+        {CIRCLE_DATA.map((c, i) => (
+          <text
+            key={`lbl-${i}`}
+            textAnchor={c.anchor}
+            fontFamily="'DM Sans', 'system-ui', sans-serif"
+            style={{ pointerEvents: "none" }}
+          >
+            <tspan
+              x={c.lx}
+              y={c.ly}
+              fontWeight="600"
+              fontSize="12"
+              style={{
+                fill: `hsl(var(${c.colorVar}) / ${hovered === i ? 1 : 0.88})`,
+                transition: "fill 0.35s ease",
+              }}
+            >
+              {c.label}
+            </tspan>
+            <tspan
+              x={c.lx}
+              dy="18"
+              fontWeight="400"
+              fontSize="9"
+              style={{ fill: "hsl(var(--muted-foreground))" }}
+            >
+              {c.subtitle}
+            </tspan>
+          </text>
+        ))}
       </svg>
-
-      {/*
-        Three overlapping CSS circles — same layout as the SVG coords (400×400 viewBox):
-          Top   cx=200 cy=145 r=100  →  left=24% top=11%
-          Left  cx=145 cy=240 r=100  →  left=10% top=35%
-          Right cx=255 cy=240 r=100  →  left=37.5% top=35%
-        Each circle is a flex container so the label is always centered inside it.
-      */}
-
-      {/* Top circle — Agency & Judgment */}
-      <div
-        style={{
-          ...circleBase,
-          left: '24%',
-          top: '11%',
-          backgroundColor: 'hsl(var(--primary) / 0.10)',
-          border: '1.5px solid hsl(var(--primary) / 0.45)',
-        }}
-      >
-        <span style={labelStyle}>{circles[0]}</span>
-      </div>
-
-      {/* Left circle — Critical AI Literacy */}
-      <div
-        style={{
-          ...circleBase,
-          left: '10%',
-          top: '35%',
-          backgroundColor: 'hsl(var(--accent) / 0.12)',
-          border: '1.5px solid hsl(var(--accent) / 0.50)',
-        }}
-      >
-        <span style={labelStyle}>Critical AI<br />Literacy</span>
-      </div>
-
-      {/* Right circle — Equitable Innovation */}
-      <div
-        style={{
-          ...circleBase,
-          left: '37.5%',
-          top: '35%',
-          backgroundColor: 'hsl(var(--chart-3) / 0.10)',
-          border: '1.5px solid hsl(var(--chart-3) / 0.45)',
-        }}
-      >
-        <span style={labelStyle}>Equitable<br />Innovation</span>
-      </div>
-
-      {/* Center glow accent dot */}
-      <div
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: '55%',
-          width: '8px',
-          height: '8px',
-          borderRadius: '50%',
-          backgroundColor: 'hsl(var(--accent))',
-          transform: 'translate(-50%, -50%)',
-          boxShadow: '0 0 6px 2px hsl(var(--accent) / 0.4)',
-        }}
-      />
     </div>
   );
 }
@@ -119,6 +136,8 @@ export function Hero() {
     <section className="relative py-16 sm:py-24 lg:py-32" data-testid="section-hero">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* Left — text */}
           <div className="max-w-xl">
             <h1
               className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-foreground"
@@ -148,9 +167,11 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center">
+          {/* Right — diagram */}
+          <div className="hidden lg:flex items-center justify-center py-8">
             <VennDiagram />
           </div>
+
         </div>
       </div>
     </section>
