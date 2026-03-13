@@ -12,6 +12,12 @@ export const users = pgTable("users", {
   role: text("role").notNull().default("member"), // 'admin' | 'member'
   bio: text("bio"),
   affiliation: text("affiliation"),
+  researchInterests: text("research_interests"),
+  websiteUrl: text("website_url"),
+  linkedinUrl: text("linkedin_url"),
+  scholarUrl: text("scholar_url"),
+  profileImageUrl: text("profile_image_url"),
+  isPublic: boolean("is_public").notNull().default(false),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 

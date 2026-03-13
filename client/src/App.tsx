@@ -13,6 +13,7 @@ import ResearchPage from "@/pages/research";
 import ProjectsPage from "@/pages/projects";
 import ToolkitPage from "@/pages/toolkit";
 import PeoplePage from "@/pages/people";
+import PersonPage from "@/pages/person";
 import EventsPage from "@/pages/events";
 import PublicationsPage from "@/pages/publications";
 import CollaboratePage from "@/pages/collaborate";
@@ -57,6 +58,9 @@ function Router() {
       </Route>
       <Route path="/toolkit">
         <PageLayout><ToolkitPage /></PageLayout>
+      </Route>
+      <Route path="/people/:username">
+        <PageLayout><PersonPage /></PageLayout>
       </Route>
       <Route path="/people">
         <PageLayout><PeoplePage /></PageLayout>

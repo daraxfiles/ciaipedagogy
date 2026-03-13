@@ -1,6 +1,6 @@
 # Overview
 
-This is a **Critical Innovation & AI Pedagogy** academic website — a multi-page responsive web application for a research working group examining how artificial intelligence reshapes teaching, learning, and knowledge production. The site features multi-page routing, dark/light theme support, an academic aesthetic, user accounts with a member portal, an admin dashboard, working contact/collaborate forms, database-backed events and publications with RSVPs and comments, and a CMS for editing site text.
+This is a **Critical Innovation & AI Pedagogy** academic website — a multi-page responsive web application for a research working group examining how artificial intelligence reshapes teaching, learning, and knowledge production. The site features multi-page routing, dark/light theme support, an academic aesthetic, user accounts with a member portal, an admin dashboard, working contact/collaborate forms, database-backed events and publications with RSVPs and comments, a CMS for editing site text, a public member directory with individual profile pages, and DOI/BibTeX publication imports.
 
 # User Preferences
 
@@ -11,7 +11,7 @@ Preferred communication style: Simple, everyday language.
 ## Frontend (React SPA)
 
 - **Framework**: React with TypeScript, bundled by Vite
-- **Routing**: `wouter` for client-side routing with 14 active routes: `/` (home), `/about`, `/research`, `/projects`, `/toolkit`, `/people`, `/events`, `/publications`, `/collaborate`, `/contact`, `/policy-builder`, `/login`, `/portal`, `/admin`. `/register` redirects to `/login`; `/insights` redirects to `/events`.
+- **Routing**: `wouter` for client-side routing with 15 active routes: `/` (home), `/about`, `/research`, `/projects`, `/toolkit`, `/people`, `/people/:username` (public profiles), `/events`, `/publications`, `/collaborate`, `/contact`, `/policy-builder`, `/login`, `/portal`, `/admin`. `/register` redirects to `/login`; `/insights` redirects to `/events`.
 - **Auth Hook**: `client/src/hooks/use-auth.ts` — `useAuth()` wraps login/logout mutations and the `/api/auth/me` query. Register mutation removed; registration is admin-only via SQL.
 - **Auth Pages**: `login.tsx` (sign-in only; registration is disabled), `portal.tsx` (member dashboard), `admin.tsx` (admin dashboard). `register.tsx` exists but redirects to `/login` — accounts are created manually via SQL.
 - **UI Components**: shadcn/ui (new-york style) built on Radix UI primitives with Tailwind CSS

@@ -1,0 +1,125 @@
+I want to upgrade the site into a more complete research network platform.
+
+Please implement these 3 features in this order:
+
+1. Member directory
+2. Event RSVP system with attendee lists
+3. Automatic publication imports (DOI / BibTeX)
+
+Important:
+- Keep the existing design language consistent with the site
+- Do not break the current admin dashboard, auth, forms, or database
+- Keep everything production-ready and aligned with the current live schema
+- Reuse existing tables and fields where possible
+- If schema changes are needed, make them explicit and safe
+
+FEATURE 1 — MEMBER DIRECTORY
+
+Goal:
+Create a public-facing member directory and profile system.
+
+Requirements:
+- Add a public `/people` page that displays members in a clean card/grid layout
+- Add dynamic profile pages like `/people/:username`
+- Show only approved/displayable users, not every account by default
+- Each profile should support:
+  - display_name
+  - username
+  - affiliation
+  - bio
+  - optional research interests
+  - optional website/linkedin/scholar links
+  - optional profile image
+- Add admin controls or a simple edit flow so profile fields can be updated
+- Add a flag such as `is_public` so member profiles can be hidden or shown
+- Keep the page visually polished, academic, and modern
+
+Database/schema:
+- Inspect current schema first
+- Safely add any missing columns needed for profiles, such as:
+  - is_public
+  - research_interests
+  - website_url
+  - linkedin_url
+  - scholar_url
+  - profile_image_url
+- Use safe migrations only
+
+Admin:
+- Make it possible for admin to view/edit member profile data
+- Keep admin-only protections intact
+
+FEATURE 2 — EVENT RSVP SYSTEM WITH ATTENDEE LISTS
+
+Goal:
+Allow logged-in members to RSVP for events and allow admins to view attendee lists.
+
+Requirements:
+- On `/events`, each RSVP-enabled event should show an RSVP button for logged-in users
+- If already RSVP’d, show a cancel RSVP option
+- Save RSVPs in the database
+- Prevent duplicate RSVPs from the same user
+- Add admin attendee views:
+  - in `/admin`, each event should show attendee count
+  - admin can click to view attendee list
+- Show attendee fields:
+  - display name or username
+  - email if available
+  - RSVP timestamp
+- Keep RSVP logic tied to authenticated users only
+- Respect existing event structure and admin permissions
+
+Database/schema:
+- Check whether `event_rsvps` already exists and whether its user foreign key matches the actual users table type
+- Fix it safely if needed
+- Do not assume integer user IDs if the live users.id is varchar
+
+FEATURE 3 — AUTOMATIC PUBLICATION IMPORTS (DOI / BIBTEX)
+
+Goal:
+Make publication entry much faster and more professional.
+
+Requirements:
+- In admin publications section, add an “Import Publication” option
+- Support:
+  - DOI input
+  - BibTeX paste
+- On DOI import:
+  - fetch metadata from a reliable source such as Crossref
+  - auto-fill title, authors, year, venue, DOI URL, abstract if available
+- On BibTeX paste:
+  - parse the BibTeX entry and auto-fill publication fields
+- Allow admin to review/edit before saving
+- Keep manual publication entry available too
+
+Technical constraints:
+- If DOI import requires external API access, implement it server-side
+- Add error handling for invalid DOI/BibTeX
+- Keep the UI simple and clean
+- Do not expose secrets in the frontend
+
+IMPORTANT DATABASE SAFETY REQUIREMENT
+
+Before making schema changes, inspect the current live schema assumptions carefully.
+The live users table has previously drifted from the code, so do not assume types.
+In particular:
+- verify the users.id type before creating foreign keys
+- use safe, idempotent migrations
+- do not create integer foreign keys to users.id if users.id is varchar
+- tell me exactly what schema changes were made
+
+DESIGN EXPECTATIONS
+
+- Keep the site looking like a polished academic research network
+- Member directory should feel like a research lab people page
+- RSVP system should feel clean and professional, not like a generic event app
+- Publication import should feel like a serious admin tool for scholarship management
+
+DELIVERABLES
+
+After implementing:
+1. summarize all features added
+2. list all files changed
+3. list all schema changes made
+4. tell me what I need to test manually
+5. point out any placeholders or unfinished pieces
