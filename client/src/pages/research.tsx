@@ -1,3 +1,4 @@
+import researchBannerImg from "@assets/stock_images/research-banner.jpg";
 import { Link } from "wouter";
 import { siteConfig } from "@/content/site";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -22,7 +23,7 @@ export default function ResearchPage() {
         </p>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
           {research.overview.stats.map((stat, i) => (
             <div
               key={i}
@@ -33,6 +34,15 @@ export default function ResearchPage() {
               <p className="text-xs text-muted-foreground">{stat.label}</p>
             </div>
           ))}
+        </div>
+
+        {/* Banner image */}
+        <div className="rounded-xl overflow-hidden border border-card-border">
+          <img
+            src={researchBannerImg}
+            alt="Research lab with students and technology"
+            className="w-full h-52 sm:h-64 object-cover"
+          />
         </div>
       </div>
 

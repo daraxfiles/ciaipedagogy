@@ -1,3 +1,4 @@
+import aboutBannerImg from "@assets/stock_images/about-banner.jpg";
 import { siteConfig } from "@/content/site";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -19,7 +20,7 @@ export default function AboutPage() {
     <div className="space-y-0">
 
       {/* Page intro */}
-      <div className="mb-16">
+      <div className="mb-10">
         <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-3">About</p>
         <h1 className="font-serif text-4xl sm:text-5xl font-bold text-foreground leading-tight mb-6 max-w-3xl">
           A critical lens on AI in education
@@ -29,6 +30,15 @@ export default function AboutPage() {
           reshapes teaching, learning, and knowledge production, with equity, agency, and
           accountability at the center of everything we do.
         </p>
+      </div>
+
+      {/* Banner image */}
+      <div className="mb-16 rounded-xl overflow-hidden border border-card-border">
+        <img
+          src={aboutBannerImg}
+          alt="Researchers and educators collaborating around a table"
+          className="w-full h-56 sm:h-72 object-cover"
+        />
       </div>
 
       <Separator />

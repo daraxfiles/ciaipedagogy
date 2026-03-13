@@ -1,8 +1,28 @@
+import personEducator1 from "@assets/stock_images/person-educator-1.jpg";
+import personEducator2 from "@assets/stock_images/person-educator-2.jpg";
+import personResearcher1 from "@assets/stock_images/person-researcher-1.jpg";
+import personResearcher2 from "@assets/stock_images/person-researcher-2.jpg";
+import personStudent1 from "@assets/stock_images/person-student-1.jpg";
+import personStudent2 from "@assets/stock_images/person-student-2.jpg";
+import personCommunity1 from "@assets/stock_images/person-community-1.jpg";
+import personCommunity2 from "@assets/stock_images/person-community-2.jpg";
 import { Link } from "wouter";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight } from "lucide-react";
+
+const photoMap: Record<string, string> = {
+  "0-0": personEducator1,
+  "0-1": personEducator2,
+  "1-0": personResearcher1,
+  "1-1": personResearcher2,
+  "2-0": personStudent1,
+  "2-1": personStudent2,
+  "2-2": personStudent1,
+  "3-0": personCommunity1,
+  "3-1": personCommunity2,
+};
 
 function initials(name: string) {
   return name
@@ -62,9 +82,17 @@ export default function PeoplePage() {
                       className="flex items-start gap-4 p-5 rounded-lg border border-card-border bg-card hover-elevate"
                       data-testid={`card-person-${ci}-${mi}`}
                     >
-                      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${accent.bg} text-sm font-bold ${accent.text} font-serif`}>
-                        {initials(member.name)}
-                      </div>
+                      {photoMap[`${ci}-${mi}`] ? (
+                        <img
+                          src={photoMap[`${ci}-${mi}`]}
+                          alt={member.name}
+                          className="h-11 w-11 shrink-0 rounded-full object-cover object-top"
+                        />
+                      ) : (
+                        <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${accent.bg} text-sm font-bold ${accent.text} font-serif`}>
+                          {initials(member.name)}
+                        </div>
+                      )}
                       <div className="min-w-0">
                         <p className="font-semibold text-sm text-foreground leading-snug">{member.name}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{member.focus}</p>
