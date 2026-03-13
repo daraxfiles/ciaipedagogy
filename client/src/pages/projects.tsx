@@ -204,7 +204,7 @@ export default function ProjectsPage() {
           <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
             The Critical Innovation & AI Pedagogy network develops research studies, teaching
             experiments, and open tools that explore how AI reshapes learning, knowledge production,
-            and educational design. Our work spans four interconnected research pillars — each
+            and educational design. Our work spans four interconnected research pillars, each
             grounded in equity, human agency, and critical inquiry.
           </p>
         </div>
@@ -316,8 +316,7 @@ export default function ProjectsPage() {
           </div>
         </div>
         <p className="text-base leading-relaxed text-muted-foreground max-w-3xl mb-8">
-          Undergraduate and graduate students are active partners in every phase of our research —
-          from design and data collection to analysis, presentation, and publication. We are
+          Undergraduate and graduate students are active partners in every phase of our research, from design and data collection to analysis, presentation, and publication. We are
           committed to mentored, high-impact research experiences grounded in creative inquiry.
         </p>
         <div className="grid sm:grid-cols-3 gap-5 mb-8">
@@ -417,7 +416,7 @@ export default function ProjectsPage() {
             <p className="text-base leading-relaxed text-muted-foreground mb-8">
               We welcome researchers, educators, graduate students, schools, and technology
               partners who share our commitment to human-centered, equitable AI in education.
-              Whether you want to co-design a study, test curriculum, or build open tools — we'd
+              Whether you want to co-design a study, test curriculum, or build open tools. We'd
               love to connect.
             </p>
             <div className="flex flex-wrap gap-3">

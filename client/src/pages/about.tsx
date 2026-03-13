@@ -26,7 +26,7 @@ export default function AboutPage() {
         </h1>
         <p className="text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl">
           We are a research and practice working group examining how artificial intelligence
-          reshapes teaching, learning, and knowledge production — with equity, agency, and
+          reshapes teaching, learning, and knowledge production, with equity, agency, and
           accountability at the center of everything we do.
         </p>
       </div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
             <p className="text-base leading-relaxed text-muted-foreground mb-6">
               Our team includes researchers, educators, graduate fellows, and community partners
               working across disciplines. We are organized around shared commitments rather than
-              institutional hierarchy — a network of contributors united by a belief that AI in
+              institutional hierarchy, a network of contributors united by a belief that AI in
               education must be critically examined, equitably designed, and communally governed.
             </p>
             <Link href="/people">

@@ -34,12 +34,12 @@ export const siteConfig = {
     title: "About",
     mission: {
       title: "Mission & Vision",
-      text: "Our mission is to advance critical, human-centered scholarship on artificial intelligence in education. We envision a future where AI augments — not replaces — human agency, where learners and educators are empowered to navigate AI systems with critical awareness, and where innovation in learning technology serves equity rather than efficiency alone.",
+      text: "Our mission is to advance critical, human-centered scholarship on artificial intelligence in education. We envision a future where AI augments, not replaces, human agency, where learners and educators are empowered to navigate AI systems with critical awareness, and where innovation in learning technology serves equity rather than efficiency alone.",
       vision: "We envision educational ecosystems where AI is transparent, accountable, and designed with the communities it serves.",
     },
     whyCritical: {
       title: "Why Critical Innovation?",
-      text: "Most conversations about AI in education center on adoption speed, productivity gains, and automation. We take a different approach — asking who benefits, who is excluded, and what assumptions are embedded in the systems we build.",
+      text: "Most conversations about AI in education center on adoption speed, productivity gains, and automation. We take a different approach, asking who benefits, who is excluded, and what assumptions are embedded in the systems we build.",
       points: [
         { label: "Equity", text: "Centering equity in every design decision" },
         { label: "Agency", text: "Prioritizing human agency over automation" },
@@ -82,7 +82,7 @@ export const siteConfig = {
         },
         {
           title: "AI Smuggling Research",
-          text: "Why do students conceal their AI use? Our flagship study investigates the hidden practices of AI use in academic settings — what we call 'AI Smuggling' — and what these behaviors reveal about institutional trust, academic identity, and the design of learning environments.",
+          text: "Why do students conceal their AI use? Our flagship study investigates the hidden practices of AI use in academic settings, what we call 'AI Smuggling,' and what these behaviors reveal about institutional trust, academic identity, and the design of learning environments.",
         },
         {
           title: "Trust & Legitimacy",
@@ -124,7 +124,7 @@ export const siteConfig = {
     featured: [
       {
         title: "AI Smuggling & Legitimacy Study",
-        description: "A multi-institutional qualitative study investigating why students conceal their AI use in academic settings, examining the psychology of concealment and institutional trust dynamics.",
+        description: "A qualitative study investigating why students conceal their AI use in academic settings, examining the psychology of concealment and institutional trust dynamics.",
         focus: "Agency & Epistemic Trust",
         type: "Empirical Study",
         status: "Ongoing" as const,
@@ -178,14 +178,14 @@ export const siteConfig = {
     intro: "Practical, open, and critically informed resources for educators integrating AI thoughtfully into teaching practice. Everything here is free to use, adapt, and share.",
     openTools: [
       {
-        title: "AI Syllabus Statement Generator",
-        description: "Model language for syllabi addressing AI use, expectations, and academic integrity in the age of generative AI. Customizable for different disciplines and institutional contexts.",
+        title: "AI Policy Generator",
+        description: "Generate customizable AI use policies for your course or institution. Covers expectations, academic integrity, and disclosure requirements across disciplines and contexts.",
         status: "Available",
         link: "#",
       },
       {
-        title: "AI Disclosure Framework",
-        description: "A structured protocol for students and educators to transparently disclose how and when AI tools were used in academic work. Supports institutional accountability.",
+        title: "Instructor AI Policy Builder",
+        description: "A step-by-step tool for instructors to build clear, equitable AI use policies. Guides decisions on disclosure, attribution, and appropriate use for any course context.",
         status: "Available",
         link: "#",
       },
@@ -267,8 +267,8 @@ export const siteConfig = {
         ],
       },
       {
-        label: "Graduate Students",
-        description: "Doctoral and master's students conducting original research as part of the network. Fellows lead studies, present at conferences, and co-author publications.",
+        label: "Students",
+        description: "Students conducting original research as part of the network. Fellows lead studies, present at conferences, and co-author publications.",
         members: [
           { name: "Graduate Fellow", focus: "AI Smuggling, Student Agency", affiliation: "" },
           { name: "Graduate Fellow", focus: "Deepfake Literacy, Youth Media", affiliation: "" },
@@ -288,7 +288,7 @@ export const siteConfig = {
 
   events: {
     title: "Events & Insights",
-    intro: "Updates from the Critical Innovation network — upcoming events, field reflections, research commentary, and essays on AI and education.",
+    intro: "Updates from the Critical Innovation network: upcoming events, field reflections, research commentary, and essays on AI and education.",
     insights: [
       { title: "The Psychology of AI Smuggling", excerpt: "Why do students hide their AI use, and what does it tell us about the learning environments we create?", tag: "Essay", date: "February 2026" },
       { title: "Designing Ethical AI Assignments", excerpt: "Practical strategies for creating assignments that embrace AI while maintaining academic integrity.", tag: "Essay", date: "January 2026" },
@@ -298,9 +298,9 @@ export const siteConfig = {
       { title: "What Students Told Us About AI", excerpt: "Surprising findings from our focus groups on student perceptions of AI in learning.", tag: "Reflection", date: "September 2025" },
     ],
     upcoming: [
-      { title: "Virtual Working Group Meetup", date: "TBD — Spring 2026", description: "Monthly gathering for network members to share works-in-progress and discuss emerging research." },
-      { title: "Critical AI Pedagogy Workshop", date: "TBD — Spring 2026", description: "Hands-on workshop for educators on integrating critical AI literacy into their teaching." },
-      { title: "Research Showcase", date: "TBD — Fall 2026", description: "Annual event featuring presentations from graduate fellows and lab researchers." },
+      { title: "Virtual Working Group Meetup", date: "TBD, Spring 2026", description: "Monthly gathering for network members to share works-in-progress and discuss emerging research." },
+      { title: "Critical AI Pedagogy Workshop", date: "TBD, Spring 2026", description: "Hands-on workshop for educators on integrating critical AI literacy into their teaching." },
+      { title: "Research Showcase", date: "TBD, Fall 2026", description: "Annual event featuring presentations from graduate fellows and lab researchers." },
     ],
     archive: [
       { title: "Fall 2025 Research Symposium", date: "November 2025", description: "Featured presentations on AI Smuggling findings and Deepfake Literacy curriculum." },
@@ -343,7 +343,7 @@ export const siteConfig = {
       {
         title: "Media & Public Scholarship",
         items: [
-          { title: "Why Students Hide Their AI Use — And What We Can Do About It", venue: "The Conversation, 2025", description: "A public-facing essay on the AI Smuggling phenomenon and implications for educators." },
+          { title: "Why Students Hide Their AI Use and What We Can Do About It", venue: "The Conversation, 2025", description: "A public-facing essay on the AI Smuggling phenomenon and implications for educators." },
           { title: "Teaching in the Age of Deepfakes", venue: "Inside Higher Ed, 2024", description: "An opinion piece on the urgency of synthetic media literacy in higher education." },
         ],
       },
@@ -429,6 +429,6 @@ export const siteConfig = {
       },
     ],
     bottomLine:
-      "\u00A9 2026 Critical Innovation & AI Pedagogy \u2014 Human-centered. Critically informed. Ethically transparent.",
+      "\u00A9 2026 Critical Innovation & AI Pedagogy. Human-centered. Critically informed. Ethically transparent.",
   },
 };

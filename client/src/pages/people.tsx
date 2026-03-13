@@ -82,7 +82,7 @@ export default function PeoplePage() {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-muted-foreground">More contributors joining</p>
-                      <p className="text-xs text-muted-foreground/60 mt-0.5">Network expanding — 2026</p>
+                      <p className="text-xs text-muted-foreground/60 mt-0.5">Network expanding in 2026</p>
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ export default function PeoplePage() {
           <p className="text-base leading-relaxed text-muted-foreground mb-6 max-w-xl">
             We're always looking for researchers, educators, graduate students, and community
             partners who share our commitment to critical, equity-centered work on AI and education.
-            Whether you want to collaborate on a study or join a working group — reach out.
+            Whether you want to collaborate on a study or join a working group, reach out.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/collaborate">

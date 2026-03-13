@@ -25,7 +25,6 @@ export default function Home() {
           <div className="flex items-end justify-between gap-4 mb-10">
             <div>
               <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-2">Research Framework</p>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground">Two Interconnected Pillars</h2>
             </div>
             <Link href="/research" className="hidden sm:flex items-center gap-1 text-sm text-primary font-medium hover:underline shrink-0">
               Full Research Program <ArrowRight className="h-3.5 w-3.5" />
@@ -261,7 +260,7 @@ export default function Home() {
               <p className="text-base text-primary-foreground/80 leading-relaxed mb-8">
                 We welcome researchers, educators, graduate students, schools, and technology
                 partners committed to human-centered, equitable AI in education. Whether you
-                want to co-design a study, test curriculum, or build open tools — we'd love
+                want to co-design a study, test curriculum, or build open tools. We'd love
                 to connect.
               </p>
               <div className="flex flex-wrap gap-3">

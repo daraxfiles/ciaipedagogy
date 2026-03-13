@@ -30,14 +30,16 @@ function VennDiagram() {
         <circle cx="145" cy="240" r="100" fill="hsl(var(--accent) / 0.12)" stroke="hsl(var(--accent) / 0.50)" strokeWidth="1.5" />
         <circle cx="255" cy="240" r="100" fill="hsl(var(--chart-3) / 0.10)" stroke="hsl(var(--chart-3) / 0.45)" strokeWidth="1.5" />
 
-        <text x="200" y="108" textAnchor="middle" fontSize="12" fontFamily="var(--font-serif)" fontWeight="600" fill="hsl(var(--foreground))">
+        <text x="200" y="90" textAnchor="middle" fontSize="12" fontWeight="600" fill="hsl(var(--foreground))">
           {circles[0]}
         </text>
-        <text x="112" y="282" textAnchor="middle" fontSize="12" fontFamily="var(--font-serif)" fontWeight="600" fill="hsl(var(--foreground))">
-          {circles[1]}
+        <text x="80" y="298" textAnchor="middle" fontSize="11" fontWeight="600" fill="hsl(var(--foreground))">
+          <tspan x="80" dy="0">Critical AI</tspan>
+          <tspan x="80" dy="15">Literacy</tspan>
         </text>
-        <text x="288" y="282" textAnchor="middle" fontSize="12" fontFamily="var(--font-serif)" fontWeight="600" fill="hsl(var(--foreground))">
-          {circles[2]}
+        <text x="320" y="298" textAnchor="middle" fontSize="11" fontWeight="600" fill="hsl(var(--foreground))">
+          <tspan x="320" dy="0">Equitable</tspan>
+          <tspan x="320" dy="15">Innovation</tspan>
         </text>
 
         <circle cx="200" cy="210" r="4" fill="hsl(var(--accent))" filter="url(#glow)" />
