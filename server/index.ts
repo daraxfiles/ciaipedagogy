@@ -33,12 +33,25 @@ app.set("trust proxy", 1);
 const PgSession = connectPgSimple(session);
 const sessionPool = new Pool({ connectionString: process.env.DATABASE_URL });
 
+// Ensure the session table exists without relying on connect-pg-simple's
+// table.sql file lookup (which breaks when the server is bundled by esbuild,
+// because __dirname resolves to dist/ instead of node_modules/connect-pg-simple/).
+sessionPool.query(`
+  CREATE TABLE IF NOT EXISTS "user_sessions" (
+    "sid" varchar NOT NULL COLLATE "default",
+    "sess" json NOT NULL,
+    "expire" timestamp(6) NOT NULL,
+    CONSTRAINT "user_sessions_pkey" PRIMARY KEY ("sid")
+  );
+  CREATE INDEX IF NOT EXISTS "IDX_user_sessions_expire" ON "user_sessions" ("expire");
+`).catch((err) => console.error("[session] failed to ensure user_sessions table:", err));
+
 app.use(
   session({
     store: new PgSession({
       pool: sessionPool,
       tableName: "user_sessions",
-      createTableIfMissing: true,
+      createTableIfMissing: false,
     }),
     secret: process.env.SESSION_SECRET || "dev-secret-change-in-prod",
     resave: false,
