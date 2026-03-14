@@ -115,6 +115,7 @@ export async function registerRoutes(
     req.session.role = user.role;
     req.session.displayName = user.displayName;
     req.session.email = user.email;
+    req.session.username = user.username;
 
     return res.status(201).json({
       id: user.id,
@@ -149,6 +150,7 @@ export async function registerRoutes(
     req.session.role = user.role;
     req.session.displayName = user.displayName;
     req.session.email = user.email;
+    req.session.username = user.username;
 
     return res.json({
       id: user.id,
@@ -172,6 +174,7 @@ export async function registerRoutes(
       role: req.session.role,
       displayName: req.session.displayName,
       email: req.session.email,
+      username: req.session.username,
     });
   });
 

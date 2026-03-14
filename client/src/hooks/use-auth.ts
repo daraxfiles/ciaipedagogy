@@ -4,6 +4,7 @@ import { apiRequest, getQueryFn } from "@/lib/queryClient";
 export type AuthUser = {
   id: number;
   email: string;
+  username: string;
   role: string;
   displayName: string;
 } | null;
