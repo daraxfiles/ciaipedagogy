@@ -14,7 +14,7 @@ export function Footer() {
             <img
               src={logoSrc}
               alt={name}
-              className="h-10 w-auto dark:brightness-0 dark:invert"
+              className="h-14 w-auto dark:brightness-0 dark:invert"
             />
           </Link>
           <p className="text-xs text-muted-foreground mt-1.5 max-w-xs">

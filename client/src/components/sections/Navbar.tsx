@@ -76,7 +76,7 @@ export function Navbar() {
           <img
             src={logoSrc}
             alt={name}
-            className="h-9 w-auto dark:brightness-0 dark:invert"
+            className="h-14 w-auto dark:brightness-0 dark:invert"
           />
         </Link>
 
