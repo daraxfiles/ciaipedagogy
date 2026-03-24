@@ -416,9 +416,8 @@ export const siteConfig = {
       {
         label: "Policies",
         items: [
-          { label: "Ethics & Transparency", href: "#" },
-          { label: "Privacy Policy", href: "#" },
-          { label: "AI Usage Disclosure", href: "#" },
+          { label: "Ethics & Transparency", href: "/ethics" },
+          { label: "Privacy Policy", href: "/privacy" },
         ],
       },
     ],

@@ -23,6 +23,8 @@ import LoginPage from "@/pages/login";
 import RegisterPage from "@/pages/register";
 import PortalPage from "@/pages/portal";
 import AdminPage from "@/pages/admin";
+import EthicsPage from "@/pages/ethics";
+import PrivacyPage from "@/pages/privacy";
 import NotFound from "@/pages/not-found";
 
 export function PageLayout({ children }: { children: React.ReactNode }) {
@@ -94,6 +96,12 @@ function Router() {
       </Route>
       <Route path="/admin">
         <PageLayout><AdminPage /></PageLayout>
+      </Route>
+      <Route path="/ethics">
+        <PageLayout><EthicsPage /></PageLayout>
+      </Route>
+      <Route path="/privacy">
+        <PageLayout><PrivacyPage /></PageLayout>
       </Route>
       <Route component={NotFound} />
     </Switch>

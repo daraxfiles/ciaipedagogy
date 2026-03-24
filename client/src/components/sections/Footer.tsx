@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { siteConfig } from "@/content/site";
 import { Separator } from "@/components/ui/separator";
+import logoSrc from "@assets/CIAI_Logo_1774366407988.png";
 
 export function Footer() {
   const { footer, name } = siteConfig;
@@ -10,7 +11,11 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <Link href="/">
-            <span className="font-serif font-bold text-lg text-foreground">{name}</span>
+            <img
+              src={logoSrc}
+              alt={name}
+              className="h-10 w-auto dark:brightness-0 dark:invert"
+            />
           </Link>
           <p className="text-xs text-muted-foreground mt-1.5 max-w-xs">
             Human-centered. Critically informed. Ethically transparent.

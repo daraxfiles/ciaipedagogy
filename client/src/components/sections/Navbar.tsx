@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "wouter";
+import logoSrc from "@assets/CIAI_Logo_1774366407988.png";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
@@ -72,9 +73,11 @@ export function Navbar() {
           className="flex items-center gap-2 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
           data-testid="link-home"
         >
-          <span className="font-serif font-bold text-lg text-foreground leading-tight">
-            {name}
-          </span>
+          <img
+            src={logoSrc}
+            alt={name}
+            className="h-9 w-auto dark:brightness-0 dark:invert"
+          />
         </Link>
 
         {/* Desktop nav links */}
