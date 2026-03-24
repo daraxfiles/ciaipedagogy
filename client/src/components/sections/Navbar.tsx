@@ -13,8 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, Sun, Moon, LogOut, User, LayoutDashboard } from "lucide-react";
-import { useTheme } from "@/components/theme-provider";
+import { Menu, LogOut, User, LayoutDashboard } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 
 function initials(name: string) {
@@ -28,7 +27,6 @@ function initials(name: string) {
 
 export function Navbar() {
   const { nav, name } = siteConfig;
-  const { theme, toggleTheme } = useTheme();
   const { user, isLoading, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -65,7 +63,7 @@ export function Navbar() {
       }`}
       data-testid="navbar"
     >
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 h-16">
+      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 h-20">
 
         {/* Logo */}
         <Link
@@ -76,7 +74,7 @@ export function Navbar() {
           <img
             src={logoSrc}
             alt={name}
-            className="h-14 w-auto dark:brightness-0 dark:invert"
+            className="h-20 w-auto"
           />
         </Link>
 
@@ -100,16 +98,6 @@ export function Navbar() {
 
         {/* Desktop right — auth-aware */}
         <div className="hidden xl:flex items-center gap-2">
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            data-testid="button-theme-toggle"
-          >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
-
           {!isLoading && !user && (
             <Link href="/login">
               <Button size="sm" variant="outline" data-testid="button-sign-in">
@@ -169,15 +157,6 @@ export function Navbar() {
 
         {/* Mobile right */}
         <div className="flex xl:hidden items-center gap-2">
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            data-testid="button-theme-toggle-mobile"
-          >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button size="icon" variant="ghost" aria-label="Open menu" data-testid="button-mobile-menu">
