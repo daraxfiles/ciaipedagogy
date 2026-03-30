@@ -12,10 +12,12 @@ import {
   eventRsvps,
   publications,
   cmsOverrides,
+  insightComments,
   users,
   insertSubmissionSchema,
   insertEventSchema,
   insertPublicationSchema,
+  insertInsightCommentSchema,
   loginSchema,
 } from "@shared/schema";
 import { eq, and, desc } from "drizzle-orm";
@@ -564,6 +566,41 @@ export async function registerRoutes(
       .delete(cmsOverrides)
       .where(and(eq(cmsOverrides.section, section), eq(cmsOverrides.key, key)));
     return res.json({ message: "Deleted" });
+  });
+
+  // ── Insight Comments ────────────────────────────────────────────────────────
+  const insightCommentLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  app.get("/api/insight-comments", async (req, res) => {
+    const postSlug = String(req.query.postSlug ?? "");
+    if (!postSlug) return res.json([]);
+    const rows = await db
+      .select()
+      .from(insightComments)
+      .where(eq(insightComments.postSlug, postSlug))
+      .orderBy(insightComments.createdAt);
+    return res.json(rows);
+  });
+
+  app.post("/api/insight-comments", insightCommentLimiter, async (req, res) => {
+    const parsed = insertInsightCommentSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ error: parsed.error.flatten() });
+    }
+    const { postSlug, name, email, content } = parsed.data;
+    if (content.trim().length < 5) {
+      return res.status(400).json({ error: "Comment too short" });
+    }
+    const [row] = await db
+      .insert(insightComments)
+      .values({ postSlug, name, email: email ?? null, content: content.trim() })
+      .returning();
+    return res.status(201).json(row);
   });
 
   return httpServer;

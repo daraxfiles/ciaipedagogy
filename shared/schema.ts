@@ -136,6 +136,25 @@ export const insertCommentSchema = createInsertSchema(comments).pick({
 export type InsertComment = z.infer<typeof insertCommentSchema>;
 export type Comment = typeof comments.$inferSelect;
 
+// ── Insight Comments ─────────────────────────────────────────────────────────
+export const insightComments = pgTable("insight_comments", {
+  id: serial("id").primaryKey(),
+  postSlug: text("post_slug").notNull(),
+  name: text("name").notNull(),
+  email: text("email"),
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const insertInsightCommentSchema = createInsertSchema(insightComments).pick({
+  postSlug: true,
+  name: true,
+  email: true,
+  content: true,
+});
+export type InsertInsightComment = z.infer<typeof insertInsightCommentSchema>;
+export type InsightComment = typeof insightComments.$inferSelect;
+
 // ── CMS Overrides ────────────────────────────────────────────────────────────
 export const cmsOverrides = pgTable("cms_overrides", {
   id: serial("id").primaryKey(),

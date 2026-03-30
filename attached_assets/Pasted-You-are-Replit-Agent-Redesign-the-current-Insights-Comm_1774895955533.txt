@@ -1,0 +1,203 @@
+You are Replit Agent. Redesign the current Insights / Commentary layout into a true blog-style experience.
+
+CURRENT PROBLEM
+Right now, each topic opens on its own separate page, and users have to go back to the Insights page to access other topics. This breaks the reading flow and makes the section feel fragmented.
+
+GOAL
+Create a single blog-style page where ALL insight/commentary topics appear on ONE page in a clean, readable layout. Users should be able to scroll through all topics continuously without leaving the page. Also add a comment feature so visitors can post comments under each topic.
+
+MAIN REQUIREMENTS
+
+1) SINGLE-PAGE BLOG LAYOUT
+- Put all commentary / insight topics on one page.
+- Do NOT open individual topics on separate pages anymore.
+- Do NOT require users to go back to an insights landing page to access other posts.
+- The page should function like a modern blog or journal archive with full posts displayed inline.
+- Each post should be visually separated, readable, and easy to comment on.
+
+2) BLOG-LIKE READING EXPERIENCE
+Design it like an academic/public scholarship blog:
+- clean editorial layout
+- large readable titles
+- metadata above each post (category/tag only if needed, but remove unnecessary dates if they are placeholders)
+- short intro / dek under each title
+- full post content visible directly on the page
+- strong typography and comfortable reading width
+- elegant whitespace between posts
+- optional sticky sidebar or top filter for jumping to sections
+
+3) ALL TOPICS ON ONE PAGE
+- Create one main page for all insight/commentary content
+- Example route:
+  /insights
+- This page should contain:
+  - page header
+  - optional intro paragraph
+  - all commentary posts rendered below in sequence
+- Add a quick navigation system at the top so users can jump to a specific topic on the same page
+  Example:
+  - The Psychology of AI Smuggling
+  - Epistemic Trust in Automated Classrooms
+  - Designing Ethical AI Assignments
+- Use anchor links or smooth scrolling to jump within the page
+
+4) COMMENTS FEATURE
+Add a commenting system under EACH post so users can leave comments.
+
+Comment requirements:
+- each post has its own comment thread
+- visitors can add:
+  - name
+  - optional email field (if useful)
+  - comment text
+- comments should display beneath the post after submission
+- include basic moderation-friendly structure
+- include timestamp automatically
+- validate empty form fields
+- style comments cleanly and simply
+
+If persistence is already available in this project:
+- store comments in the database and retrieve them by post ID
+
+If persistence is NOT already set up:
+- scaffold it properly using the current backend stack
+- create a comments table/model
+- wire the frontend form to the backend
+- connect comments to each post using post slug or post id
+
+5) KEEP CONTENT STRUCTURED AND EASY TO EDIT
+Move all blog post content into a clear data structure or content file if that is how the app is currently organized.
+Example:
+- src/content/insights.ts
+Each post should include:
+- id / slug
+- title
+- excerpt / short intro
+- category or tag
+- body/content
+
+6) DESIGN DIRECTION
+Use the existing site style but make it feel more like a polished blog/journal page.
+
+Desired feel:
+- scholarly
+- editorial
+- calm
+- modern but academic
+- readable, not crowded
+- not startup-like
+
+Layout suggestions:
+- page intro/header at top
+- topic jump links or table of contents
+- stacked posts below
+- each post inside a soft card or article container
+- comments block directly beneath each post
+- subtle separators between articles
+
+7) TYPOGRAPHY + READABILITY
+- use a comfortable reading width for body text
+- larger serif headings are okay
+- body text should be highly readable
+- improve spacing between paragraphs
+- improve spacing between heading, dek, metadata, and body
+- avoid overly wide text blocks
+
+8) UX IMPROVEMENTS
+- smooth scroll for topic jump links
+- add “Back to top” link after each post or at page bottom
+- make comments easy to see but visually secondary to the article
+- mobile friendly
+- accessible form labels and buttons
+
+9) REMOVE THE OLD FLOW
+- Remove or stop using the old separate post pages for insight/commentary topics
+- Update navigation so “Insights” goes to the single-page blog view
+- If separate routes must remain for compatibility, redirect them to anchor sections on /insights instead of standalone pages
+
+IMPLEMENTATION DETAILS
+
+A) PAGE STRUCTURE
+Create or update:
+- /insights page
+
+Suggested structure:
+1. Page hero / header
+   Title: Insights & Commentary
+   Subtitle: Research reflections, public scholarship, and critical commentary on AI, learning, and innovation.
+
+2. Topic navigation / jump links
+   Render a list of all post titles at the top
+   Clicking a title scrolls to that article on the same page
+
+3. Blog posts list
+   Render all posts in order
+   For each post:
+   - title
+   - short intro/dek
+   - full content
+   - comments section
+   - comment submission form
+
+B) COMPONENTS
+Create reusable components:
+- InsightsPageHeader
+- InsightsJumpNav
+- BlogPostArticle
+- CommentList
+- CommentForm
+
+C) DATA MODEL
+If using database:
+Create a comments table with fields like:
+- id
+- postId or postSlug
+- name
+- email (optional)
+- content
+- createdAt
+
+If you need backend endpoints, create them:
+- GET /api/comments?postId=...
+- POST /api/comments
+
+D) COMMENT BEHAVIOR
+When a user submits a comment:
+- validate inputs
+- save to backend/database
+- refresh/display the new comment under the correct post
+- handle loading/error/success states nicely
+
+E) STYLING
+- redesign the current post layout so it feels like a blog/journal article
+- reduce the sense of isolation that the current single-post page creates
+- visually connect all posts as part of one stream
+- use elegant spacing and dividers
+- comments should feel integrated, not bolted on
+
+CONTENT / POSTS
+Use all current insight/commentary topics and render them together on the same page.
+Do not lose existing content.
+Do not create placeholder article pages unless absolutely necessary.
+Preserve post text, but redesign presentation.
+
+IMPORTANT
+- Keep everything on one page
+- No more clicking into separate insight pages and going back
+- Add working comments under each topic
+- Make the final result feel like an academic blog
+
+ACCEPTANCE CRITERIA
+- /insights shows ALL topics on one page
+- users can jump to any topic from a top navigation list
+- each topic has a comments section
+- users can submit comments under a specific topic
+- old separate topic-page flow is removed or redirected
+- layout looks like a polished blog, not a plain content dump
+- mobile responsive and accessible
+
+After implementation, show me:
+1. what files you changed
+2. how comments are stored
+3. what route now serves the single-page blog
+4. whether old topic pages were removed or redirected
