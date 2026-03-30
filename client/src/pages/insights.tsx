@@ -246,8 +246,12 @@ export default function InsightsPage() {
                 <p className="text-sm font-medium text-foreground leading-none mb-1">CI&amp;AIP Network</p>
                 <p className="text-xs text-muted-foreground">
                   {item.date}
-                  <span className="mx-1.5">·</span>
-                  {readingTime(item.body)}
+                  {item.body.length > 0 && (
+                    <>
+                      <span className="mx-1.5">·</span>
+                      {readingTime(item.body)}
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -256,16 +260,24 @@ export default function InsightsPage() {
             <div className="border-t border-border mb-8" />
 
             {/* Body */}
-            <div className="prose-article">
-              {item.body.map((para, j) => (
-                <p
-                  key={j}
-                  className="text-[1.0625rem] sm:text-[1.125rem] leading-[1.78] text-foreground/90 mb-6 last:mb-0"
-                >
-                  {para}
+            {item.body.length > 0 ? (
+              <div className="prose-article">
+                {item.body.map((para, j) => (
+                  <p
+                    key={j}
+                    className="text-[1.0625rem] sm:text-[1.125rem] leading-[1.78] text-foreground/90 mb-6 last:mb-0"
+                  >
+                    {para}
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-lg border border-dashed border-border bg-muted/30 px-6 py-8 text-center">
+                <p className="text-sm text-muted-foreground italic">
+                  Full text coming soon — this piece is currently being written.
                 </p>
-              ))}
-            </div>
+              </div>
+            )}
 
             {/* Responses */}
             <ResponsesSection postSlug={item.slug} />
