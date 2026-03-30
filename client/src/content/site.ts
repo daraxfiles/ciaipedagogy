@@ -66,10 +66,10 @@ export const siteConfig = {
       title: "Research Overview",
       text: "Our research program examines how artificial intelligence reshapes teaching, learning, and knowledge production. We organize our work around two interconnected pillars that address the most pressing questions at the intersection of AI and education.",
       stats: [
-        { label: "Active Studies", value: "8+" },
-        { label: "Publications", value: "25+" },
-        { label: "Collaborating Institutions", value: "12" },
-        { label: "Graduate Researchers", value: "15" },
+        { label: "Active Studies", value: "4" },
+        { label: "Publications", value: "0" },
+        { label: "Collaborating Institutions", value: "2" },
+        { label: "Researchers", value: "10" },
       ],
     },
     pillar1: {
