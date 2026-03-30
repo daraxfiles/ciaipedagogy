@@ -15,6 +15,8 @@ import ToolkitPage from "@/pages/toolkit";
 import PeoplePage from "@/pages/people";
 import PersonPage from "@/pages/person";
 import EventsPage from "@/pages/events";
+import InsightsPage from "@/pages/insights";
+import InsightPage from "@/pages/insight";
 import PublicationsPage from "@/pages/publications";
 import CollaboratePage from "@/pages/collaborate";
 import ContactPage from "@/pages/contact";
@@ -70,8 +72,11 @@ function Router() {
       <Route path="/events">
         <PageLayout><EventsPage /></PageLayout>
       </Route>
+      <Route path="/insights/:slug">
+        <PageLayout><InsightPage /></PageLayout>
+      </Route>
       <Route path="/insights">
-        <PageLayout><EventsPage /></PageLayout>
+        <PageLayout><InsightsPage /></PageLayout>
       </Route>
       <Route path="/publications">
         <PageLayout><PublicationsPage /></PageLayout>

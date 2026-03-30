@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
 import type { Event, Rsvp } from "@shared/schema";
 
 const tagColors: Record<string, string> = {
@@ -171,23 +172,26 @@ export default function EventsPage() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {staticEvents.insights.map((item, i) => (
-            <Card key={i} className="hover-elevate border-card-border" data-testid={`card-insight-${i}`}>
-              <CardHeader>
-                <div className="flex gap-2 flex-wrap mb-3">
-                  <Badge
-                    variant="outline"
-                    className={`text-[10px] no-default-active-elevate border ${tagColors[item.tag] || ""}`}
-                  >
-                    {item.tag}
-                  </Badge>
-                </div>
-                <CardTitle className="font-serif text-base">{item.title}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed mt-2">{item.excerpt}</CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto pt-0">
-                <p className="text-xs text-muted-foreground">{item.date}</p>
-              </CardContent>
-            </Card>
+            <Link key={i} href={`/insights/${(item as any).slug}`}>
+              <Card className="hover-elevate border-card-border h-full cursor-pointer group" data-testid={`card-insight-${i}`}>
+                <CardHeader>
+                  <div className="flex gap-2 flex-wrap mb-3">
+                    <Badge
+                      variant="outline"
+                      className={`text-[10px] no-default-active-elevate border ${tagColors[item.tag] || ""}`}
+                    >
+                      {item.tag}
+                    </Badge>
+                  </div>
+                  <CardTitle className="font-serif text-base group-hover:text-primary transition-colors">{item.title}</CardTitle>
+                  <CardDescription className="text-sm leading-relaxed mt-2">{item.excerpt}</CardDescription>
+                </CardHeader>
+                <CardContent className="mt-auto pt-0 flex items-center justify-between">
+                  <p className="text-xs text-muted-foreground">{item.date}</p>
+                  <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors" />
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>
