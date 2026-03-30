@@ -304,44 +304,10 @@ export const siteConfig = {
   },
 
   publications: {
-    title: "Publications & Outputs",
-    categories: [
-      {
-        title: "Peer-Reviewed Articles",
-        items: [
-          { title: "The Hidden Curriculum of AI: Smuggling, Agency, and Epistemic Trust", venue: "Journal of Educational Technology & Society, 2025", description: "Exploring how undisclosed AI use reveals tensions between student agency and institutional trust." },
-          { title: "Deepfake Literacy as Critical Pedagogy: A Framework for Media Education", venue: "Computers & Education, 2025", description: "Proposing a multi-layered approach to teaching synthetic media analysis in K-12 and higher education." },
-          { title: "Equitable AI Innovation in Under-Resourced Educational Contexts", venue: "International Journal of AI in Education, 2024", description: "Examining strategies for deploying AI tools in schools with limited infrastructure." },
-        ],
-      },
-      {
-        title: "Conference Presentations",
-        items: [
-          { title: "AI Smuggling: What Hidden Practices Reveal About Learning", venue: "AERA Annual Meeting, 2025", description: "Keynote presentation on the AI Smuggling framework and preliminary findings." },
-          { title: "Vibe Coding: Aesthetic Experience in CS Education", venue: "ACM SIGCSE, 2025", description: "Presenting the Vibe Coding Studio design and early pilot results." },
-        ],
-      },
-      {
-        title: "Working Papers",
-        items: [
-          { title: "Toward a Critical Framework for AI Literacy Assessment", venue: "Working Paper Series, 2025", description: "Proposing assessment methodologies that capture critical engagement rather than just technical proficiency." },
-          { title: "Low-Resource AI: Design Principles for Equitable Innovation", venue: "Working Paper Series, 2024", description: "Design principles for building AI tools that work in bandwidth-constrained educational environments." },
-        ],
-      },
-      {
-        title: "Policy Briefs",
-        items: [
-          { title: "AI in the Classroom: Recommendations for Institutional Policy", venue: "Policy Brief, 2025", description: "Evidence-based recommendations for university AI policies that balance innovation with integrity." },
-        ],
-      },
-      {
-        title: "Media & Public Scholarship",
-        items: [
-          { title: "Why Students Hide Their AI Use and What We Can Do About It", venue: "The Conversation, 2025", description: "A public-facing essay on the AI Smuggling phenomenon and implications for educators." },
-          { title: "Teaching in the Age of Deepfakes", venue: "Inside Higher Ed, 2024", description: "An opinion piece on the urgency of synthetic media literacy in higher education." },
-        ],
-      },
-    ],
+    title: "Scholarly Output",
+    subtitle: "Publications & Outputs",
+    description: "Peer-reviewed research, conference presentations, working papers, and public scholarship from the Critical Innovation network.",
+    comingSoon: "Our scholarly outputs are currently being developed and curated. Publications, presentations, and working papers will be available here soon.",
   },
 
   collaborate: {

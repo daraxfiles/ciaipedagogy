@@ -1,0 +1,92 @@
+You are Replit Agent. Update the existing webapp by modifying the “Scholarly Output / Publications & Outputs” section.
+
+GOALS
+1) Remove ALL existing placeholder content under this section:
+   - Peer-Reviewed Articles
+   - Conference Presentations
+   - Working Papers
+   - Policy Briefs
+   - Media & Public Scholarship
+   - All titles, descriptions, journals, dates
+
+2) Replace the section with a clean “Coming Soon” version.
+
+3) Keep the section visually consistent with the rest of the site (same spacing, typography, and card style if used).
+
+FILES TO EDIT
+- src/content/site.ts (update content)
+- src/components/Publications.tsx (or similar component)
+- src/app/page.tsx (ensure section still renders)
+
+NEW CONTENT (USE EXACT TEXT)
+
+SECTION TITLE:
+Scholarly Output
+
+SECTION SUBTITLE:
+Publications & Outputs
+
+DESCRIPTION:
+Peer-reviewed research, conference presentations, working papers, and public scholarship from the Critical Innovation network.
+
+COMING SOON MESSAGE:
+Our scholarly outputs are currently being developed and curated. Publications, presentations, and working papers will be available here soon.
+
+IMPLEMENTATION DETAILS
+
+1) CONTENT CONFIG
+In src/content/site.ts, replace existing publications data with:
+
+export const publications = {
+  title: "Scholarly Output",
+  subtitle: "Publications & Outputs",
+  description: "Peer-reviewed research, conference presentations, working papers, and public scholarship from the Critical Innovation network.",
+  comingSoon: "Our scholarly outputs are currently being developed and curated. Publications, presentations, and working papers will be available here soon."
+}
+
+2) COMPONENT UPDATE
+In Publications.tsx:
+
+- Remove all loops, lists, or category sections
+- Replace with a centered layout:
+
+Structure:
+<section id="publications">
+  Title
+  Subtitle
+  Description
+  Divider (optional)
+  Coming Soon message (centered card or text block)
+</section>
+
+3) STYLING
+- Center the “Coming Soon” message inside a card or soft container
+- Use subtle styling:
+  - light background
+  - rounded corners
+  - padding (p-6 or p-8)
+  - muted text color
+- Optional: add a small icon (e.g., document or clock from lucide-react)
+
+4) REMOVE DATES
+- Ensure ALL dates (2024, 2025, etc.) are completely removed from this section
+
+5) ACCESSIBILITY
+- Proper heading structure (h2 for section)
+- Clear readable contrast
+- No empty lists or broken links
+
+ACCEPTANCE CRITERIA
+- No publication items remain
+- No dates visible
+- Section displays:
+  - Title
+  - Subtitle
+  - Description
+  - “Coming Soon” message
+- Layout matches site design
+- Content is pulled from site.ts (not hardcoded)
+
+After completing:
+- Show updated Publications.tsx
+- Confirm all placeholder entries were removed
