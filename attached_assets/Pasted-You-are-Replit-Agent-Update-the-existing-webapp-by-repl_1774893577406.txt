@@ -1,0 +1,130 @@
+You are Replit Agent. Update the existing webapp by replacing the content in the “Student Research & Innovation” section with the new structure below. Do NOT change other sections.
+
+GOALS
+1) Replace the entire Student Research & Innovation section with 3 clean cards.
+2) Remove any dates shown in this section.
+3) Replace any existing tags (e.g., “Ongoing”, “2026”, etc.) with simple category tags:
+   - Independent
+   - Collaboration
+   - Skills
+4) Ensure content is sourced from src/content/site.ts (do not hardcode in JSX).
+5) Keep styling consistent with existing design system (Tailwind + shadcn Cards).
+
+FILES TO EDIT
+- src/content/site.ts (add/update content object)
+- src/components/StudentResearch.tsx (or similar section component)
+- src/app/page.tsx (ensure section is included and linked via #collaborate or appropriate anchor)
+
+CONTENT TO IMPLEMENT (EXACT TEXT)
+
+SECTION TITLE:
+Student Research & Innovation
+
+SECTION SUBTITLE:
+Students engage in research through design, inquiry, and collaboration.
+
+CARDS (3)
+
+CARD 1
+Tag: Independent
+Title: Design Your Own Research
+
+Description:
+Develop your own research idea and pursue it with structured guidance and mentorship. Students identify meaningful problems, design studies or AI-powered tools, and receive support throughout the research process—from concept to dissemination.
+
+What You’ll Do:
+- Define a research question or design problem
+- Develop and refine your idea with faculty guidance
+- Build prototypes or design studies using AI tools
+- Analyze findings and present or publish your work
+
+CARD 2
+Tag: Collaboration
+Title: Collaborate on Active Research
+
+Description:
+Join an existing research project within the group and contribute to ongoing studies. Students work alongside faculty and graduate researchers to explore real-world questions related to AI, learning, and innovation.
+
+What You’ll Do:
+- Participate in data collection (e.g., surveys, interviews, artifacts)
+- Support study implementation and coordination
+- Engage in collaborative research discussions
+- Contribute to project development and refinement
+
+CARD 3
+Tag: Skills
+Title: Build Research & Innovation Skills
+
+Description:
+Gain hands-on experience in the full research process. Students develop practical skills in data analysis, AI-assisted workflows, and scholarly writing while contributing to meaningful research outputs.
+
+What You’ll Do:
+- Clean, organize, and analyze data
+- Work with AI tools for coding, interpretation, or prototyping
+- Contribute to manuscript writing and publications
+- Present research findings in academic or public formats
+
+IMPLEMENTATION DETAILS
+
+1) CONTENT CONFIG
+In src/content/site.ts create or update:
+export const studentResearch = {
+  title: "Student Research & Innovation",
+  subtitle: "Students engage in research through design, inquiry, and collaboration.",
+  cards: [
+    {
+      tag: "Independent",
+      title: "Design Your Own Research",
+      description: "...",
+      bullets: [...]
+    },
+    ...
+  ]
+}
+
+2) COMPONENT
+In StudentResearch.tsx:
+- Render section with id="collaborate" (or existing anchor)
+- Use 3 Card components (shadcn)
+- Show tag as a small Badge at top of each card
+- Title (h3), description (p), and bullet list (ul > li)
+- Grid layout:
+  - Desktop: grid-cols-3
+  - Tablet: grid-cols-2
+  - Mobile: grid-cols-1
+
+3) REMOVE DATES
+- Search this component and related content for any dates (e.g., “2026”, “Spring”, etc.) and remove them completely.
+
+4) UPDATE TAGS
+- Replace any previous tags with:
+  - Independent
+  - Collaboration
+  - Skills
+- Use Badge component with subtle color differences:
+  - Independent → purple tint
+  - Collaboration → blue tint
+  - Skills → green tint
+
+5) STYLING
+- Maintain existing spacing and typography
+- Cards: rounded-xl, soft shadow, padding (p-6 or p-8)
+- Ensure consistent vertical rhythm
+- Accessible contrast
+
+6) ACCESSIBILITY
+- Proper heading hierarchy (section h2, card h3)
+- Lists are semantic <ul><li>
+- Ensure keyboard focus states on cards if clickable
+
+ACCEPTANCE CRITERIA
+- Section shows exactly 3 cards with correct titles, descriptions, and bullet points
+- No dates appear anywhere in this section
+- Tags show only: Independent, Collaboration, Skills
+- Content is sourced from site.ts (not hardcoded)
+- Layout is responsive and visually consistent
+
+After completing:
+- Print the updated file tree
+- Show the updated StudentResearch.tsx code
+- Confirm that dates were removed and tags updated

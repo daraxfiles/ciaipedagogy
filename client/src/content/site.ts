@@ -425,3 +425,46 @@ export const siteConfig = {
       "\u00A9 2026 Critical Innovation & AI Pedagogy. Human-centered. Critically informed. Ethically transparent.",
   },
 };
+
+export const studentResearch = {
+  title: "Student Research & Innovation",
+  subtitle: "Students engage in research through design, inquiry, and collaboration.",
+  cards: [
+    {
+      tag: "Independent",
+      title: "Design Your Own Research",
+      description:
+        "Develop your own research idea and pursue it with structured guidance and mentorship. Students identify meaningful problems, design studies or AI-powered tools, and receive support throughout the research process—from concept to dissemination.",
+      bullets: [
+        "Define a research question or design problem",
+        "Develop and refine your idea with faculty guidance",
+        "Build prototypes or design studies using AI tools",
+        "Analyze findings and present or publish your work",
+      ],
+    },
+    {
+      tag: "Collaboration",
+      title: "Collaborate on Active Research",
+      description:
+        "Join an existing research project within the group and contribute to ongoing studies. Students work alongside faculty and graduate researchers to explore real-world questions related to AI, learning, and innovation.",
+      bullets: [
+        "Participate in data collection (e.g., surveys, interviews, artifacts)",
+        "Support study implementation and coordination",
+        "Engage in collaborative research discussions",
+        "Contribute to project development and refinement",
+      ],
+    },
+    {
+      tag: "Skills",
+      title: "Build Research & Innovation Skills",
+      description:
+        "Gain hands-on experience in the full research process. Students develop practical skills in data analysis, AI-assisted workflows, and scholarly writing while contributing to meaningful research outputs.",
+      bullets: [
+        "Clean, organize, and analyze data",
+        "Work with AI tools for coding, interpretation, or prototyping",
+        "Contribute to manuscript writing and publications",
+        "Present research findings in academic or public formats",
+      ],
+    },
+  ],
+};

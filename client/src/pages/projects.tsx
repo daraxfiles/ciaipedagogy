@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, GraduationCap, ExternalLink } from "lucide-react";
+import { studentResearch } from "@/content/site";
 
 /* ─── Pillar accent definitions ─────────────────────────────────────────── */
 const pillars = [
@@ -257,29 +258,6 @@ function TextProjectCard({
   );
 }
 
-const studentProjects = [
-  {
-    name: "Undergraduate Research Cohort",
-    term: "Spring 2026",
-    description:
-      "Six undergraduate students contributing to active research projects through data collection, literature review, and pilot-scale analysis. Mentored by graduate fellows and faculty.",
-    tags: ["AI Smuggling", "Media Literacy", "Vibe Coding"],
-  },
-  {
-    name: "Creative Inquiry Research Team",
-    term: "2025–2026",
-    description:
-      "A Creative Inquiry cohort co-designing AI literacy curriculum with community educators. Students develop, test, and refine lesson modules for K-12 settings.",
-    tags: ["Curriculum Design", "Community Engagement", "AI Literacy"],
-  },
-  {
-    name: "Graduate Fellows Collaborative",
-    term: "Ongoing",
-    description:
-      "Doctoral and master's students conducting original research as part of the Critical Innovation network. Fellows lead sub-studies, present at conferences, and contribute to publications.",
-    tags: ["Doctoral Research", "Conference Presentations", "Co-Authorship"],
-  },
-];
 
 const outputs = [
   { label: "Publications", desc: "Peer-reviewed articles, working papers, policy briefs", href: "/publications" },
@@ -348,42 +326,51 @@ export default function ProjectsPage() {
       <Separator />
 
       {/* Student Research & Innovation */}
-      <section data-testid="section-student-research">
+      <section id="collaborate" data-testid="section-student-research">
         <div className="mb-4">
           <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-1">Student Involvement</p>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground">
-            Student Research & Innovation
+            {studentResearch.title}
           </h2>
         </div>
         <p className="text-base leading-relaxed text-muted-foreground max-w-3xl mb-8">
-          Undergraduate and graduate students are active partners in every phase of our research, from design and data collection to analysis, presentation, and publication. We are
-          committed to mentored, high-impact research experiences grounded in creative inquiry.
+          {studentResearch.subtitle}
         </p>
-        <div className="grid sm:grid-cols-3 gap-5 mb-8">
-          {studentProjects.map((proj, i) => (
-            <Card key={i} className="hover-elevate border-card-border" data-testid={`card-student-${i}`}>
-              <CardHeader>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <Badge variant="outline" className="text-[10px] font-semibold tracking-wide uppercase no-default-active-elevate">
-                    {proj.term}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+          {studentResearch.cards.map((card, i) => {
+            const tagStyles: Record<string, string> = {
+              Independent: "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300 border-violet-200 dark:border-violet-800",
+              Collaboration: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border-blue-200 dark:border-blue-800",
+              Skills: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
+            };
+            return (
+              <Card key={i} className="hover-elevate border-card-border rounded-xl flex flex-col" data-testid={`card-student-${i}`}>
+                <CardHeader className="pb-3">
+                  <Badge
+                    variant="outline"
+                    className={`self-start text-[10px] font-semibold tracking-wide uppercase mb-3 no-default-active-elevate ${tagStyles[card.tag] ?? ""}`}
+                  >
+                    {card.tag}
                   </Badge>
-                </div>
-                <CardTitle className="font-serif text-base">{proj.name}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed mt-2">
-                  {proj.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="flex flex-wrap gap-1.5">
-                  {proj.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs no-default-active-elevate">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <CardTitle className="font-serif text-base leading-snug">{card.title}</CardTitle>
+                  <CardDescription className="text-sm leading-relaxed mt-2">
+                    {card.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0 mt-auto">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">What You&apos;ll Do</p>
+                  <ul className="space-y-1.5">
+                    {card.bullets.map((bullet, j) => (
+                      <li key={j} className="flex items-start gap-2.5 text-sm text-foreground/80">
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
         <Link href="/collaborate">
           <Button variant="outline" data-testid="button-view-student-work">
