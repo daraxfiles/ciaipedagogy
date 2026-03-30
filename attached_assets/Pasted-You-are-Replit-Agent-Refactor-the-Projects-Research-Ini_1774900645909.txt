@@ -1,0 +1,135 @@
+You are Replit Agent. Refactor the “Projects & Research Initiatives” section so the layout feels balanced, intentional, and editorial. The current problem is that some text cards are much shorter than the image cards beside them, which creates large empty space under the text. Fix the layout without making it look cramped or removing the academic visual style.
+
+GOAL
+Improve the Projects & Research Initiatives layout so:
+- cards do not feel stretched by neighboring cards
+- large empty spaces under short text are reduced or eliminated
+- images remain visually strong but do not overpower the text
+- the section feels polished, research-centered, and balanced
+
+MAIN ISSUES TO FIX
+1. Some cards with short text are being stretched to match the height of neighboring image cards.
+2. The large images create uneven vertical rhythm.
+3. The section feels visually unfinished because some text cards end too early.
+
+REQUIRED LAYOUT CHANGES
+
+1) STOP FORCING EQUAL HEIGHTS
+- Update the grid/flex layout so cards are not forced to equal height by their row neighbors.
+- If using CSS grid, set alignment so items size naturally.
+- Use:
+  align-items: start;
+- Do not stretch cards to match the tallest item in the row.
+
+2) NORMALIZE IMAGE HEIGHT
+- Reduce or cap image height so image cards do not dominate the row.
+- Use a consistent image ratio where possible.
+- Suggested approach:
+  - fixed aspect ratio like 16/10 or similar
+  - object-fit: cover
+  - max-height cap so the image stays elegant
+- Keep the images visually impactful, but slightly more restrained than they are now.
+
+3) STRENGTHEN THE TEXT CARDS
+- Add a small structured content block beneath each project description so the text cards carry more visual weight.
+- Add a “Key Focus” or “Focus Areas” block under the description for each project.
+- This should be styled subtly and consistently.
+- Example structure:
+  Key Focus
+  • item 1
+  • item 2
+  • item 3
+
+This is important: do not add meaningless filler. The added content should feel like part of a research initiative card.
+
+4) MAINTAIN THE TWO-COLUMN LAYOUT
+- Keep the overall 2-column layout on desktop.
+- On tablet/mobile, stack to 1 column.
+- Maintain spacing between cards.
+
+5) IMPROVE CARD COMPOSITION
+For each project card, structure content like this:
+- small top label / pillar label
+- title
+- short description
+- Key Focus block
+- metadata tags at bottom
+
+6) KEEP TAGS AT THE BOTTOM
+- Metadata/tags should stay anchored near the bottom of each card content area
+- They should still look consistent across cards
+- Keep current status tags like Ongoing / Pilot / Building if already in use
+
+DESIGN DIRECTION
+- Keep the site’s scholarly, editorial, research-lab tone
+- Preserve the current aesthetic language
+- Use whitespace intentionally
+- Avoid making the section look like a crowded news grid
+- Keep typography readable and elegant
+- The result should feel like a polished university research site
+
+TECHNICAL IMPLEMENTATION
+Work on the component/section responsible for Projects & Research Initiatives.
+
+Likely files may include something like:
+- src/components/ProjectsSection.tsx
+- src/components/ResearchInitiatives.tsx
+- src/content/site.ts
+- relevant CSS / Tailwind classes
+
+Do the following:
+
+A) GRID CONTAINER
+- Ensure the grid container uses natural card heights
+- Example Tailwind direction:
+  grid grid-cols-1 md:grid-cols-2 gap-6 items-start
+
+B) CARD STYLING
+- Each card should be a rounded container with padding and subtle shadow
+- Avoid height: 100% unless needed carefully
+- Do not force all cards to match height
+
+C) IMAGE STYLING
+- Wrap images in a constrained media container
+- Use object-cover
+- Apply a consistent aspect ratio
+- Slightly reduce current image height if needed
+
+D) TEXT CARD ENHANCEMENT
+For project cards with text-only or shorter text:
+- add a Key Focus section beneath the description
+- make it visually subtle but useful
+- use a light background or bordered inset box if it fits the design
+
+E) RESPONSIVENESS
+- Desktop: 2 columns
+- Mobile: 1 column
+- Ensure spacing and hierarchy still look strong on smaller screens
+
+IF APPROPRIATE
+If the current alternating layout is too rigid, preserve the two-column layout but improve each card individually rather than rebuilding the entire section architecture.
+
+DO NOT
+- do not remove the images entirely
+- do not dramatically shrink all content
+- do not add random filler text
+- do not change the entire site design language
+- do not move projects to separate pages
+
+ACCEPTANCE CRITERIA
+The updated section should:
+- no longer show large awkward empty space under short text cards
+- have more balanced card proportions
+- keep strong visuals without oversized images
+- preserve the 2-column desktop layout
+- feel more polished and intentional
+- include a small Key Focus/Focus Areas block where needed
+- remain responsive and accessible
+
+AFTER IMPLEMENTATION
+Show me:
+1. which files you changed
+2. what you changed in the layout
+3. how you reduced the empty space issue
+4. whether image height/aspect ratio was adjusted
+5. whether Key Focus blocks were added

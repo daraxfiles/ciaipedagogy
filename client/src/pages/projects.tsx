@@ -54,9 +54,6 @@ const pillars = [
   },
 ];
 
-/* ─── Flat project list for the media grid ───────────────────────────────
-   Order is arranged so 2-col layout alternates: TEXT | IMAGE, IMAGE | TEXT …
-   image: null = text-only card  |  image: string = image-first card         */
 type ProjectCard = {
   title: string;
   description: string;
@@ -65,6 +62,7 @@ type ProjectCard = {
   status: "Ongoing" | "Pilot" | "Building";
   pillarIndex: number;
   image: string | null;
+  keyFocus: string[];
 };
 
 const allProjects: ProjectCard[] = [
@@ -78,6 +76,11 @@ const allProjects: ProjectCard[] = [
     status: "Ongoing",
     pillarIndex: 0,
     image: null,
+    keyFocus: [
+      "Student motivation for AI concealment",
+      "Institutional trust and policy ambiguity",
+      "Learning environment design implications",
+    ],
   },
   {
     title: "Youth Interpreting Generative AI",
@@ -88,6 +91,11 @@ const allProjects: ProjectCard[] = [
     status: "Ongoing",
     pillarIndex: 1,
     image: projYouthAiImg,
+    keyFocus: [
+      "Meaning-making across content modalities",
+      "Formal and informal learning contexts",
+      "Developmental interpretive frameworks",
+    ],
   },
   // Row 2: IMAGE | TEXT
   {
@@ -99,6 +107,11 @@ const allProjects: ProjectCard[] = [
     status: "Pilot",
     pillarIndex: 1,
     image: projDeepfakeImg,
+    keyFocus: [
+      "Synthetic media detection skills",
+      "Ethical reasoning about AI-generated content",
+      "Sociopolitical dimensions of synthetic media",
+    ],
   },
   {
     title: "Trust and Epistemic Judgment in AI Use",
@@ -109,6 +122,11 @@ const allProjects: ProjectCard[] = [
     status: "Ongoing",
     pillarIndex: 0,
     image: null,
+    keyFocus: [
+      "Credibility assessment across disciplines",
+      "Longitudinal cognitive trust formation",
+      "Social and contextual trust cues in AI",
+    ],
   },
   // Row 3: IMAGE | TEXT
   {
@@ -120,6 +138,11 @@ const allProjects: ProjectCard[] = [
     status: "Pilot",
     pillarIndex: 2,
     image: projVibeCodingImg,
+    keyFocus: [
+      "Affect-driven programming pedagogy",
+      "AI-assisted creative iteration",
+      "Computational identity formation",
+    ],
   },
   {
     title: "AI-Powered Micro-Content Design",
@@ -130,6 +153,11 @@ const allProjects: ProjectCard[] = [
     status: "Building",
     pillarIndex: 2,
     image: null,
+    keyFocus: [
+      "Modular learning content architecture",
+      "Pedagogical outcomes of AI-assisted design",
+      "Ethics of AI authorship in education",
+    ],
   },
   // Row 4: TEXT | IMAGE
   {
@@ -141,6 +169,11 @@ const allProjects: ProjectCard[] = [
     status: "Ongoing",
     pillarIndex: 3,
     image: null,
+    keyFocus: [
+      "Offline-compatible curriculum design",
+      "Equity dimensions of differential AI access",
+      "Community-driven program development",
+    ],
   },
   {
     title: "Open-Source AI Tools for Schools",
@@ -151,6 +184,11 @@ const allProjects: ProjectCard[] = [
     status: "Building",
     pillarIndex: 3,
     image: projOpenSourceImg,
+    keyFocus: [
+      "Free and auditable tool design",
+      "Low-bandwidth engineering constraints",
+      "Community ownership and governance",
+    ],
   },
 ];
 
@@ -159,6 +197,31 @@ const statusColors: Record<string, string> = {
   Pilot: "bg-amber-500/10 text-amber-700 dark:text-amber-400",
   Building: "bg-chart-4/10 text-chart-4",
 };
+
+/* ─── Key Focus block (shared) ───────────────────────────────────────────── */
+function KeyFocusBlock({
+  items,
+  pillarLabelColor,
+}: {
+  items: string[];
+  pillarLabelColor: string;
+}) {
+  return (
+    <div className="mt-5 rounded-lg bg-muted/40 border border-border/60 px-4 py-3.5">
+      <p className={`text-[10px] font-bold tracking-[0.12em] uppercase mb-2.5 ${pillarLabelColor}`}>
+        Key Focus
+      </p>
+      <ul className="space-y-1.5">
+        {items.map((item, i) => (
+          <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
+            <span className="mt-[0.35rem] h-1 w-1 rounded-full bg-muted-foreground/40 shrink-0" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 /* ─── Image card ─────────────────────────────────────────────────────────── */
 function ImageProjectCard({
@@ -175,8 +238,8 @@ function ImageProjectCard({
       className="flex flex-col bg-card rounded-xl overflow-hidden hover-elevate"
       data-testid={`card-project-image-${index}`}
     >
-      {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      {/* Image — capped at 16/10 aspect ratio */}
+      <div className="relative aspect-[16/10] overflow-hidden">
         <img
           src={project.image!}
           alt={project.title}
@@ -194,13 +257,14 @@ function ImageProjectCard({
       </div>
 
       {/* Text */}
-      <div className="flex flex-col flex-1 p-6">
+      <div className="p-6">
         <h3 className="font-serif text-xl font-bold text-foreground leading-snug mb-2">
           {project.title}
         </h3>
-        <p className="text-sm leading-relaxed text-muted-foreground flex-1">
+        <p className="text-sm leading-relaxed text-muted-foreground">
           {project.description}
         </p>
+        <KeyFocusBlock items={project.keyFocus} pillarLabelColor={pillar.labelColor} />
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-4 pt-4 border-t border-card-border text-xs text-muted-foreground">
           <span>{project.type}</span>
           <span className="text-border">·</span>
@@ -242,9 +306,12 @@ function TextProjectCard({
       </h3>
 
       {/* Description */}
-      <p className="text-sm leading-relaxed text-muted-foreground flex-1">
+      <p className="text-sm leading-relaxed text-muted-foreground">
         {project.description}
       </p>
+
+      {/* Key Focus block */}
+      <KeyFocusBlock items={project.keyFocus} pillarLabelColor={pillar.labelColor} />
 
       {/* Metadata */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-5 pt-4 border-t border-card-border text-xs text-muted-foreground">
@@ -302,7 +369,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* ── MIT Media Lab-style project grid ─────────────────────────────── */}
+      {/* ── Project grid ─────────────────────────────────────────────────── */}
       <section data-testid="section-project-grid">
         <div className="flex items-center gap-3 mb-8">
           <div className="h-0.5 w-10 bg-primary rounded-full" />
@@ -311,7 +378,8 @@ export default function ProjectsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* items-start stops cards from stretching to match their row neighbor */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
           {allProjects.map((project, i) => {
             const pillar = pillars[project.pillarIndex];
             return project.image ? (
