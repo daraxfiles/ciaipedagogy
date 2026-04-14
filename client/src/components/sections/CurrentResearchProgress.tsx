@@ -13,53 +13,62 @@ function PhaseTracker({
   stageIndex: number;
 }) {
   return (
-    <div role="list" aria-label="Research phases" className="flex items-center gap-0 w-full mt-5 mb-1">
+    <div
+      role="list"
+      aria-label="Research phases"
+      className="flex items-start w-full mt-5"
+    >
       {phases.map((phase, i) => {
         const isCompleted = i < stageIndex;
         const isCurrent = i === stageIndex;
-        const isFuture = i > stageIndex;
 
         return (
           <div
             key={phase}
             role="listitem"
-            className="flex items-center flex-1 min-w-0"
+            className="flex-1 flex flex-col items-center relative"
             aria-label={`${phase}: ${isCompleted ? "completed" : isCurrent ? "current" : "upcoming"}`}
           >
-            {/* Node */}
-            <div className="relative flex flex-col items-center shrink-0">
+            {/* Left connector line — fills left half, not on first item */}
+            {i > 0 && (
               <div
-                className={`h-2.5 w-2.5 rounded-full border-2 transition-colors ${
-                  isCompleted
-                    ? "bg-primary border-primary"
-                    : isCurrent
-                    ? "bg-background border-primary ring-2 ring-primary/30"
-                    : "bg-background border-border"
+                className={`absolute top-[4px] right-1/2 left-0 h-px ${
+                  i <= stageIndex ? "bg-primary" : "bg-border"
                 }`}
               />
-              {/* Label below node — only on larger screens */}
-              <span
-                className={`absolute top-4 text-[9px] leading-tight text-center whitespace-nowrap font-medium hidden sm:block ${
-                  isCompleted
-                    ? "text-primary/70"
-                    : isCurrent
-                    ? "text-primary font-semibold"
-                    : "text-muted-foreground/50"
-                }`}
-                style={{ width: "max-content", transform: "translateX(-50%)", left: "50%" }}
-              >
-                {phase}
-              </span>
-            </div>
-
-            {/* Connector line (not after last) */}
+            )}
+            {/* Right connector line — fills right half, not on last item */}
             {i < phases.length - 1 && (
               <div
-                className={`flex-1 h-px mx-0.5 ${
+                className={`absolute top-[4px] left-1/2 right-0 h-px ${
                   i < stageIndex ? "bg-primary" : "bg-border"
                 }`}
               />
             )}
+
+            {/* Dot */}
+            <div
+              className={`relative z-10 h-2.5 w-2.5 rounded-full border-2 transition-colors ${
+                isCompleted
+                  ? "bg-primary border-primary"
+                  : isCurrent
+                  ? "bg-background border-primary ring-2 ring-primary/30"
+                  : "bg-background border-border"
+              }`}
+            />
+
+            {/* Label — centered within each flex-1 column, allowed to wrap */}
+            <span
+              className={`mt-2 text-[9px] leading-snug text-center font-medium w-full px-0.5 ${
+                isCompleted
+                  ? "text-primary/70"
+                  : isCurrent
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground/50"
+              }`}
+            >
+              {phase}
+            </span>
           </div>
         );
       })}
@@ -114,11 +123,8 @@ function StudyCard({ study }: { study: Study }) {
       {/* Phase tracker */}
       <PhaseTracker phases={phases} stageIndex={study.stageIndex} />
 
-      {/* Space for label text */}
-      <div className="mt-6 mb-4" />
-
       {/* Detail bullets */}
-      <ul className="space-y-1.5 mb-5">
+      <ul className="space-y-1.5 mb-5 mt-5">
         {study.details.map((detail, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
             <div className="mt-[0.4rem] h-1 w-1 rounded-full bg-primary/50 shrink-0" />

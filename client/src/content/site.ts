@@ -490,7 +490,6 @@ export const researchProgress = {
   stats: [
     { label: "Active Studies", value: "3", isNumber: true },
     { label: "Survey Responses Collected", value: "474", isNumber: true },
-    { label: "Interviews Underway", value: "Yes", isNumber: false },
   ],
   phases: [
     "Conceptualization",
