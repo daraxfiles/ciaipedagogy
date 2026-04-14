@@ -344,7 +344,11 @@ export const siteConfig = {
       { title: "Critical AI Pedagogy Workshop", date: "TBD, Spring 2026", description: "Hands-on workshop for educators on integrating critical AI literacy into their teaching." },
       { title: "Research Showcase", date: "TBD, Fall 2026", description: "Annual event featuring presentations from graduate fellows and lab researchers." },
     ],
-    archive: [],
+    archive: [
+      { title: "Fall 2025 Research Symposium", date: "November 2025", description: "Featured presentations on AI Smuggling findings and Deepfake Literacy curriculum." },
+      { title: "Summer 2025 Educator Institute", date: "June 2025", description: "Week-long intensive on ethical AI integration for K-12 and higher education faculty." },
+      { title: "Spring 2025 Working Group Launch", date: "March 2025", description: "Inaugural gathering of the CI&AIP network. Established research agenda and collaboration structures." },
+    ],
   },
 
   publications: {
