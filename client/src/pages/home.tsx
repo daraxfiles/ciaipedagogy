@@ -3,6 +3,7 @@ import aboutBannerImg from "@assets/stock_images/about-banner.jpg";
 import projYouthAiImg from "@assets/stock_images/proj-youth-ai.png";
 import { Link } from "wouter";
 import { Hero } from "@/components/sections/Hero";
+import { CurrentResearchProgress } from "@/components/sections/CurrentResearchProgress";
 import { siteConfig } from "@/content/site";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -324,6 +325,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Current Research Progress ────────────────────────────────────── */}
+      <CurrentResearchProgress />
 
       {/* ── CTA ─────────────────────────────────────────────────────────── */}
       <section

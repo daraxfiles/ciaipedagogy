@@ -482,3 +482,71 @@ export const studentResearch = {
     },
   ],
 };
+
+export const researchProgress = {
+  title: "Current Research Progress",
+  subtitle:
+    "A snapshot of the studies currently being developed, implemented, and analyzed within the Critical Innovation & AI Pedagogy network.",
+  stats: [
+    { label: "Active Studies", value: "3", isNumber: true },
+    { label: "Survey Responses Collected", value: "474", isNumber: true },
+    { label: "Interviews Underway", value: "Yes", isNumber: false },
+  ],
+  phases: [
+    "Conceptualization",
+    "Data Collection",
+    "Analysis",
+    "Interviews",
+    "Writing",
+  ],
+  studies: [
+    {
+      id: "study-1",
+      label: "Study 1",
+      title:
+        'Perceptions and Experiences of "AI Smuggling" in Academic Contexts',
+      description:
+        "This study examines how students perceive and experience concealed or undisclosed AI use in academic settings, with attention to trust, legitimacy, and institutional context.",
+      currentStage: "Analysis Starting",
+      stageIndex: 2,
+      nextStep: "Begin data analysis",
+      details: [
+        "Research has been conceptualized",
+        "Survey data collected",
+        "243 survey respondents",
+        "Analysis will begin next",
+      ],
+    },
+    {
+      id: "study-2",
+      label: "Study 2",
+      title:
+        "Trust, Overreliance, and the Legitimacy of AI-Assisted Academic Work in Higher Education",
+      description:
+        "This study investigates how higher education students evaluate trust, overreliance, and the legitimacy of AI-assisted academic work.",
+      currentStage: "Interview Phase",
+      stageIndex: 3,
+      nextStep: "Complete follow-up interviews",
+      details: [
+        "Survey data collected",
+        "231 survey respondents",
+        "Follow-up interviews underway",
+        "10 interview participants engaged from survey pool",
+      ],
+    },
+    {
+      id: "study-3",
+      label: "Study 3",
+      title: "Identity and Algorithmic Learning",
+      description:
+        "This study explores how identity is shaped, negotiated, and experienced within algorithmically mediated learning environments.",
+      currentStage: "Conceptualization",
+      stageIndex: 0,
+      nextStep: "Develop research design",
+      details: [
+        "Research focus is being defined",
+        "Conceptual framing is under development",
+      ],
+    },
+  ],
+};

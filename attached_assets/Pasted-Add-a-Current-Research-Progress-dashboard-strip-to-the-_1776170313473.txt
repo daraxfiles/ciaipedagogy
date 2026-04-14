@@ -1,0 +1,220 @@
+Add a “Current Research Progress” dashboard strip to the homepage of the Critical Innovation & AI Pedagogy website.
+
+GOAL
+Create a clean, scholarly, visually polished research dashboard strip on the homepage that gives visitors a quick snapshot of the research currently underway. This should feel like a live research overview, not a corporate analytics dashboard.
+
+PLACEMENT
+- Add this section to the homepage
+- Place it in a strong visible location, ideally after the hero or after the research pillars section
+- It should feel like a homepage highlight section
+
+SECTION TITLE
+Current Research Progress
+
+SECTION SUBTITLE
+A snapshot of the studies currently being developed, implemented, and analyzed within the Critical Innovation & AI Pedagogy network.
+
+TOP SUMMARY BAND
+At the top of the section, add a compact summary strip with:
+- 3 Active Studies
+- 474 Survey Responses Collected
+- Interviews Underway
+
+These should be displayed visually as small summary stats or badges, not as plain paragraph text.
+
+RESEARCH STUDIES TO DISPLAY
+
+STUDY 1
+Title:
+Perceptions and Experiences of “AI Smuggling” in Academic Contexts
+
+Description:
+This study examines how students perceive and experience concealed or undisclosed AI use in academic settings, with attention to trust, legitimacy, and institutional context.
+
+Current Stage:
+Analysis Starting
+
+Progress Details:
+- Research has been conceptualized
+- Survey data collected
+- 243 survey respondents
+- Analysis will begin next
+
+Next Step:
+Begin data analysis
+
+Stage Position:
+This study should visually appear further along than conceptualization and data collection, but not yet at writing/dissemination.
+
+STUDY 2
+Title:
+Trust, Overreliance, and the Legitimacy of AI-Assisted Academic Work in Higher Education
+
+Description:
+This study investigates how higher education students evaluate trust, overreliance, and the legitimacy of AI-assisted academic work.
+
+Current Stage:
+Interview Phase
+
+Progress Details:
+- Survey data collected
+- 231 survey respondents
+- Follow-up interviews underway
+- 10 interview participants are being engaged from the survey pool
+
+Next Step:
+Complete follow-up interviews
+
+Stage Position:
+This study should visually show that it has completed survey collection and is now in interviews/follow-up.
+
+STUDY 3
+Title:
+Identity and Algorithmic Learning
+
+Description:
+This study explores how identity is shaped, negotiated, and experienced within algorithmically mediated learning environments.
+
+Current Stage:
+Conceptualization
+
+Progress Details:
+- Research focus is being defined
+- Conceptual framing is under development
+
+Next Step:
+Develop research design
+
+Stage Position:
+This study should visually appear at the earliest stage.
+
+DESIGN DIRECTION
+This is very important:
+- Make it feel like a research dashboard strip, not a business KPI dashboard
+- Keep it scholarly, human-centered, and visually calm
+- Use the current site style and palette
+- Clean spacing, subtle color, elegant typography
+- Avoid loud charts, excessive icons, or overly technical visuals
+
+LAYOUT REQUIREMENTS
+Create a horizontal strip layout with three research cards across on desktop and stacked on mobile.
+
+Recommended structure:
+1. Section title + subtitle
+2. Top summary stats strip
+3. Row of 3 compact research tracker cards
+
+Each research card should include:
+- Study label (e.g., Study 1, Study 2, Study 3)
+- Title
+- Short description
+- Current stage badge
+- A small visual progress indicator
+- 3–4 progress detail bullets
+- A “Next Step” line or callout
+
+VISUAL PROGRESS INDICATOR
+Use one of the following approaches:
+- stage pills
+- mini step tracker
+- compact horizontal progress bar with labeled phases
+- small research pipeline indicator
+
+Suggested shared phase system:
+- Conceptualization
+- Data Collection
+- Analysis
+- Interviews / Follow-Up
+- Writing / Dissemination
+
+Adapt if needed, but keep the visual system consistent across all 3 studies.
+
+Important:
+- Study 1 should appear in or entering Analysis
+- Study 2 should appear in Interviews / Follow-Up
+- Study 3 should appear in Conceptualization
+
+CONTENT STRUCTURE
+Store all research dashboard content in a content/config file, not hardcoded in the component.
+
+If the site already uses:
+- src/content/site.ts
+then add a section like:
+export const researchProgress = {
+  title: ...,
+  subtitle: ...,
+  stats: [...],
+  studies: [...]
+}
+
+Suggested study fields:
+- id
+- label
+- title
+- description
+- currentStage
+- nextStep
+- details[]
+- stageIndex
+- progressPercent (optional)
+
+COMPONENTS
+Create reusable components as needed, for example:
+- CurrentResearchProgress.tsx
+- ResearchProgressCard.tsx
+- SummaryStatsStrip.tsx
+
+HOMEPAGE INTEGRATION
+Update the homepage so this section appears in the main page flow.
+
+If there is a homepage file like:
+- src/app/page.tsx
+insert this section in an intentional place.
+
+STYLING
+- Use rounded cards
+- Use subtle shadows
+- Use soft borders
+- Maintain generous whitespace
+- Keep text readable
+- Make badges elegant and restrained
+- Ensure the whole strip feels like part of a university research site
+
+RESPONSIVENESS
+- Desktop: 3 cards in one row
+- Tablet: 2 or 1 depending on available width
+- Mobile: stacked cards
+- Summary stats should wrap cleanly on smaller screens
+
+ACCESSIBILITY
+- Proper heading hierarchy
+- Clear contrast
+- Semantic structure
+- No progress indicator should rely only on color
+
+IMPORTANT
+- Do not invent outcomes or publications
+- Keep all wording accurate to current progress
+- Do not make the studies look completed
+- This should depict work in progress truthfully
+
+ACCEPTANCE CRITERIA
+- Homepage includes a “Current Research Progress” dashboard strip
+- It displays 3 active studies
+- It includes the summary stats:
+  - 3 Active Studies
+  - 474 Survey Responses Collected
+  - Interviews Underway
+- Study 1 is shown entering analysis
+- Study 2 is shown in interview phase
+- Study 3 is shown in conceptualization
+- Layout is polished, responsive, and aligned with the site design
+- Content is editable from the content file
+
+AFTER IMPLEMENTATION
+Show me:
+1. what files you changed
+2. where the dashboard strip was added on the homepage
+3. how the progress data is structured
+4. how to update the study statuses later
+5. what visual system you used for the progress indicator
