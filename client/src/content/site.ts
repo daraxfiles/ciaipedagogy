@@ -247,35 +247,22 @@ export const siteConfig = {
       {
         label: "Educators",
         description: "Faculty and teaching professionals who bring critical AI pedagogy into classrooms and curricula across disciplines.",
-        members: [
-          { name: "Faculty Lead", focus: "AI in Education, Critical Pedagogy", affiliation: "" },
-          { name: "Teaching Fellow", focus: "Instructional Design, Generative AI", affiliation: "" },
-        ],
+        members: [],
       },
       {
         label: "Researchers",
         description: "Scholars advancing empirical and theoretical work on AI, media literacy, and learning sciences.",
-        members: [
-          { name: "Research Director", focus: "Media Literacy, Synthetic Media", affiliation: "" },
-          { name: "Postdoctoral Fellow", focus: "Epistemic Trust, Learning Sciences", affiliation: "" },
-        ],
+        members: [],
       },
       {
         label: "Students",
         description: "Students conducting original research as part of the network. Fellows lead studies, present at conferences, and co-author publications.",
-        members: [
-          { name: "Graduate Fellow", focus: "AI Smuggling, Student Agency", affiliation: "" },
-          { name: "Graduate Fellow", focus: "Deepfake Literacy, Youth Media", affiliation: "" },
-          { name: "Lab Coordinator", focus: "Open-Source AI, Low-Resource Contexts", affiliation: "" },
-        ],
+        members: [],
       },
       {
         label: "Community Partners",
         description: "Organizations and practitioners collaborating on community-engaged research, curriculum development, and equity-centered design.",
-        members: [
-          { name: "K-12 Educator Partner", focus: "Classroom-Based Research, Curriculum", affiliation: "School District Partner" },
-          { name: "Community Collaborator", focus: "Low-Access AI Literacy", affiliation: "Community Organization" },
-        ],
+        members: [],
       },
     ],
   },
