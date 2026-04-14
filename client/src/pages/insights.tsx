@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
@@ -7,20 +7,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { Send, User } from "lucide-react";
+import { Send, User, ExternalLink, ChevronRight, PenLine } from "lucide-react";
 import type { InsightComment } from "@shared/schema";
 
-const tagColor: Record<string, string> = {
-  Essay:       "text-primary",
-  Commentary:  "text-accent-foreground",
-  Reflection:  "text-chart-3",
+const tagColor: Record<string, { text: string; bg: string }> = {
+  Essay:      { text: "text-primary",             bg: "bg-primary/10" },
+  Commentary: { text: "text-accent-foreground",   bg: "bg-accent/15" },
+  Reflection: { text: "text-chart-3",             bg: "bg-chart-3/15" },
 };
-
-function readingTime(body: string[]): string {
-  const words = body.join(" ").split(/\s+/).length;
-  const mins = Math.max(1, Math.round(words / 238));
-  return `${mins} min read`;
-}
 
 // ── Comment form ──────────────────────────────────────────────────────────────
 function CommentForm({ postSlug, onSuccess }: { postSlug: string; onSuccess: () => void }) {
@@ -72,12 +66,10 @@ function CommentForm({ postSlug, onSuccess }: { postSlug: string; onSuccess: () 
         <Textarea id={`content-${postSlug}`} value={content} onChange={(e) => setContent(e.target.value)}
           placeholder="What are your thoughts?" rows={4} className="text-sm resize-none bg-background" required />
       </div>
-      <div className="flex items-center gap-3">
-        <Button type="submit" size="sm" disabled={mutation.isPending} data-testid={`button-comment-submit-${postSlug}`}>
-          <Send className="h-3.5 w-3.5 mr-1.5" />
-          {mutation.isPending ? "Posting…" : "Publish response"}
-        </Button>
-      </div>
+      <Button type="submit" size="sm" disabled={mutation.isPending} data-testid={`button-comment-submit-${postSlug}`}>
+        <Send className="h-3.5 w-3.5 mr-1.5" />
+        {mutation.isPending ? "Posting…" : "Publish response"}
+      </Button>
     </form>
   );
 }
@@ -105,10 +97,8 @@ function ResponsesSection({ postSlug }: { postSlug: string }) {
     new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
   return (
-    <div className="mt-14" data-testid={`comments-${postSlug}`}>
-
-      {/* Divider + heading */}
-      <div className="border-t border-border pt-8 mb-6 flex items-center justify-between gap-4">
+    <div className="mt-10" data-testid={`comments-${postSlug}`}>
+      <div className="border-t border-border pt-7 mb-5 flex items-center justify-between gap-4">
         <p className="text-sm font-semibold text-foreground">
           {comments.length > 0
             ? `${comments.length} Response${comments.length !== 1 ? "s" : ""}`
@@ -126,18 +116,17 @@ function ResponsesSection({ postSlug }: { postSlug: string }) {
         )}
       </div>
 
-      {/* Existing responses */}
       {isLoading ? (
         <p className="text-sm text-muted-foreground">Loading…</p>
       ) : comments.length > 0 ? (
-        <div className="space-y-6 mb-8">
+        <div className="space-y-5 mb-7">
           {comments.map((c) => (
             <div key={c.id} className="flex gap-3" data-testid={`comment-${c.id}`}>
-              <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center shrink-0 mt-0.5">
-                <User className="h-3.5 w-3.5 text-muted-foreground" />
+              <div className="h-7 w-7 rounded-full bg-muted flex items-center justify-center shrink-0 mt-0.5">
+                <User className="h-3 w-3 text-muted-foreground" />
               </div>
               <div className="min-w-0">
-                <div className="flex items-baseline gap-2 flex-wrap mb-1.5">
+                <div className="flex items-baseline gap-2 flex-wrap mb-1">
                   <span className="text-sm font-semibold text-foreground">{c.name}</span>
                   <span className="text-xs text-muted-foreground">{fmt(c.createdAt)}</span>
                 </div>
@@ -147,12 +136,11 @@ function ResponsesSection({ postSlug }: { postSlug: string }) {
           ))}
         </div>
       ) : !showForm ? (
-        <p className="text-sm text-muted-foreground mb-6">No responses yet.</p>
+        <p className="text-sm text-muted-foreground mb-5">No responses yet.</p>
       ) : null}
 
-      {/* Inline form */}
       {showForm && (
-        <div className="rounded-xl border border-border bg-card p-5 mb-4">
+        <div className="rounded-xl border border-border bg-card p-4 mb-4">
           <CommentForm postSlug={postSlug} onSuccess={handleSuccess} />
           <button type="button" onClick={() => setShowForm(false)}
             className="mt-3 text-xs text-muted-foreground hover:text-foreground transition-colors">
@@ -167,137 +155,182 @@ function ResponsesSection({ postSlug }: { postSlug: string }) {
 // ── Main page ─────────────────────────────────────────────────────────────────
 export default function InsightsPage() {
   const { insights } = siteConfig.events;
-  const topRef = useRef<HTMLDivElement>(null);
+  const [selectedSlug, setSelectedSlug] = useState(insights[0]?.slug ?? "");
 
-  const scrollToPost = (slug: string) => {
-    const el = document.getElementById(`post-${slug}`);
-    if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - 96;
-    window.scrollTo({ top, behavior: "smooth" });
-  };
+  const selected = insights.find((i) => i.slug === selectedSlug) ?? insights[0];
+  const colors = tagColor[selected?.tag ?? ""] ?? { text: "text-muted-foreground", bg: "bg-muted" };
 
   return (
-    <div ref={topRef} className="max-w-[680px] mx-auto">
-
-      {/* Publication header */}
-      <div className="border-b border-border pb-8 mb-12">
-        <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground mb-4">
+    <div>
+      {/* ── Page header (full width) ───────────────────────────────────── */}
+      <div className="border-b border-border pb-8 mb-10">
+        <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground mb-3">
           Critical Innovation &amp; AI Pedagogy
         </p>
-        <h1 className="font-serif text-[2.6rem] sm:text-[3.2rem] font-bold text-foreground leading-[1.1] tracking-tight mb-4">
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground leading-tight mb-3">
           Insights &amp; Commentary
         </h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
+        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
           Research reflections, public scholarship, and critical commentary on AI, learning, and innovation.
         </p>
+      </div>
 
-        {/* Table of contents */}
-        <nav aria-label="In this collection" className="mt-8">
-          <p className="text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-3">
-            In this collection
-          </p>
-          <ol className="space-y-2">
-            {insights.map((item, i) => (
-              <li key={item.slug} className="flex items-baseline gap-3">
-                <span className="text-xs text-muted-foreground tabular-nums w-4 shrink-0">{i + 1}.</span>
+      {/* ── Two-column layout ──────────────────────────────────────────── */}
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+
+        {/* LEFT: Sticky sidebar ─────────────────────────────────────────── */}
+        <aside className="w-full lg:w-[260px] shrink-0 lg:sticky lg:top-24">
+
+          {/* Mobile: horizontal scroll pill strip */}
+          <div className="flex lg:hidden gap-2 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-none">
+            {insights.map((item) => {
+              const isActive = item.slug === selectedSlug;
+              const c = tagColor[item.tag] ?? { text: "text-muted-foreground", bg: "bg-muted" };
+              return (
                 <button
+                  key={item.slug}
                   type="button"
-                  onClick={() => scrollToPost(item.slug)}
-                  className={`text-sm text-left leading-snug transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded ${tagColor[item.tag] ?? "text-foreground/80"}`}
+                  onClick={() => setSelectedSlug(item.slug)}
+                  className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap border ${
+                    isActive
+                      ? `${c.bg} ${c.text} border-transparent`
+                      : "border-border text-muted-foreground hover:text-foreground"
+                  }`}
+                  data-testid={`sidebar-item-mobile-${item.slug}`}
                 >
                   {item.title}
                 </button>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      </div>
+              );
+            })}
+          </div>
 
-      {/* Articles */}
-      <div>
-        {insights.map((item, i) => (
+          {/* Desktop: vertical list */}
+          <nav aria-label="Insights navigation" className="hidden lg:block rounded-xl border border-border overflow-hidden">
+            <div className="px-4 py-3 border-b border-border bg-muted/30">
+              <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-muted-foreground">
+                In this collection
+              </p>
+            </div>
+            <ul>
+              {insights.map((item, i) => {
+                const isActive = item.slug === selectedSlug;
+                const c = tagColor[item.tag] ?? { text: "text-muted-foreground", bg: "bg-muted" };
+                return (
+                  <li key={item.slug} className={i < insights.length - 1 ? "border-b border-border" : ""}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedSlug(item.slug);
+                        if (item.blogUrl) {
+                          window.open(item.blogUrl, "_blank", "noopener,noreferrer");
+                        }
+                      }}
+                      className={`w-full text-left px-4 py-3.5 flex items-start justify-between gap-3 transition-colors group ${
+                        isActive ? "bg-muted/60" : "hover:bg-muted/30"
+                      }`}
+                      data-testid={`sidebar-item-${item.slug}`}
+                    >
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <span className={`text-[9px] font-bold tracking-[0.12em] uppercase ${c.text}`}>
+                            {item.tag}
+                          </span>
+                        </div>
+                        <p className={`text-sm font-medium leading-snug ${isActive ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"} transition-colors`}>
+                          {item.title}
+                        </p>
+                        <p className="text-[11px] text-muted-foreground mt-1">{item.date}</p>
+                      </div>
+                      <ChevronRight className={`h-3.5 w-3.5 shrink-0 mt-1 transition-colors ${
+                        isActive ? "text-foreground" : "text-muted-foreground/40 group-hover:text-muted-foreground"
+                      }`} />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </aside>
+
+        {/* RIGHT: Article detail panel ──────────────────────────────────── */}
+        {selected && (
           <article
-            key={item.slug}
-            id={`post-${item.slug}`}
-            className="scroll-mt-24 pb-16"
-            data-testid={`article-${item.slug}`}
+            key={selected.slug}
+            className="flex-1 min-w-0"
+            data-testid={`article-${selected.slug}`}
           >
             {/* Category */}
-            <p className={`text-[11px] font-semibold tracking-[0.15em] uppercase mb-4 ${tagColor[item.tag] ?? "text-muted-foreground"}`}>
-              {item.tag}
+            <p className={`text-[11px] font-bold tracking-[0.15em] uppercase mb-4 ${colors.text}`}>
+              {selected.tag}
             </p>
 
             {/* Title */}
-            <h2 className="font-serif text-[2rem] sm:text-[2.4rem] font-bold text-foreground leading-[1.15] tracking-tight mb-4">
-              {item.title}
+            <h2 className="font-serif text-[1.85rem] sm:text-[2.3rem] font-bold text-foreground leading-[1.15] tracking-tight mb-4">
+              {selected.title}
             </h2>
 
             {/* Dek */}
-            <p className="text-[1.15rem] leading-[1.6] text-muted-foreground font-normal mb-6">
-              {item.excerpt}
+            <p className="text-[1.05rem] sm:text-[1.1rem] leading-[1.65] text-muted-foreground mb-6">
+              {selected.excerpt}
             </p>
 
             {/* Byline */}
-            <div className="flex items-center gap-3 mb-8">
-              <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                <span className="text-[11px] font-bold text-primary font-serif">CI</span>
+            <div className="flex items-center gap-3 mb-7">
+              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <span className="text-[10px] font-bold text-primary font-serif">CI</span>
               </div>
               <div>
-                <p className="text-sm font-medium text-foreground leading-none mb-1">CI&amp;AIP Network</p>
-                <p className="text-xs text-muted-foreground">
-                  {item.date}
-                  {item.body.length > 0 && (
-                    <>
-                      <span className="mx-1.5">·</span>
-                      {readingTime(item.body)}
-                    </>
-                  )}
-                </p>
+                <p className="text-sm font-medium text-foreground leading-none mb-0.5">CI&amp;AIP Network</p>
+                <p className="text-xs text-muted-foreground">{selected.date}</p>
               </div>
             </div>
 
-            {/* Thin rule */}
+            {/* Divider */}
             <div className="border-t border-border mb-8" />
 
-            {/* Body */}
-            {item.body.length > 0 ? (
-              <div className="prose-article">
-                {item.body.map((para, j) => (
-                  <p
-                    key={j}
-                    className="text-[1.0625rem] sm:text-[1.125rem] leading-[1.78] text-foreground/90 mb-6 last:mb-0"
-                  >
+            {/* Body / blog link / coming soon */}
+            {selected.body.length > 0 ? (
+              <div>
+                {selected.body.map((para, j) => (
+                  <p key={j} className="text-[1.0625rem] leading-[1.78] text-foreground/90 mb-6 last:mb-0">
                     {para}
                   </p>
                 ))}
               </div>
+            ) : selected.blogUrl ? (
+              <div className="rounded-xl border border-border bg-muted/20 px-6 py-8">
+                <p className="text-sm text-muted-foreground mb-5">
+                  This piece is published on the CI&amp;AIP blog. Click below to read the full article.
+                </p>
+                <a
+                  href={selected.blogUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid={`link-read-blog-${selected.slug}`}
+                >
+                  <Button className="gap-2">
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Read full article
+                  </Button>
+                </a>
+              </div>
             ) : (
-              <div className="rounded-lg border border-dashed border-border bg-muted/30 px-6 py-8 text-center">
-                <p className="text-sm text-muted-foreground italic">
-                  Full text coming soon — this piece is currently being written.
+              <div className="rounded-xl border border-dashed border-border bg-muted/20 px-6 py-10 flex flex-col items-center text-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
+                  <PenLine className="h-4 w-4 text-muted-foreground" />
+                </div>
+                <p className="text-sm font-medium text-foreground">Full text coming soon</p>
+                <p className="text-xs text-muted-foreground max-w-xs leading-relaxed">
+                  This piece is currently being written. Check back soon, or leave a response below — we read every one.
                 </p>
               </div>
             )}
 
             {/* Responses */}
-            <ResponsesSection postSlug={item.slug} />
-
-            {/* Inter-article spacer / divider */}
-            {i < insights.length - 1 && (
-              <div className="mt-6 border-t-2 border-dashed border-border/40 pt-2 pb-4">
-                <button
-                  type="button"
-                  onClick={() => scrollToPost(insights[i + 1].slug)}
-                  className="text-xs text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
-                >
-                  Next: {insights[i + 1].title} →
-                </button>
-              </div>
-            )}
+            <ResponsesSection postSlug={selected.slug} />
           </article>
-        ))}
+        )}
       </div>
-
     </div>
   );
 }

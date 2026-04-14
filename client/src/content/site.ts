@@ -290,6 +290,7 @@ export const siteConfig = {
         excerpt: "Why do students hide their AI use, and what does it tell us about the learning environments we create?",
         tag: "Essay",
         date: "February 2026",
+        blogUrl: "",
         body: [],
       },
       {
@@ -298,6 +299,7 @@ export const siteConfig = {
         excerpt: "Practical strategies for creating assignments that embrace AI while maintaining academic integrity.",
         tag: "Essay",
         date: "January 2026",
+        blogUrl: "",
         body: [],
       },
       {
@@ -306,6 +308,7 @@ export const siteConfig = {
         excerpt: "As AI mediates more educational interactions, how do learners decide what to trust?",
         tag: "Commentary",
         date: "December 2025",
+        blogUrl: "",
         body: [],
       },
       {
@@ -314,6 +317,7 @@ export const siteConfig = {
         excerpt: "Why access to AI tools is not the same as access to AI literacy.",
         tag: "Commentary",
         date: "November 2025",
+        blogUrl: "",
         body: [],
       },
       {
@@ -322,6 +326,7 @@ export const siteConfig = {
         excerpt: "Observations from our pilot program on creative, affect-driven coding practices.",
         tag: "Reflection",
         date: "October 2025",
+        blogUrl: "",
         body: [],
       },
       {
@@ -330,6 +335,7 @@ export const siteConfig = {
         excerpt: "Surprising findings from our focus groups on student perceptions of AI in learning.",
         tag: "Reflection",
         date: "September 2025",
+        blogUrl: "",
         body: [],
       },
     ],
