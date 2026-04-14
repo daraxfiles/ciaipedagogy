@@ -4,7 +4,22 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, Clock } from "lucide-react";
+
+function ComingSoonButton({ testId }: { testId: string }) {
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      className="w-full text-muted-foreground cursor-default hover:bg-transparent hover:text-muted-foreground border-dashed"
+      disabled
+      data-testid={testId}
+    >
+      <Clock className="mr-1.5 h-3.5 w-3.5" />
+      Coming Soon
+    </Button>
+  );
+}
 
 export default function ToolkitPage() {
   const { toolkit } = siteConfig;
@@ -53,12 +68,14 @@ export default function ToolkitPage() {
                       Access Tool <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
                     </Button>
                   </a>
-                ) : (
+                ) : tool.link !== "#" ? (
                   <Link href={tool.link}>
                     <Button variant="outline" size="sm" className="w-full" data-testid={`button-tool-${i}`}>
                       Access Tool <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                     </Button>
                   </Link>
+                ) : (
+                  <ComingSoonButton testId={`button-tool-${i}`} />
                 )}
               </CardContent>
             </Card>
@@ -76,14 +93,17 @@ export default function ToolkitPage() {
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {toolkit.resources.map((resource, i) => (
-            <Card key={i} className="hover-elevate border-card-border" data-testid={`card-resource-${i}`}>
-              <CardHeader>
+            <Card key={i} className="hover-elevate border-card-border flex flex-col" data-testid={`card-resource-${i}`}>
+              <CardHeader className="pb-3">
                 <div className="mb-2">
                   <Badge variant="secondary" className="text-xs no-default-active-elevate">{resource.type}</Badge>
                 </div>
                 <CardTitle className="font-serif text-base">{resource.title}</CardTitle>
                 <CardDescription className="text-sm leading-relaxed mt-2">{resource.description}</CardDescription>
               </CardHeader>
+              <CardContent className="mt-auto pt-0">
+                <ComingSoonButton testId={`button-resource-${i}`} />
+              </CardContent>
             </Card>
           ))}
         </div>
@@ -99,18 +119,23 @@ export default function ToolkitPage() {
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {toolkit.curriculum.map((item, i) => (
-            <div key={i} className="rounded-xl border border-card-border bg-card p-6 hover-elevate" data-testid={`card-curriculum-${i}`}>
-              <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
-                <Badge variant="outline" className="text-xs no-default-active-elevate">{item.audience}</Badge>
-                <Badge
-                  variant="outline"
-                  className={`text-xs no-default-active-elevate ${item.status === "Available" ? "border-emerald-500/40 text-emerald-700 dark:text-emerald-400" : "border-amber-500/40 text-amber-700 dark:text-amber-400"}`}
-                >
-                  {item.status}
-                </Badge>
+            <div key={i} className="rounded-xl border border-card-border bg-card p-6 hover-elevate flex flex-col gap-4" data-testid={`card-curriculum-${i}`}>
+              <div>
+                <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
+                  <Badge variant="outline" className="text-xs no-default-active-elevate">{item.audience}</Badge>
+                  <Badge
+                    variant="outline"
+                    className={`text-xs no-default-active-elevate ${item.status === "Available" ? "border-emerald-500/40 text-emerald-700 dark:text-emerald-400" : "border-amber-500/40 text-amber-700 dark:text-amber-400"}`}
+                  >
+                    {item.status}
+                  </Badge>
+                </div>
+                <h3 className="font-serif text-lg font-bold text-foreground mb-2">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               </div>
-              <h3 className="font-serif text-lg font-bold text-foreground mb-2">{item.title}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              <div className="mt-auto">
+                <ComingSoonButton testId={`button-curriculum-${i}`} />
+              </div>
             </div>
           ))}
         </div>
@@ -126,12 +151,15 @@ export default function ToolkitPage() {
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {toolkit.experiments.map((exp, i) => (
-            <Card key={i} className="hover-elevate border-card-border" data-testid={`card-experiment-${i}`}>
-              <CardHeader>
+            <Card key={i} className="hover-elevate border-card-border flex flex-col" data-testid={`card-experiment-${i}`}>
+              <CardHeader className="pb-3">
                 <Badge variant="secondary" className="text-xs w-fit mb-2 no-default-active-elevate">{exp.setting}</Badge>
                 <CardTitle className="font-serif text-base">{exp.title}</CardTitle>
                 <CardDescription className="text-sm leading-relaxed mt-2">{exp.description}</CardDescription>
               </CardHeader>
+              <CardContent className="mt-auto pt-0">
+                <ComingSoonButton testId={`button-experiment-${i}`} />
+              </CardContent>
             </Card>
           ))}
         </div>
